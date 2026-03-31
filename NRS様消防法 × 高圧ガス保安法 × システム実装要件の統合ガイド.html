@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消防法 × 高圧ガス保安法 × システム実装要件の統合ガイド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap');
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 pb-20">
+
+<div class="max-w-5xl mx-auto p-6 md:p-12">
+    <!-- Header -->
+    <header class="mb-12 bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-4 mb-4">
+            <div class="p-3 bg-indigo-600 rounded-2xl text-white shadow-lg">
+                <i data-lucide="layers-3" size="32"></i>
+            </div>
+            <h1 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">消防法 × 高圧ガス保安法 × システム実装要件の統合ガイド</h1>
+        </div>
+        <p class="text-slate-500 font-medium ml-1">複数の法制約を一つの配車ロジックへ統合するための設計指針</p>
+    </header>
+
+    <!-- Comparison Section -->
+    <section class="mb-12">
+        <div class="flex items-center gap-2 mb-6">
+            <i data-lucide="git-compare" class="text-slate-400"></i>
+            <h2 class="text-xl font-bold text-slate-800">法規制の構造的差異</h2>
+        </div>
+        
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+            <table class="w-full text-left text-sm border-collapse">
+                <thead>
+                    <tr class="bg-slate-50 text-slate-500 uppercase text-[10px] tracking-widest">
+                        <th class="p-5 border-b font-bold">項目</th>
+                        <th class="p-5 border-b font-bold text-red-600">消防法 (危険物)</th>
+                        <th class="p-5 border-b font-bold text-indigo-600">高圧ガス保安法</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 text-slate-700">
+                    <tr>
+                        <td class="p-5 font-bold bg-slate-50/50 w-40">主要な規制対象</td>
+                        <td class="p-5">液体・固体 (引火性、酸化性等)</td>
+                        <td class="p-5">気体・液化ガス (可燃性、毒性等)</td>
+                    </tr>
+                    <tr>
+                        <td class="p-5 font-bold bg-slate-50/50">判定ロジック</td>
+                        <td class="p-5">指定数量に対する<span class="font-bold">「倍数合算」</span></td>
+                        <td class="p-5">内容積または重量の<span class="font-bold">「絶対量」</span></td>
+                    </tr>
+                    <tr>
+                        <td class="p-5 font-bold bg-slate-50/50">車両標識</td>
+                        <td class="p-5"><span class="inline-block bg-black text-amber-400 px-3 py-1 font-bold rounded">危</span></td>
+                        <td class="p-5"><span class="inline-block bg-white border-2 border-slate-300 text-slate-800 px-2 py-0.5 font-bold rounded">高圧ガス</span></td>
+                    </tr>
+                    <tr class="bg-blue-50/30">
+                        <td class="p-5 font-bold text-blue-800">NRS特有の課題</td>
+                        <td colspan="2" class="p-5">
+                            <div class="flex gap-4">
+                                <i data-lucide="alert-triangle" class="text-blue-600 shrink-0"></i>
+                                <p class="text-xs leading-relaxed text-blue-900">
+                                    <span class="font-bold">ISOタンクコンテナによる二重該当：</span><br>
+                                    一つの貨物が両方の法定義に該当する場合、システムは「より厳しい制約」を動的に選択する必要があります。この「最厳選ロジック」の自動化が要件定義の核心です。
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Strategy Section -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+            <h3 class="font-bold text-slate-800 mb-6 flex items-center gap-2">
+                <i data-lucide="settings-2" class="text-blue-500"></i>
+                システム設計の方針
+            </h3>
+            <div class="space-y-6">
+                <div class="flex gap-4">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 font-bold text-xs">1</div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-800 mb-1">ロジックの外部化（ルールエンジン）</p>
+                        <p class="text-xs text-slate-500 leading-relaxed">法改正に伴う閾値変更に耐えられるよう、プログラムコードではなくマスタ設定で制約を定義。</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 font-bold text-xs">2</div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-800 mb-1">リアルタイムバリデーション</p>
+                        <p class="text-xs text-slate-500 leading-relaxed">配車計画時、荷物の1件ごとの増減に対し、動的に指定数量倍数と混載可否を再計算してアラートを表示。</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 font-bold text-xs">3</div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-800 mb-1">資格・車両属性の統合</p>
+                        <p class="text-xs text-slate-500 leading-relaxed">運行管理者・ドライバーの資格、車両の備付設備（消火器等）を「リソース制約」として配車アルゴリズムに組み込む。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-slate-900 text-slate-200 p-8 rounded-3xl shadow-xl relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl"></div>
+            <h3 class="font-bold text-white mb-6 flex items-center gap-2">
+                <i data-lucide="message-square-more" class="text-indigo-400"></i>
+                対話における重要キーワード
+            </h3>
+            <div class="space-y-4">
+                <div class="p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-colors">
+                    <p class="text-[10px] text-indigo-400 font-bold uppercase mb-1">Concept</p>
+                    <p class="text-sm font-bold">「コンプライアンスの自動ガードレール」</p>
+                    <p class="text-xs text-slate-400 mt-1">現場が法律を意識せずとも、システムが違反を未然に防ぐ構造。</p>
+                </div>
+                <div class="p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-colors">
+                    <p class="text-[10px] text-indigo-400 font-bold uppercase mb-1">Target</p>
+                    <p class="text-sm font-bold">「配車属人性のデジタル承継」</p>
+                    <p class="text-xs text-slate-400 mt-1">ベテランが持つ『禁忌マスタ』をシステム化し、誰でも安全な配車が可能に。</p>
+                </div>
+                <div class="p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-colors">
+                    <p class="text-[10px] text-indigo-400 font-bold uppercase mb-1">Safety</p>
+                    <p class="text-sm font-bold">「二重規制の統合評価エンジン」</p>
+                    <p class="text-xs text-slate-400 mt-1">消防法と高圧ガスの複雑な境界線をAzureの計算能力で自動判定。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center text-slate-400 text-[10px]">
+        <p>Created for TWB - Technical Integration Framework for NRS Project</p>
+    </footer>
+</div>
+
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>

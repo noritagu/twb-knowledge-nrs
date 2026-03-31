@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>危険物物流の全業務フロー — 危険物運送業者視点</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAF8;
+  --bg-card: #FFFFFF;
+  --bg-code: #F4F3EF;
+  --text-primary: #1A1A18;
+  --text-secondary: #5C5B56;
+  --text-tertiary: #8A8983;
+  --border: #E3E2DC;
+  --border-light: #EEEDEA;
+  --accent-blue: #185FA5;
+  --accent-blue-bg: #E6F1FB;
+  --accent-purple: #534AB7;
+  --accent-purple-bg: #EEEDFE;
+  --accent-teal: #0F6E56;
+  --accent-teal-bg: #E1F5EE;
+  --accent-coral: #993C1D;
+  --accent-coral-bg: #FAECE7;
+  --accent-amber: #854F0B;
+  --accent-amber-bg: #FAEEDA;
+  --accent-pink: #993556;
+  --accent-pink-bg: #FBEAF0;
+  --accent-green: #3B6D11;
+  --accent-green-bg: #EAF3DE;
+  --accent-red: #A32D2D;
+  --accent-red-bg: #FCEBEB;
+  --accent-gray: #5F5E5A;
+  --accent-gray-bg: #F1EFE8;
+  --font-sans: 'Noto Sans JP', sans-serif;
+  --font-serif: 'Noto Serif JP', serif;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141413;
+    --bg-card: #1E1E1C;
+    --bg-code: #252523;
+    --text-primary: #E8E7E2;
+    --text-secondary: #A3A29C;
+    --text-tertiary: #6E6D68;
+    --border: #2E2E2B;
+    --border-light: #232321;
+    --accent-blue: #85B7EB;
+    --accent-blue-bg: #0C447C;
+    --accent-purple: #AFA9EC;
+    --accent-purple-bg: #3C3489;
+    --accent-teal: #5DCAA5;
+    --accent-teal-bg: #085041;
+    --accent-coral: #F0997B;
+    --accent-coral-bg: #712B13;
+    --accent-amber: #FAC775;
+    --accent-amber-bg: #633806;
+    --accent-pink: #ED93B1;
+    --accent-pink-bg: #72243E;
+    --accent-green: #97C459;
+    --accent-green-bg: #27500A;
+    --accent-red: #F09595;
+    --accent-red-bg: #791F1F;
+    --accent-gray: #B4B2A9;
+    --accent-gray-bg: #444441;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.3);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
+  }
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.85;
+  font-size: 15.5px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page-wrapper {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 64px 0 48px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+.hero-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-teal);
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 16px;
+}
+.hero-sub {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.hero-sub a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.hero-sub a:hover { border-color: var(--accent-blue); }
+.hero-meta {
+  margin-top: 20px;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  padding: 12px 20px;
+  background: var(--bg-code);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+/* Section headings */
+h2 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  margin: 56px 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+  line-height: 1.4;
+}
+h2 .num {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 28px 0 10px;
+  color: var(--text-primary);
+}
+
+/* Domain cards */
+.domain-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin: 24px 0;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--border);
+}
+.domain-card.blue   { border-left-color: var(--accent-blue); }
+.domain-card.purple { border-left-color: var(--accent-purple); }
+.domain-card.teal   { border-left-color: var(--accent-teal); }
+.domain-card.coral  { border-left-color: var(--accent-coral); }
+.domain-card.amber  { border-left-color: var(--accent-amber); }
+.domain-card.pink   { border-left-color: var(--accent-pink); }
+.domain-card.green  { border-left-color: var(--accent-green); }
+.domain-card.gray   { border-left-color: var(--accent-gray); }
+
+.domain-card h2 {
+  margin-top: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+  font-size: 22px;
+}
+
+.domain-intro {
+  font-size: 14px;
+  color: var(--text-secondary);
+  background: var(--bg-code);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+}
+
+/* KPI callout */
+.kpi-box {
+  background: var(--accent-amber-bg);
+  color: var(--accent-amber);
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  margin-top: 16px;
+  line-height: 1.7;
+}
+.kpi-box strong { font-weight: 700; }
+
+/* Diagrams */
+.diagram-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 32px 20px;
+  margin: 32px 0;
+  box-shadow: var(--shadow-md);
+  overflow-x: auto;
+}
+.diagram-wrapper h3 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* SVG styling */
+.diagram-wrapper svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+.diagram-wrapper svg text.th {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--text-primary);
+}
+.diagram-wrapper svg text.ts {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  fill: var(--text-secondary);
+}
+.diagram-wrapper svg .arr {
+  stroke: var(--text-tertiary);
+  stroke-width: 1.5;
+}
+.diagram-wrapper svg .leader {
+  stroke: var(--text-tertiary);
+  stroke-width: 0.5;
+  stroke-dasharray: 3 3;
+}
+
+/* Color classes for SVG */
+.diagram-wrapper svg .fill-blue rect   { fill: var(--accent-blue-bg); stroke: var(--accent-blue); }
+.diagram-wrapper svg .fill-blue text.th { fill: var(--accent-blue); }
+.diagram-wrapper svg .fill-purple rect { fill: var(--accent-purple-bg); stroke: var(--accent-purple); }
+.diagram-wrapper svg .fill-purple text.th { fill: var(--accent-purple); }
+.diagram-wrapper svg .fill-teal rect   { fill: var(--accent-teal-bg); stroke: var(--accent-teal); }
+.diagram-wrapper svg .fill-teal text.th { fill: var(--accent-teal); }
+.diagram-wrapper svg .fill-coral rect  { fill: var(--accent-coral-bg); stroke: var(--accent-coral); }
+.diagram-wrapper svg .fill-coral text.th { fill: var(--accent-coral); }
+.diagram-wrapper svg .fill-amber rect  { fill: var(--accent-amber-bg); stroke: var(--accent-amber); }
+.diagram-wrapper svg .fill-amber text.th { fill: var(--accent-amber); }
+.diagram-wrapper svg .fill-pink rect   { fill: var(--accent-pink-bg); stroke: var(--accent-pink); }
+.diagram-wrapper svg .fill-pink text.th { fill: var(--accent-pink); }
+.diagram-wrapper svg .fill-green rect  { fill: var(--accent-green-bg); stroke: var(--accent-green); }
+.diagram-wrapper svg .fill-green text.th { fill: var(--accent-green); }
+.diagram-wrapper svg .fill-gray rect   { fill: var(--accent-gray-bg); stroke: var(--accent-gray); }
+.diagram-wrapper svg .fill-gray text.th { fill: var(--accent-gray); }
+
+/* Practical sections */
+.practical-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin: 32px 0;
+  box-shadow: var(--shadow-sm);
+}
+.practical-section h2 {
+  margin-top: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+section {
+  page-break-inside: avoid;
+  break-inside: avoid;
+  page-break-before: avoid;
+}
+section + section {
+  page-break-before: always;
+}
+section:first-of-type {
+  page-break-before: avoid;
+}
+
+/* 特定セクションの改ページ */
+#toc,
+#overview,
+#d1,
+#d3,
+#d5,
+#d7,
+#d9,
+#mapping {
+  page-break-before: always;
+}
+#toc {
+  page-break-before: always;
+}
+
+.diagram-wrapper {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.question-list {
+  counter-reset: q;
+  list-style: none;
+  padding: 0;
+}
+.question-list li {
+  counter-increment: q;
+  padding: 14px 0 14px 48px;
+  position: relative;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+.question-list li:last-child { border-bottom: none; }
+.question-list li::before {
+  content: "Q" counter(q);
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 34px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--accent-blue-bg);
+  color: var(--accent-blue);
+  border-radius: 4px;
+}
+.question-list li .hint {
+  display: block;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+}
+
+/* Landmine */
+.landmine {
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  margin: 12px 0;
+  font-size: 14.5px;
+  background: var(--accent-red-bg);
+  border-left: 3px solid var(--accent-red);
+}
+.landmine strong {
+  color: var(--accent-red);
+  font-weight: 700;
+}
+
+/* Summary */
+.summary-card {
+  background: var(--accent-teal-bg);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin: 32px 0;
+}
+.summary-card h2 {
+  margin-top: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+  color: var(--accent-teal);
+}
+.summary-item {
+  margin: 16px 0;
+  padding-left: 20px;
+  border-left: 3px solid var(--accent-teal);
+}
+.summary-item p:first-child {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+/* Disclaimer */
+.disclaimer {
+  margin-top: 56px;
+  padding: 16px 20px;
+  background: var(--bg-code);
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  color: var(--text-tertiary);
+  line-height: 1.7;
+}
+
+/* TOC */
+.toc {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 24px 32px;
+  margin: 32px 0;
+  box-shadow: var(--shadow-sm);
+}
+.toc h3 { margin-top: 0; font-size: 12px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.toc ol { padding-left: 0; margin-top: 4px; columns: 2; column-gap: 12px; }
+.toc li { font-size: 11px; padding: 1px 0; margin-bottom: 2px; }
+.toc li a { color: var(--accent-blue); text-decoration: none; }
+.toc li a:hover { text-decoration: underline; }
+
+.toc li::before { content: none; }
+
+
+
+/* Responsive */
+@media (max-width: 600px) {
+  .page-wrapper { padding: 32px 16px 60px; }
+  .domain-card, .practical-section, .summary-card { padding: 20px 18px; }
+  .diagram-wrapper { padding: 16px 8px; }
+  h2 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-label">Hazardous Materials Logistics — Full Business Flow</div>
+  <h1>危険物物流の全業務フロー<br>危険物運送業者視点</h1>
+  <p class="hero-sub">
+    モデル企業：<a href="https://www.nrsgr.com/" target="_blank" rel="noopener">NRS株式会社</a>（旧・日本陸運産業→日陸）<br>
+    タンクコンテナ・タンク車のリース・レンタル・販売を中心に、危険物輸送、国際輸送、倉庫業を展開する化学品物流専業企業。1946年創業。
+  </p>
+  <div class="hero-meta">※法令は改正があり得るため、最終判断は原文・所轄確認が前提</div>
+</header>
+
+<!-- TOC -->
+<nav class="toc">
+  <h3>目次</h3>
+  <ol class="toc-list">
+    <li><a href="#overview">全体フロー概観</a></li>
+    <li><a href="#d1">❶ 受注・荷受け情報管理</a></li>
+    <li><a href="#d2">❷ 輸送計画・配車</a></li>
+    <li><a href="#d3">❸ 容器手配・管理</a></li>
+    <li><a href="#d4">❹ 倉庫・保管</a></li>
+    <li><a href="#d5">❺ コンテナデポ・洗浄整備</a></li>
+    <li><a href="#d6">❻ 充填・積込</a></li>
+    <li><a href="#d7">❼ 陸上輸送</a></li>
+    <li><a href="#d8">❽ 国際輸送・フォワーディング</a></li>
+    <li><a href="#d9">❾ 中継・積替え</a></li>
+    <li><a href="#d10">❿ 納品・荷卸し</a></li>
+    <li><a href="#cross">横断機能</a></li>
+    <li><a href="#mapping">NRS事業構造と業務ドメインの対応</a></li>
+    <li><a href="#hearing">ヒアリング質問5問</a></li>
+    <li><a href="#landmines">地雷3つ</a></li>
+    <li><a href="#summary">まとめ：覚えるべき3点</a></li>
+  </ol>
+</nav>
+
+
+<!-- ===== 全体フロー概観 ===== -->
+<section id="overview">
+<h2>全体フロー概観</h2>
+<p>危険物物流は「受注→計画→容器→保管→輸送→納品→容器回収」の大きなループで動く。単なる「A→B輸送」ではなく、容器という資産がサプライチェーンを1周するビジネスモデルである。</p>
+
+<div class="diagram-wrapper">
+<h3>発荷主→受荷主：全業務フロー</h3>
+<svg width="100%" viewBox="0 0 680 820">
+<defs>
+<marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+
+<text class="ts" x="30" y="52" text-anchor="middle" transform="rotate(-90,30,52)">受注</text>
+<text class="ts" x="30" y="162" text-anchor="middle" transform="rotate(-90,30,162)">計画</text>
+<text class="ts" x="30" y="302" text-anchor="middle" transform="rotate(-90,30,302)">準備</text>
+<text class="ts" x="30" y="452" text-anchor="middle" transform="rotate(-90,30,452)">実行</text>
+<text class="ts" x="30" y="612" text-anchor="middle" transform="rotate(-90,30,612)">納品</text>
+<text class="ts" x="30" y="742" text-anchor="middle" transform="rotate(-90,30,742)">回収</text>
+
+<g class="fill-gray"><rect x="220" y="14" width="240" height="40" rx="8" stroke-width="0.5"/><text class="th" x="340" y="34" text-anchor="middle" dominant-baseline="central">発荷主（化学メーカー等）</text></g>
+<line x1="340" y1="54" x2="340" y2="78" class="arr" marker-end="url(#a1)"/>
+
+<g class="fill-blue"><rect x="160" y="80" width="360" height="56" rx="8" stroke-width="0.5"/><text class="th" x="340" y="100" text-anchor="middle" dominant-baseline="central">❶ 受注・荷受け情報管理</text><text class="ts" x="340" y="118" text-anchor="middle" dominant-baseline="central">SDS受領・危険物分類・指定数量確認・契約確認</text></g>
+<line x1="340" y1="136" x2="340" y2="158" class="arr" marker-end="url(#a1)"/>
+
+<g class="fill-purple"><rect x="60" y="160" width="260" height="56" rx="8" stroke-width="0.5"/><text class="th" x="190" y="180" text-anchor="middle" dominant-baseline="central">❷ 輸送計画・配車</text><text class="ts" x="190" y="198" text-anchor="middle" dominant-baseline="central">車両・ドライバー・ルート・混載判断</text></g>
+<g class="fill-teal"><rect x="360" y="160" width="260" height="56" rx="8" stroke-width="0.5"/><text class="th" x="490" y="180" text-anchor="middle" dominant-baseline="central">❸ 容器手配・管理</text><text class="ts" x="490" y="198" text-anchor="middle" dominant-baseline="central">タンクコンテナ/IBC/ドラム選定</text></g>
+
+<line x1="190" y1="216" x2="190" y2="248" class="arr" marker-end="url(#a1)"/>
+<line x1="490" y1="216" x2="490" y2="248" class="arr" marker-end="url(#a1)"/>
+
+<g class="fill-coral"><rect x="60" y="250" width="260" height="56" rx="8" stroke-width="0.5"/><text class="th" x="190" y="270" text-anchor="middle" dominant-baseline="central">❹ 倉庫・保管</text><text class="ts" x="190" y="288" text-anchor="middle" dominant-baseline="central">危険物倉庫・タンクターミナル</text></g>
+<g class="fill-teal"><rect x="360" y="250" width="260" height="56" rx="8" stroke-width="0.5"/><text class="th" x="490" y="270" text-anchor="middle" dominant-baseline="central">❺ デポ・洗浄整備</text><text class="ts" x="490" y="288" text-anchor="middle" dominant-baseline="central">前荷洗浄・検査・修理・返却</text></g>
+
+<line x1="190" y1="306" x2="190" y2="340" class="arr" marker-end="url(#a1)"/>
+<line x1="490" y1="306" x2="490" y2="340" class="arr" marker-end="url(#a1)"/>
+
+<g class="fill-amber"><rect x="110" y="342" width="460" height="56" rx="8" stroke-width="0.5"/><text class="th" x="340" y="362" text-anchor="middle" dominant-baseline="central">❻ 充填・積込</text><text class="ts" x="340" y="380" text-anchor="middle" dominant-baseline="central">表示確認・積載制限・固縛・混載チェック</text></g>
+<line x1="340" y1="398" x2="340" y2="428" class="arr" marker-end="url(#a1)"/>
+
+<g class="fill-purple"><rect x="110" y="430" width="220" height="56" rx="8" stroke-width="0.5"/><text class="th" x="220" y="450" text-anchor="middle" dominant-baseline="central">❼ 陸上輸送</text><text class="ts" x="220" y="468" text-anchor="middle" dominant-baseline="central">タンクローリー・トレーラー</text></g>
+<g class="fill-pink"><rect x="370" y="430" width="220" height="56" rx="8" stroke-width="0.5"/><text class="th" x="480" y="450" text-anchor="middle" dominant-baseline="central">❽ 国際輸送</text><text class="ts" x="480" y="468" text-anchor="middle" dominant-baseline="central">海上・航空・通関</text></g>
+
+<line x1="220" y1="486" x2="220" y2="518" class="arr" marker-end="url(#a1)"/>
+<line x1="480" y1="486" x2="480" y2="518" class="arr" marker-end="url(#a1)"/>
+
+<g class="fill-gray"><rect x="160" y="520" width="360" height="44" rx="8" stroke-width="0.5"/><text class="th" x="340" y="542" text-anchor="middle" dominant-baseline="central">❾ 中継・積替え（該当時のみ）</text></g>
+<line x1="340" y1="564" x2="340" y2="594" class="arr" marker-end="url(#a1)"/>
+
+<g class="fill-green"><rect x="160" y="596" width="360" height="56" rx="8" stroke-width="0.5"/><text class="th" x="340" y="616" text-anchor="middle" dominant-baseline="central">❿ 納品・荷卸し</text><text class="ts" x="340" y="634" text-anchor="middle" dominant-baseline="central">受荷主設備確認・数量検収・異常報告</text></g>
+<line x1="340" y1="652" x2="340" y2="678" class="arr" marker-end="url(#a1)"/>
+
+<g class="fill-gray"><rect x="220" y="680" width="240" height="40" rx="8" stroke-width="0.5"/><text class="th" x="340" y="700" text-anchor="middle" dominant-baseline="central">受荷主（工場・商社等）</text></g>
+
+<path d="M460 700 L600 700 L600 280 L555 280" fill="none" class="arr" marker-end="url(#a1)" stroke-dasharray="4 3"/>
+<text class="ts" x="610" y="490" text-anchor="start">容器回収</text>
+<text class="ts" x="610" y="506" text-anchor="start">→デポへ</text>
+
+<rect x="60" y="770" width="560" height="36" rx="8" fill="none" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4 3"/>
+<text class="ts" x="340" y="792" text-anchor="middle" dominant-baseline="central">横断機能：安全管理 / コンプライアンス / デジタル基盤 / 資格者管理</text>
+</svg>
+</div>
+</section>
+
+<!-- ===== ❶ 受注・荷受け情報管理 ===== -->
+<section id="d1">
+<div class="domain-card blue">
+<h2><span class="num" style="background:var(--accent-blue-bg);color:var(--accent-blue);">❶</span> 受注・荷受け情報管理</h2>
+<div class="domain-intro">荷主から輸送依頼を受け、その危険物が「何であるか」「どれだけの量か」「どんな条件で動かすか」を確定させるフェーズ。ここの精度が後工程すべてのコスト・安全・納期を決める。</div>
+
+<h3>SDS（安全データシート）の受領と読み解き</h3>
+<p>SDSとは、化学品の危険性・取扱い・輸送条件・応急措置などを記載した16項目の標準文書のこと。物流担当が最低限見るべきは「国連番号（UN No.）」「危険物の類別（消防法の第1類〜第6類）」「容器等級（Packing Group I/II/III）」「引火点」の4点。ここを誤ると容器選定・混載判断・輸送モード選択がすべて狂う。</p>
+
+<h3>指定数量の確認と倍数計算</h3>
+<p>指定数量とは、消防法が「これ以上貯蔵・取扱いするなら許可施設が要る」と定めた品目別の基準量のこと。実務では「今回の輸送量÷指定数量＝倍数」を算出し、この倍数が1以上か、0.2以上1未満か（少量危険物）、0.2未満か（指定数量の1/5未満）で、必要な設備・手続き・資格者配置が段階的に変わる。配車の起点はこの数字。</p>
+
+<h3>荷主との契約条件・特記事項の確認</h3>
+<p>法規制の上に、荷主ごとの独自基準（温度管理帯、混載禁止品目、指定ルート、納品時間帯制約など）が乗る。これが「第四の法規」と呼ばれるもので、法的にOKでも荷主ルールでNGになるケースが多い。</p>
+
+<div class="kpi-box"><strong>KPIへの影響：</strong> SDSの読み違いは最悪「積み直し」「返品」→ コスト・LTの爆発。指定数量の誤算は「無許可貯蔵・無許可運搬」→ 行政処分リスク。</div>
+</div>
+</section>
+
+<!-- ===== ❷ 輸送計画・配車 ===== -->
+<section id="d2">
+<div class="domain-card purple">
+<h2><span class="num" style="background:var(--accent-purple-bg);color:var(--accent-purple);">❷</span> 輸送計画・配車</h2>
+<div class="domain-intro">確定した荷物情報をもとに、「どの車両に」「誰が乗って」「どのルートで」「何と一緒に」運ぶかを決めるフェーズ。NRSでいえば国内バルク輸送事業の中核オペレーション。</div>
+
+<h3>車両選定</h3>
+<p>液体バルク（タンクローリー＝法令上の「移動タンク貯蔵所」）か、小口のドラム・IBC積載のウイング車・平ボディ車か。移動タンク貯蔵所は消防法上の構造基準（容量・材質・安全装置・接地）を満たした車両でなければ使えない。一般のトラックに容器を積む「運搬」とは法的な扱いが根本的に異なる（移送 vs 運搬の区別）。</p>
+
+<h3>ドライバーの資格確認</h3>
+<p>危険物取扱者（乙4が最多）の免状保持者、または免状保持者の立会いが必要。さらに移送の場合は2名乗車義務がかかる場面がある（指定数量以上の第4類を長距離で移送する場合など）。2024年問題（ドライバーの時間外労働上限規制）が直撃するのがここで、拘束時間・休息期間の制約と2名乗車義務の同時充足が配車を極めて難しくする。</p>
+
+<h3>混載判断</h3>
+<p>消防法と国連勧告（GHS）で「一緒に積んでよい類の組み合わせ」が定められている。ただし法規上OKでも、化学的相互反応リスク（たとえば酸化性固体と可燃物）や荷主契約上のNG（コンタミ防止）が別途ある。混載の可否は「法規OK → 化学適合性OK → 荷主ルールOK」の3層で判断する。</p>
+
+<div class="kpi-box"><strong>KPIへの影響：</strong> 2名乗車＋拘束時間制約 → ドライバー必要人数1.5〜2倍 → 人件費増。混載効率を上げれば積載率は改善するが、ミス時のリスク（漏えい・汚染）が跳ね上がる。</div>
+</div>
+</section>
+
+<!-- ===== ❸ 容器手配・管理 ===== -->
+<section id="d3">
+<div class="domain-card teal">
+<h2><span class="num" style="background:var(--accent-teal-bg);color:var(--accent-teal);">❸</span> 容器手配・管理</h2>
+<div class="domain-intro">危険物を安全に入れる「器」の選定・調達・管理。NRSの事業構造でいえば輸送容器（タンクコンテナ・IBC）のリース・レンタル・販売に該当する、他社にない強力な差別化領域。</div>
+
+<h3>容器タイプの選定</h3>
+<p>ISOタンクコンテナ（国際規格の大型液体容器、約20,000〜26,000L）、IBC（中間バルクコンテナ、約1,000L）、ドラム缶（200L）、一斗缶（18L）など。選定基準は量・品目特性・輸送モード・荷主の荷受け設備。少量多品種時代にはISOタンクコンテナの柔軟性が効くが、初期コストとデポ網が必要。</p>
+
+<h3>UN規格容器の適合確認</h3>
+<p>国際輸送に使う容器は国連が定めた性能基準（落下試験・気密試験等）をクリアしたUN規格容器でなければならない。国内輸送でも消防法上の容器基準がある。「同じドラム缶でもUN刻印の有無で使える範囲が変わる」という点が実務上の急所。</p>
+
+<h3>容器の在庫・回転管理</h3>
+<p>タンクコンテナは高価な資産（1本数百万円〜）なので、回転率（＝年間何回使えるか）が収益を左右する。使い終わった容器の回収→洗浄→再配備のリードタイムが短いほど効率が良い。</p>
+</div>
+</section>
+
+<!-- ===== ❹ 倉庫・保管 ===== -->
+<section id="d4">
+<div class="domain-card coral">
+<h2><span class="num" style="background:var(--accent-coral-bg);color:var(--accent-coral);">❹</span> 倉庫・保管</h2>
+<div class="domain-intro">出荷前・中継時・入港後に危険物を一時的に保管するフェーズ。NRSは一般品、危険物、保税貨物、医薬品、温度管理品等の保管から配送まで一貫したサービスを提供している。</div>
+
+<h3>危険物倉庫での保管</h3>
+<p>消防法上、指定数量以上の危険物を保管するには「屋内貯蔵所」「屋外タンク貯蔵所」等の許可施設が必要。許可施設は保有空地（建物と隣接建物の間に取る空間）、消火設備、避雷設備、温度管理などのハード要件がある。一般倉庫とは設備投資のレベルが桁違いで、参入障壁が高い。</p>
+
+<h3>タンクターミナルでの貯蔵</h3>
+<p>NRSは川崎・名古屋・大阪の3拠点で、有機・無機化学品を貯蔵タンクで保管・配送。液体バルク品を大型固定タンクで受け入れ、小口に充填して出荷する機能。ここは「物流」というより「化学プラントの前処理施設」に近い。</p>
+
+<h3>保税倉庫機能</h3>
+<p>輸入品で関税未納のまま一時保管する機能。国際物流との接続点。</p>
+
+<div class="kpi-box"><strong>KPIへの影響：</strong> 危険物倉庫は保管単価が一般倉庫の2〜5倍。在庫回転が遅いと保管コストが累積する。一方で「保管できる場所がない」のが最大のボトルネックになりやすく、キャパシティの確保自体が競争力。</div>
+</div>
+</section>
+
+<!-- ===== ❺ コンテナデポ・洗浄整備 ===== -->
+<section id="d5">
+<div class="domain-card teal">
+<h2><span class="num" style="background:var(--accent-teal-bg);color:var(--accent-teal);">❺</span> コンテナデポ・洗浄整備</h2>
+<div class="domain-intro">使い終わった容器を回収し、次の貨物に使えるようにする「容器のメンテナンス拠点」。NRSはConTech（川崎・神戸・周南等）というデポ拠点網を持つ。</div>
+
+<h3>前荷洗浄（ぜんかせんじょう）</h3>
+<p>前荷とは「直前にその容器に入っていた貨物」のこと。次に別の品目を入れる場合、前荷の残液・蒸気がコンタミ（汚染）を起こさないよう、規定の洗浄グレード（水洗い→溶剤洗浄→スチーム洗浄→ベーキングなど段階がある）で洗う。洗浄グレードの選定ミスは品質事故に直結する。</p>
+
+<h3>検査・修理</h3>
+<p>タンクコンテナには法定の定期検査（2.5年検査、5年検査）があり、気密試験・耐圧試験を通過しないと使えない。修理（溶接・バルブ交換等）もデポで行う。</p>
+
+<h3>なぜ現場で困るか</h3>
+<p>洗浄には時間とコストがかかる。「前荷が強アルカリで、次荷が弱酸性溶剤」のような化学的に遠い組み合わせでは、洗浄に半日以上かかることもある。この洗浄待ちが容器の回転率を下げ、結果的にコンテナ不足→配車が組めない、という連鎖を生む。</p>
+</div>
+</section>
+
+<!-- ===== ❻ 充填・積込 ===== -->
+<section id="d6">
+<div class="domain-card amber">
+<h2><span class="num" style="background:var(--accent-amber-bg);color:var(--accent-amber);">❻</span> 充填・積込</h2>
+<div class="domain-intro">保管場所・タンクターミナルから容器へ充填し、車両に積み込むフェーズ。安全管理の最前線。</div>
+
+<h3>表示の確認</h3>
+<p>車両への「危」の標識掲出、品名・類別・数量の表示板設置、容器ラベル（GHS対応）の貼付。表示不備は道路交通法・消防法の双方で違反となり、走行中の検問で発覚すると即座に運行停止。</p>
+
+<h3>積載制限の遵守</h3>
+<p>高さ制限（3.8m以下）、固縛方法、段積み制限（容器の種類と品目による）。「法規上は2段積みOKだが、荷主が1段積み指定」というパターンが頻出する。</p>
+
+<h3>混載の最終チェック</h3>
+<p>❷で計画した混載が、実際の積込現場で順序・配置・間隔を含めて守られているかの確認。混載ミスの多くは「計画段階の判断ミス」ではなく「積込現場の引継ぎ不備」で起きる。</p>
+</div>
+</section>
+
+<!-- ===== ❼ 陸上輸送 ===== -->
+<section id="d7">
+<div class="domain-card purple">
+<h2><span class="num" style="background:var(--accent-purple-bg);color:var(--accent-purple);">❼</span> 陸上輸送</h2>
+<div class="domain-intro">実際にトラック（タンクローリー・トレーラー）で公道を走るフェーズ。</div>
+
+<h3>法令上の区分（最重要）</h3>
+<p><strong>移送</strong>とは、移動タンク貯蔵所（タンクローリー）で危険物を運ぶこと。消防法上は「貯蔵所を動かしている」という扱いなので、構造基準・運行計画書の届出・2名乗車（一定条件下）・休憩場所の指定など、極めて厳しい規制がかかる。</p>
+<p><strong>運搬</strong>とは、容器に入った危険物をトラックに積んで運ぶこと。移送より規制は軽いが、容器基準・積載制限・表示義務は同様にかかる。</p>
+<p>この「移送 vs 運搬」の区別を知らないまま危険物物流を語ると、現場の信頼を一瞬で失う。</p>
+
+<div class="kpi-box"><strong>KPIへの影響：</strong> 移送は運行コストが高い（2名乗車＋経路制約＋速度制限）。運搬は比較的柔軟だが、小口多頻度になるとトラック台数がかさむ。どちらを選ぶかは「量×距離×品目特性」で決まる。</div>
+</div>
+</section>
+
+<!-- ===== ❽ 国際輸送 ===== -->
+<section id="d8">
+<div class="domain-card pink">
+<h2><span class="num" style="background:var(--accent-pink-bg);color:var(--accent-pink);">❽</span> 国際輸送・フォワーディング</h2>
+<div class="domain-intro">海上・航空で危険物を国際輸送するフェーズ。NRSは化学品の航空・海上輸送と輸出入通関業務を手がけ、欧州・北米・アジアの100ヶ所以上にグループネットワークを展開。</div>
+
+<h3>IMDG（国際海上危険物規程）への準拠</h3>
+<p>海上輸送では消防法ではなくIMDGコードが適用される。UN番号・Packing Group・容器規格・ラベリング・積付位置（甲板上か甲板下か）などが定められている。国内の消防法分類と国際分類は「似ているが同一ではない」ので、読み替えが必要。</p>
+
+<h3>航空輸送のIATA規制</h3>
+<p>航空は最も厳しい。許容量が極端に小さく、品目によっては旅客機では一切搬送不可（貨物機のみ）。航空輸送が選択肢に入るのは少量・高付加価値品か緊急出荷に限られる。</p>
+
+<h3>通関</h3>
+<p>危険物は通関時にSDS・容器証明書・緊急時連絡カードなど追加書類が必要。不備があると港で滞留し、デマレージ（滞船料）やディテンション（コンテナ超過使用料）が発生する。</p>
+
+<h3>危険物混載コンソリデーション</h3>
+<p>NRSが公開している「危険物混載スケジュール」がまさにこれで、複数荷主の小口危険物を1コンテナにまとめて海上輸送する。少量多品種の輸出では極めて有効だが、混載の化学適合性判断が高度に複雑。</p>
+</div>
+</section>
+
+<!-- ===== ❾ 中継・積替え ===== -->
+<section id="d9">
+<div class="domain-card gray">
+<h2><span class="num" style="background:var(--accent-gray-bg);color:var(--accent-gray);">❾</span> 中継・積替え</h2>
+<div class="domain-intro">長距離輸送で発着を分割する場合、途中のターミナルで車両間の積替えを行うフェーズ。2024年問題でドライバーの1日あたり拘束時間が厳しくなり、「中継輸送」の必要性が増している。</div>
+
+<p>中継時に容器を地面に降ろすと「一時保管」とみなされ、その場所が指定数量以上であれば貯蔵所の許可が必要になる可能性がある。「トレーラーのヘッドだけ交換して荷台はそのまま」（ヘッド交換方式）なら保管に該当しない、という運用が現実的な解になるが、全ルートでそれが可能とは限らない。</p>
+</div>
+</section>
+
+<!-- ===== ❿ 納品・荷卸し ===== -->
+<section id="d10">
+<div class="domain-card green">
+<h2><span class="num" style="background:var(--accent-green-bg);color:var(--accent-green);">❿</span> 納品・荷卸し</h2>
+<div class="domain-intro">受荷主の工場・倉庫に到着し、危険物を引き渡すフェーズ。「ラストワンマイル」にあたる。</div>
+
+<h3>荷受け側設備の確認</h3>
+<p>受荷主の荷卸し場所に接地（アース）設備があるか、消火器が配置されているか、火気使用禁止が徹底されているか。荷卸し場所の導線上にフォークリフトの動線が交差していないか。</p>
+
+<h3>数量検収と異常確認</h3>
+<p>液体バルクなら検尺（タンク内の液面高さ計測）で数量を確認する。容器の外観損傷・漏えいの有無、表示の脱落がないか。異常があればその場で「止める→隔離する→知らせる」の初動を取る。</p>
+
+<h3>受領証の取り交わし</h3>
+<p>ここで責任が発荷主→受荷主に移転する。漏えいや品質異常が事後に発覚した場合の責任分界点になるため、「荷卸し時点の記録」が重要。</p>
+</div>
+</section>
+
+<!-- ===== 横断機能 ===== -->
+<section id="cross">
+<div class="domain-card">
+<h2>横断機能：安全管理・コンプライアンス・デジタル基盤</h2>
+<div class="domain-intro">❶〜❿のすべてのフェーズに横断的にかかる機能。</div>
+
+<h3>安全管理</h3>
+<p>事故・ヒヤリハットの報告・分析体制。漏えい時の通報フロー（消防署→地元自治体→荷主→保険会社の順）。定期的な安全教育と緊急時訓練。</p>
+
+<h3>資格者管理</h3>
+<p>危険物取扱者免状の有効期限管理、講習受講履歴。ドライバーごとの対応可能品目のマッピング。</p>
+
+<h3>デジタル基盤</h3>
+<p>NRSは「危険物物流DX」を掲げ、物流サービス×物流データ×ソフトウェアのシナジーをうたっている。容器トラッキング、車両位置情報、洗浄履歴のデータ化は、上記フローのボトルネック可視化に直結する。</p>
+</div>
+</section>
+
+<!-- ===== NRS事業構造マッピング ===== -->
+<section id="mapping">
+<h2>NRSの事業構造と業務ドメインの対応</h2>
+
+<div class="diagram-wrapper">
+<h3>事業区分 → 業務フロー対応マップ</h3>
+<svg width="100%" viewBox="0 0 680 420">
+<defs>
+<marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+
+<text class="th" x="140" y="30" text-anchor="middle" dominant-baseline="central">NRS事業区分</text>
+<text class="th" x="520" y="30" text-anchor="middle" dominant-baseline="central">業務フロー上の対応</text>
+
+<g class="fill-purple"><rect x="40" y="50" width="200" height="40" rx="8" stroke-width="0.5"/><text class="th" x="140" y="70" text-anchor="middle" dominant-baseline="central">国内バルク輸送</text></g>
+<g class="fill-coral"><rect x="40" y="100" width="200" height="40" rx="8" stroke-width="0.5"/><text class="th" x="140" y="120" text-anchor="middle" dominant-baseline="central">タンクターミナル</text></g>
+<g class="fill-amber"><rect x="40" y="150" width="200" height="40" rx="8" stroke-width="0.5"/><text class="th" x="140" y="170" text-anchor="middle" dominant-baseline="central">倉庫事業</text></g>
+<g class="fill-teal"><rect x="40" y="200" width="200" height="40" rx="8" stroke-width="0.5"/><text class="th" x="140" y="220" text-anchor="middle" dominant-baseline="central">コンテナ事業</text></g>
+<g class="fill-pink"><rect x="40" y="250" width="200" height="40" rx="8" stroke-width="0.5"/><text class="th" x="140" y="270" text-anchor="middle" dominant-baseline="central">フォワーディング</text></g>
+<g class="fill-blue"><rect x="40" y="300" width="200" height="40" rx="8" stroke-width="0.5"/><text class="th" x="140" y="320" text-anchor="middle" dominant-baseline="central">デジタルサービス</text></g>
+
+<g class="fill-purple"><rect x="400" y="50" width="240" height="40" rx="8" stroke-width="0.5"/><text class="ts" x="520" y="70" text-anchor="middle" dominant-baseline="central">❷配車 ❻積込 ❼陸上輸送</text></g>
+<g class="fill-coral"><rect x="400" y="100" width="240" height="40" rx="8" stroke-width="0.5"/><text class="ts" x="520" y="120" text-anchor="middle" dominant-baseline="central">❹保管（液体バルク貯蔵）❻充填</text></g>
+<g class="fill-amber"><rect x="400" y="150" width="240" height="40" rx="8" stroke-width="0.5"/><text class="ts" x="520" y="170" text-anchor="middle" dominant-baseline="central">❹保管（一般・保税・医薬品）</text></g>
+<g class="fill-teal"><rect x="400" y="200" width="240" height="40" rx="8" stroke-width="0.5"/><text class="ts" x="520" y="220" text-anchor="middle" dominant-baseline="central">❸容器手配 ❺デポ・洗浄整備</text></g>
+<g class="fill-pink"><rect x="400" y="250" width="240" height="40" rx="8" stroke-width="0.5"/><text class="ts" x="520" y="270" text-anchor="middle" dominant-baseline="central">❽国際輸送・通関</text></g>
+<g class="fill-blue"><rect x="400" y="300" width="240" height="40" rx="8" stroke-width="0.5"/><text class="ts" x="520" y="320" text-anchor="middle" dominant-baseline="central">横断：全フローのデータ基盤</text></g>
+
+<line x1="240" y1="70" x2="398" y2="70" class="arr" marker-end="url(#a2)"/>
+<line x1="240" y1="120" x2="398" y2="120" class="arr" marker-end="url(#a2)"/>
+<line x1="240" y1="170" x2="398" y2="170" class="arr" marker-end="url(#a2)"/>
+<line x1="240" y1="220" x2="398" y2="220" class="arr" marker-end="url(#a2)"/>
+<line x1="240" y1="270" x2="398" y2="270" class="arr" marker-end="url(#a2)"/>
+<line x1="240" y1="320" x2="398" y2="320" class="arr" marker-end="url(#a2)"/>
+
+<rect x="40" y="360" width="600" height="44" rx="8" fill="none" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4 3"/>
+<text class="ts" x="340" y="386" text-anchor="middle" dominant-baseline="central">NRSの競争優位：❸❺の容器アセット＋デポ網 × ❹の危険物倉庫 × ❽の国際網 = ワンストップ</text>
+</svg>
+</div>
+
+<p>NRSの競争構造を一言で言えば、「容器を持っている物流会社」であること。タンクコンテナという高額資産の保有・メンテナンス・グローバルポジショニングができるプレイヤーは国内で極めて限られており、これが「運ぶだけ」の運送会社との決定的な差別化軸になっている。</p>
+</section>
+
+<!-- ===== まとめ ===== -->
+<section id="summary">
+<div class="summary-card">
+<h2>まとめ：覚えるべき3点</h2>
+
+<div class="summary-item">
+<p>第一：全フローは「情報管理→計画→容器→保管→輸送→納品→容器回収」のループ</p>
+<p>単なる「A地点からB地点への輸送」ではなく、容器という資産がサプライチェーンを1周するビジネスモデル。</p>
+</div>
+
+<div class="summary-item">
+<p>第二：判断は常に「法規OK → 化学適合性OK → 荷主ルールOK」の3層構造</p>
+<p>法律だけ知っていても実務は動かない。逆に現場感覚だけでは法令違反に気づけない。この3層を意識できるかが、ビジネス職の実務理解の分岐点。</p>
+</div>
+
+<div class="summary-item">
+<p>第三：NRS型の競争優位は「容器アセット＋デポ網＋倉庫＋国際網」のワンストップ性</p>
+<p>危険物物流で差別化するには「運ぶ能力」だけでは足りず、「入れ物を持っている」「洗える」「保管できる」「世界に出せる」の全部が揃って初めて荷主の全ニーズに応えられる。</p>
+</div>
+</div>
+</section>
+
+<!-- Disclaimer -->
+<div class="disclaimer">
+<p><strong>免責事項：</strong> 本資料は危険物物流の業務フローに関する教育・理解促進を目的としたものであり、法的助言を構成するものではありません。消防法・危険物の規制及び取扱いに関する政令等の法令は改正があり得るため、最終判断は原文および所轄消防署への確認が前提です。本資料の記述はNRS株式会社の公開情報に基づく一般的な業界構造の解説であり、同社の内部情報や非公開の業務プロセスを含むものではありません。</p>
+</div>
+
+</div>
+</body>
+</html>

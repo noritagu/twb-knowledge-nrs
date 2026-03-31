@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>危険物物流の「車両」とは？ | NRS 危険物物流ナレッジ</title>
+    <style>
+        :root {
+            --bg: #f6f1e8;
+            --paper: #fffdf9;
+            --ink: #1f2937;
+            --muted: #6b7280;
+            --line: #e5d7c3;
+            --accent: #9a3412;
+            --accent-soft: #fff1e8;
+            --link: #1d4ed8;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top left, rgba(154, 52, 18, 0.1), transparent 24%),
+                linear-gradient(180deg, #faf6ef 0%, #f6f1e8 100%);
+        }
+        a { color: var(--link); }
+        .wrap { width: min(900px, calc(100vw - 28px)); margin: 0 auto; padding: 28px 0 56px; }
+        .chrome {
+            display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px;
+            color: var(--muted); font-size: 0.88rem;
+        }
+        .back {
+            display: inline-flex; align-items: center; padding: 8px 12px; border-radius: 999px;
+            text-decoration: none; color: var(--accent); background: var(--accent-soft); border: 1px solid #f1c9ae;
+            font-weight: 700;
+        }
+        article {
+            background: var(--paper); border: 1px solid var(--line); border-radius: 26px;
+            padding: 30px; box-shadow: 0 18px 45px rgba(62, 39, 17, 0.08);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.35; color: #111827;
+        }
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-family: Georgia, "Hiragino Mincho ProN", serif;
+        }
+        h2 {
+            margin-top: 2.3em;
+            padding-top: 0.5em;
+            border-top: 1px solid var(--line);
+            font-size: 1.5rem;
+        }
+        h3 { margin-top: 1.7em; font-size: 1.14rem; }
+        p, li, blockquote {
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+        ul, ol { padding-left: 1.4em; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.4em 0;
+            font-size: 0.95rem;
+            background: #fffdfa;
+        }
+        th, td {
+            padding: 12px 14px;
+            border: 1px solid var(--line);
+            vertical-align: top;
+            line-height: 1.7;
+        }
+        th {
+            background: #f8efe3;
+            color: #7c2d12;
+            font-weight: 700;
+        }
+        tbody tr:nth-child(even) {
+            background: #fcf8f2;
+        }
+        blockquote {
+            margin: 1.2em 0;
+            padding: 0.1em 1em;
+            border-left: 4px solid #f2b38d;
+            background: #fff7f2;
+            color: #4b5563;
+        }
+        code {
+            font-family: Consolas, "Courier New", monospace;
+            background: #f3f4f6;
+            padding: 0.15em 0.4em;
+            border-radius: 6px;
+            font-size: 0.92em;
+        }
+        pre {
+            overflow-x: auto;
+            padding: 14px;
+            border-radius: 14px;
+            background: #111827;
+            color: #f9fafb;
+        }
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: inherit;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid var(--line);
+            margin: 2em 0;
+        }
+        .meta {
+            margin-bottom: 22px;
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+        @media (max-width: 720px) {
+            article { padding: 20px; border-radius: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="chrome">
+            <a class="back" href="index.html">統合トップへ戻る</a>
+            <span>元ファイル: 危険物物流の車輛について.md</span>
+            <span>生成日時: 2026-03-31 18:14</span>
+        </div>
+        <article>
+            <div class="meta">Markdown から自動変換した HTML 版</div>
+            <h1>危険物物流の「車両」とは？</h1>
+<hr>
+<h2>まず結論</h2>
+<p>危険物物流における「車両」は、<strong>法令上の区分によって規制の重さがまったく異なる</strong>。ここを混同すると、配車・コスト・安全管理のすべてで判断を誤る。</p>
+<hr>
+<h2>基本定義：2つの車両区分を押さえる</h2>
+<p>危険物を運ぶ車両は、消防法上の位置づけで大きく2つに分かれる。</p>
+<h3>① 移動タンク貯蔵所（いわゆるタンクローリー）</h3>
+<p>車両そのものにタンクが固定されており、<strong>車両=貯蔵施設</strong>として消防法の許可を受ける。法的には「貯蔵所」であり、単なる運搬車両ではない。</p>
+<p>これを「<strong>移送</strong>」と呼ぶ。</p>
+<h3>② 運搬車両（トラック等に容器を積んで運ぶ）</h3>
+<p>ドラム缶・一斗缶・IBCコンテナなどの容器に詰められた危険物を、一般のトラック（平ボディ・ウイング車等）に積載して運ぶ。車両自体に特別な許可は不要（ただし積載ルールは厳格）。</p>
+<p>これを「<strong>運搬</strong>」と呼ぶ。</p>
+<hr>
+<h2>この区分がなぜ重要か</h2>
+<table>
+<thead>
+<tr>
+<th>観点</th>
+<th>移送（タンクローリー）</th>
+<th>運搬（容器積載トラック）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>法的位置づけ</strong></td>
+<td>移動タンク貯蔵所（消防法の許可施設）</td>
+<td>一般車両（車両自体の許可不要）</td>
+</tr>
+<tr>
+<td><strong>規制の重さ</strong></td>
+<td>構造基準・完成検査・定期点検が必要</td>
+<td>容器基準・積載基準を遵守すればOK</td>
+</tr>
+<tr>
+<td><strong>乗務員要件</strong></td>
+<td>危険物取扱者の乗車 or 立会いが必要。一定条件で<strong>2名乗車義務</strong>あり</td>
+<td>指定数量以上なら危険物取扱者の乗車 or 立会い</td>
+</tr>
+<tr>
+<td><strong>運行上の制約</strong></td>
+<td>経路制限・休息規定・常置場所の届出</td>
+<td>積載量・混載制限・表示義務</td>
+</tr>
+<tr>
+<td><strong>コスト構造</strong></td>
+<td>車両単価が高い。点検・洗浄・資格者確保がボトルネック</td>
+<td>車両は汎用。ただし容器・洗浄・混載管理にコスト発生</td>
+</tr>
+<tr>
+<td><strong>典型的な貨物</strong></td>
+<td>大量・同一品目（ガソリン、溶剤、酸類など）</td>
+<td>少量多品種、ドラム単位の配送</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>実務の急所：現場で必ず問題になるポイント</h2>
+<h3>急所①：「移送」と「運搬」は法律用語であり、混同すると会話が噛み合わない</h3>
+<p>日常会話では「運搬」も「移送」も「運ぶ」で済ませがちだが、消防法上はまったく別の規制体系。クライアントとの会話で区別せずに使うと、規制要件もコストも見積もりも狂う。</p>
+<h3>急所②：タンクローリーの「2名乗車義務」が配車を壊す</h3>
+<p>移送では、一定の条件（長距離・危険度の高い品目等）で運転手+もう1名の危険物取扱者の同乗が求められる。これが2024年問題（ドライバー不足・労働時間規制）と直撃し、<strong>法的にOKな配車が人繰りで組めない</strong>という事態が頻発する。</p>
+<h3>急所③：運搬車両は「汎用トラック」だが、何でもいいわけではない</h3>
+<p>車両自体に許可は不要でも、積載方法（固縛・段積み制限・転倒防止）、表示（「危」の標識板）、混載禁止の組み合わせなど、<strong>積み方と表示のルールが細かい</strong>。ここを甘く見ると監査や事故時に一発アウトになる。</p>
+<h3>急所④：「指定数量未満だから規制が緩い」は半分ウソ</h3>
+<p>指定数量（危険物の種類ごとに定められた基準量）の1/5未満なら一部規制が緩和されるが、<strong>容器基準と積載基準は指定数量未満でも適用される</strong>。「少量だから大丈夫」は現場で最も多い誤解のひとつ。</p>
+<h3>急所⑤：車両の「洗浄」がコストとリードタイムを左右する</h3>
+<p>タンクローリーは前荷（前回積んだ品目）との化学的適合性が問題になり、品目切替時に専用洗浄が必要。運搬車両でも容器からの漏えい汚染があれば荷台洗浄が発生する。この<strong>洗浄コストと回送（空車で戻る）時間</strong>が、見積もりに載らない隠れコスト。</p>
+<hr>
+<h2>&quot;クライアント理解&quot;への翻訳</h2>
+<h3>KPIへの影響マップ</h3>
+<table>
+<thead>
+<tr>
+<th>車両区分の判断ミス</th>
+<th>影響するKPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>移送/運搬の区分を間違える</td>
+<td><strong>コスト</strong>（車両単価が数倍違う）、<strong>リードタイム</strong>（許可・点検の有無）</td>
+</tr>
+<tr>
+<td>2名乗車要件を見落とす</td>
+<td><strong>配車効率</strong>、<strong>人件費</strong>、<strong>納期遵守率</strong></td>
+</tr>
+<tr>
+<td>積載・混載ルールの軽視</td>
+<td><strong>事故リスク</strong>、<strong>監査対応コスト</strong>、<strong>信用毀損</strong></td>
+</tr>
+<tr>
+<td>洗浄・前荷管理の甘さ</td>
+<td><strong>品質事故</strong>、<strong>回送コスト</strong>、<strong>顧客クレーム</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>よくある対立構造</h3>
+<p><strong>荷主「コスト下げたいから混載して」</strong> vs <strong>物流会社「法規・品質上、混載できない組み合わせがある」</strong></p>
+<p>荷主側は積載効率を上げたい。物流側は混載禁止の法規制と、化学的な相性リスクを抱えている。この対立は「法規を知らない荷主」と「説明を省く物流」の間で頻発し、事故やコスト増の温床になる。</p>
+<hr>
+<h2>すぐ使える</h2>
+<h3>ヒアリング質問（5問）</h3>
+<ol>
+<li><strong>「その貨物はタンクローリーで運んでいますか、それともドラム等の容器積みですか？」</strong> → 移送/運搬の区分が判明し、規制体系とコスト構造が一気に見える</li>
+<li><strong>「乗務員は何名体制ですか？危険物取扱者の免状保有者は何人確保していますか？」</strong> → 2名乗車義務の対応状況と人材ボトルネックが分かる</li>
+<li><strong>「前荷管理（品目切替時の洗浄）はどうされていますか？」</strong> → 隠れコストとコンタミリスクが浮かぶ</li>
+<li><strong>「指定数量に対して、1回の配送はどれくらいの倍数になりますか？」</strong> → 規制レベルの判断と、1/10特例の適用可否が見える</li>
+<li><strong>「混載はしていますか？混載可否の判断基準は何ですか？」</strong> → 法規遵守レベルと荷主ルールの厳しさが分かる</li>
+</ol>
+<h3>地雷（言ってはいけない / 勘違いしやすいこと）3つ</h3>
+<ol>
+<li><strong>「少量だから規制対象外ですよね？」</strong> → 容器・積載基準は量に関係なく適用される。この発言は無知を露呈する</li>
+<li><strong>「タンクローリーもトラックも、運ぶのは一緒でしょ」</strong> → 法的位置づけがまったく異なる。この混同は提案の信頼性を壊す</li>
+<li><strong>「ドライバー1人で回せばコスト下がりますね」</strong> → 2名乗車義務がある移送では違法提案になりかねない</li>
+</ol>
+<h3>まとめ：覚えるべき3点</h3>
+<ol>
+<li><strong>危険物の車両は「移送（タンクローリー）」と「運搬（容器積載）」で法規制が根本的に違う</strong>。この区分が全ての判断の起点</li>
+<li><strong>車両の選定はコスト・人員・リードタイムに直結する</strong>。特に2名乗車義務と洗浄コストが配車の制約条件になる</li>
+<li><strong>「少量だから大丈夫」「車両は何でもいい」は危険物物流で最も多い誤解</strong>。量が少なくても容器・積載基準は適用される</li>
+</ol>
+<hr>
+<blockquote>
+<p><strong>注意：</strong> 法令は改正があり得ます。本稿は2025年時点の消防法・危険物関連法令に基づく整理であり、最終判断は原文および所轄消防の確認が前提です。</p>
+<p># 危険物物流における車両の種類：全体マップ</p>
+</blockquote>
+<hr>
+<h2>まず結論</h2>
+<p>前回は「移送（タンクローリー）vs 運搬（容器積載）」の大枠を整理した。今回はその<strong>中をさらに分解</strong>する。実際の現場では、タンクローリーにも運搬車両にも複数のタイプがあり、<strong>車両タイプの選定が積載効率・安全・コスト・納期を決定的に左右する</strong>。</p>
+<hr>
+<h2>1. 移動タンク貯蔵所（タンクローリー）の種類</h2>
+<p>タンクローリーは「タンクの構造と用途」で分類される。構造が違えば、運べる品目・容量・運用制約・コストがすべて変わる。</p>
+<h3>主要タイプ一覧</h3>
+<table>
+<thead>
+<tr>
+<th>タイプ</th>
+<th>構造の特徴</th>
+<th>主な対象品目</th>
+<th>実務上のポイント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>単室タンクローリー</strong></td>
+<td>タンク内が1つの室。最もシンプル</td>
+<td>ガソリン・灯油・軽油など単一品目の大量輸送</td>
+<td>品目切替時に全量洗浄が必要。専用運用が多い</td>
+</tr>
+<tr>
+<td><strong>多室（分割）タンクローリー</strong></td>
+<td>タンク内を仕切板で複数室に分割</td>
+<td>ガソリンスタンド向け（ガソリン・軽油・灯油を1台で配送）</td>
+<td>混油防止が最重要。弁操作ミスが事故直結</td>
+</tr>
+<tr>
+<td><strong>加温・保温タンクローリー</strong></td>
+<td>タンクにヒーターや断熱材を装備</td>
+<td>重油・アスファルト・高粘度品</td>
+<td>温度管理が必須。冬季は固化リスクあり</td>
+</tr>
+<tr>
+<td><strong>加圧タンクローリー</strong></td>
+<td>内圧をかけて荷卸しする構造</td>
+<td>LPガス（高圧ガス法の領域だが現場で混在する）</td>
+<td>消防法と高圧ガス保安法の<strong>二重規制</strong>になる</td>
+</tr>
+<tr>
+<td><strong>底弁付きタンクローリー</strong></td>
+<td>タンク底部に荷卸し弁を装備</td>
+<td>溶剤・化学品など</td>
+<td>底弁の漏えいが事故原因の定番。点検が要</td>
+</tr>
+<tr>
+<td><strong>上部荷卸し式</strong></td>
+<td>上部からポンプ等で吸い上げて荷卸し</td>
+<td>腐食性液体など底弁を避けたい品目</td>
+<td>荷卸し時間が長くなる。設備側の対応も必要</td>
+</tr>
+</tbody>
+</table>
+<h3>実務の急所</h3>
+<ul>
+<li><strong>多室タンクローリーの「混油事故」</strong>は業界で繰り返される典型事故。弁の開け間違い1つで数百万円の損害＋環境汚染になる</li>
+<li><strong>加温タンクローリー</strong>は車両単価が高く、対応できる車両が限られる。配車の制約条件になりやすい</li>
+<li>タンクの<strong>材質</strong>（鉄・ステンレス・アルミ・内面ライニング）も品目適合性に直結する。「タンクローリーならどれでもOK」ではない</li>
+</ul>
+<hr>
+<h2>2. 運搬車両（容器積載）の種類</h2>
+<p>運搬車両は「車両の箱の形状（ボディタイプ）」と「積む容器の種類」の掛け算で整理すると分かりやすい。</p>
+<h3>車両ボディタイプ</h3>
+<table>
+<thead>
+<tr>
+<th>ボディタイプ</th>
+<th>特徴</th>
+<th>危険物運搬での使われ方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>平ボディ</strong></td>
+<td>荷台がフラットで屋根なし</td>
+<td>ドラム缶の積載に多用。固縛・シート掛けが必須。雨天リスクあり</td>
+</tr>
+<tr>
+<td><strong>ウイング車</strong></td>
+<td>側面が開く箱型。フォークリフトでの荷役に対応</td>
+<td>パレット積みのドラム・一斗缶に適する。雨天に強い</td>
+</tr>
+<tr>
+<td><strong>バン型（箱車）</strong></td>
+<td>密閉型の箱。後方開き</td>
+<td>少量多品種の配送に使われる。換気が課題（蒸気滞留リスク）</td>
+</tr>
+<tr>
+<td><strong>キャブオーバー+シャーシ</strong></td>
+<td>コンテナやIBCを載せるシャーシ型</td>
+<td>ISOタンクコンテナ・海上コンテナの陸送に使用</td>
+</tr>
+<tr>
+<td><strong>ユニック車（クレーン付き）</strong></td>
+<td>車載クレーン装備</td>
+<td>荷受け側にフォークリフトがない現場でのドラム荷卸し</td>
+</tr>
+</tbody>
+</table>
+<h3>積載容器の種類（容器側の分類）</h3>
+<table>
+<thead>
+<tr>
+<th>容器タイプ</th>
+<th>容量目安</th>
+<th>特徴・注意点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ドラム缶（鋼製/樹脂製）</strong></td>
+<td>200L前後</td>
+<td>最も一般的。鋼製は耐久性高、樹脂製は軽量だが紫外線劣化あり</td>
+</tr>
+<tr>
+<td><strong>一斗缶（18L缶）</strong></td>
+<td>18L</td>
+<td>塗料・溶剤に多い。段積み時の荷崩れが事故原因の定番</td>
+</tr>
+<tr>
+<td><strong>IBCコンテナ</strong></td>
+<td>1,000L前後</td>
+<td>IBC＝Intermediate Bulk Container（中量容器）。パレット一体型で荷役効率が高いが、転倒時の漏えい量が大きい</td>
+</tr>
+<tr>
+<td><strong>小型容器（ペール缶・ポリ容器等）</strong></td>
+<td>5〜20L</td>
+<td>少量配送。個数が多くなり混載管理が煩雑</td>
+</tr>
+<tr>
+<td><strong>タンクコンテナ（ISOタンク）</strong></td>
+<td>14,000〜26,000L</td>
+<td>ISO規格の国際輸送用タンク。シャーシに載せて陸送、そのまま船にも載る。少量多品種時代に増加中</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>3. 全体マップ：車両選定の判断軸</h2>
+<p>車両タイプの選定は以下の変数の掛け算で決まる。</p>
+<table>
+<thead>
+<tr>
+<th>判断変数</th>
+<th>選定への影響</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>品目の性状</strong>（引火点・腐食性・粘度・毒性）</td>
+<td>タンク材質、容器タイプ、加温要否を決定</td>
+</tr>
+<tr>
+<td><strong>数量</strong>（指定数量の倍数）</td>
+<td>タンクローリーか容器積みか。規制レベルも変わる</td>
+</tr>
+<tr>
+<td><strong>配送先の設備</strong>（荷卸し設備・フォークの有無・導線）</td>
+<td>車両サイズ、荷卸し方式、ユニック要否を決定</td>
+</tr>
+<tr>
+<td><strong>頻度・ロット</strong></td>
+<td>大量定期→タンクローリー専用便。少量不定期→容器積み混載便</td>
+</tr>
+<tr>
+<td><strong>距離・リードタイム</strong></td>
+<td>長距離→2名乗車義務の該当有無。中継の可否</td>
+</tr>
+<tr>
+<td><strong>荷主・契約条件</strong></td>
+<td>専用車指定、洗浄グレード指定、温度管理指定など</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>4. &quot;クライアント理解&quot;への翻訳</h2>
+<h3>KPIへの影響</h3>
+<table>
+<thead>
+<tr>
+<th>車両選定の判断</th>
+<th>影響するKPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>タンクローリーのタイプ違い</td>
+<td><strong>車両調達コスト</strong>（加温車は単価2〜3割増も）、<strong>品質事故率</strong>（材質不適合）</td>
+</tr>
+<tr>
+<td>ボディタイプの選択ミス</td>
+<td><strong>荷役時間</strong>（＝拘束時間＝コスト）、<strong>雨天時の品質リスク</strong></td>
+</tr>
+<tr>
+<td>容器タイプの選定</td>
+<td><strong>積載効率</strong>（IBCはドラムより効率的だが転倒リスク大）、<strong>返品・回収コスト</strong></td>
+</tr>
+<tr>
+<td>配送先設備との不整合</td>
+<td><strong>待機時間増</strong>、<strong>納品拒否</strong>、<strong>破損事故</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>よくある対立構造</h3>
+<p><strong>荷主「IBCに切り替えて効率上げたい」</strong> vs <strong>物流会社「荷受け側のスペース・設備が対応できない」</strong></p>
+<p>IBCは1台あたりの積載効率が高く荷主にはメリットが大きいが、1,000Lの大型容器は転倒時の漏えい量が桁違いに大きく、荷受け側の保管スペース・フォークリフトの能力・防液堤の容量が追いつかないケースがある。<strong>サプライチェーン全体で見ないと、一箇所の効率化が別の箇所のリスク増になる</strong>。</p>
+<hr>
+<h2>5. すぐ使える</h2>
+<h3>ヒアリング質問（5問）</h3>
+<ol>
+<li><strong>「タンクローリーは単室ですか、多室ですか？材質は何ですか？」</strong> → 品目適合性と混油リスクの有無が分かる</li>
+<li><strong>「容器はドラムですか、IBCですか？切替の検討はありますか？」</strong> → 積載効率と荷受け側の制約が浮かぶ</li>
+<li><strong>「荷卸し先にフォークリフト・ポンプ等の設備はありますか？」</strong> → 車両タイプ（ユニック要否等）と荷役時間の見積もりに必須</li>
+<li><strong>「1回あたりのロットと配送頻度はどの程度ですか？」</strong> → タンクローリー専用便か容器混載便かの判断材料</li>
+<li><strong>「車両や容器に荷主指定の条件（専用車・洗浄グレード等）はありますか？」</strong> → 隠れた制約条件の炙り出し</li>
+</ol>
+<h3>地雷 3つ</h3>
+<ol>
+<li><strong>「タンクローリーなら何でも運べますよね？」</strong> → タンク材質・構造・前荷によって運べない品目がある。この発言は化学適合性の無理解を示す</li>
+<li><strong>「ドラムよりIBCの方が絶対効率いいですよね？」</strong> → 荷受け側設備、転倒リスク、返却コストを無視した発言。サプライチェーン全体で見る必要がある</li>
+<li><strong>「平ボディで十分でしょ、安いし」</strong> → 雨天・粉塵・積載安定性を無視した判断。品質事故と監査指摘の温床</li>
+</ol>
+<h3>まとめ：覚えるべき3点</h3>
+<ol>
+<li><strong>タンクローリーは「単室/多室/加温/加圧/荷卸し方式/材質」で細分化される</strong>。「タンクローリー」は総称であり、品目適合性と運用制約はタイプごとにまったく異なる</li>
+<li><strong>運搬車両は「ボディタイプ × 容器タイプ」の掛け算</strong>。どちらか一方だけで車両を選ぶと、荷役現場で詰む</li>
+<li><strong>車両選定は「品目性状 × 数量 × 配送先設備 × 荷主条件」の多変数最適化</strong>。コスト最安の車両が最適とは限らない</li>
+</ol>
+<hr>
+<blockquote>
+<p><strong>注意：</strong> 本稿は消防法・危険物の規制及び保安に関する規則等に基づく一般的な整理です。車両の構造基準・運用要件は品目・数量・地域の所轄消防により異なる場合があります。最終判断は原文および所轄消防への確認が前提です。</p>
+</blockquote>
+        </article>
+    </div>
+</body>
+</html>

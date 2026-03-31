@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>危険物物流 入門ガイド — 一般物流との比較から学ぶ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c-bg: #FAFAF8;
+  --c-surface: #FFFFFF;
+  --c-text: #1A1A18;
+  --c-text-secondary: #5C5C58;
+  --c-text-tertiary: #8A8A84;
+  --c-border: #E8E6E0;
+  --c-border-strong: #D0CEC6;
+  --c-accent-blue: #185FA5;
+  --c-accent-blue-light: #E6F1FB;
+  --c-accent-teal: #0F6E56;
+  --c-accent-teal-light: #E1F5EE;
+  --c-accent-purple: #534AB7;
+  --c-accent-purple-light: #EEEDFE;
+  --c-accent-coral: #993C1D;
+  --c-accent-coral-light: #FAECE7;
+  --c-accent-amber: #854F0B;
+  --c-accent-amber-light: #FAEEDA;
+  --c-accent-red: #A32D2D;
+  --c-accent-red-light: #FCEBEB;
+  --c-accent-gray-light: #F1EFE8;
+  --font-body: 'Noto Sans JP', sans-serif;
+  --font-heading: 'Noto Serif JP', serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--c-text);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Layout --- */
+.container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+/* --- Header --- */
+.site-header {
+  padding: 64px 0 48px;
+  border-bottom: 1px solid var(--c-border);
+  margin-bottom: 48px;
+}
+.site-header .container { text-align: center; }
+.site-header h1 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+.site-header .subtitle {
+  font-size: 14px;
+  color: var(--c-text-secondary);
+  line-height: 1.7;
+}
+.site-header .disclaimer {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--c-text-tertiary);
+  background: var(--c-accent-gray-light);
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+
+/* --- TOC --- */
+.toc {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 10px;
+  padding: 28px 32px;
+  margin-bottom: 56px;
+}
+.toc h2 {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--c-text);
+}
+.toc ol {
+  list-style: none;
+  counter-reset: toc-counter;
+}
+.toc ol li {
+  counter-increment: toc-counter;
+  margin-bottom: 6px;
+}
+.toc ol li a {
+  color: var(--c-text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.15s;
+}
+.toc ol li a::before {
+  content: "Part " counter(toc-counter) " — ";
+  font-weight: 500;
+  color: var(--c-text-tertiary);
+}
+.toc ol li a:hover { color: var(--c-accent-blue); }
+
+/* --- Sections --- */
+.part {
+  margin-bottom: 72px;
+  padding-bottom: 72px;
+  border-bottom: 1px solid var(--c-border);
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+.part:first-of-type {
+  page-break-before: avoid;
+}
+.part:last-child { border-bottom: none; }
+
+.diagram-wrapper {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.part-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.part-label.blue { color: var(--c-accent-blue); }
+.part-label.teal { color: var(--c-accent-teal); }
+.part-label.purple { color: var(--c-accent-purple); }
+
+h2.section-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.45;
+  margin-bottom: 24px;
+}
+
+h3 {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-top: 40px;
+  margin-bottom: 12px;
+}
+h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 28px;
+  margin-bottom: 8px;
+}
+
+p { margin-bottom: 14px; }
+
+/* --- Callout boxes --- */
+.callout {
+  border-left: 3px solid var(--c-border-strong);
+  padding: 16px 20px;
+  margin: 20px 0;
+  background: var(--c-surface);
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+}
+.callout.blue { border-left-color: var(--c-accent-blue); background: var(--c-accent-blue-light); }
+.callout.teal { border-left-color: var(--c-accent-teal); background: var(--c-accent-teal-light); }
+.callout.purple { border-left-color: var(--c-accent-purple); background: var(--c-accent-purple-light); }
+.callout.coral { border-left-color: var(--c-accent-coral); background: var(--c-accent-coral-light); }
+.callout.amber { border-left-color: var(--c-accent-amber); background: var(--c-accent-amber-light); }
+.callout.red { border-left-color: var(--c-accent-red); background: var(--c-accent-red-light); }
+.callout p:last-child { margin-bottom: 0; }
+.callout strong { font-weight: 700; }
+
+.point-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+.point-label.blue { background: var(--c-accent-blue); color: #fff; }
+.point-label.coral { background: var(--c-accent-coral); color: #fff; }
+.point-label.purple { background: var(--c-accent-purple); color: #fff; }
+.point-label.teal { background: var(--c-accent-teal); color: #fff; }
+.point-label.amber { background: var(--c-accent-amber); color: #fff; }
+.point-label.red { background: var(--c-accent-red); color: #fff; }
+
+/* --- Tables --- */
+.table-wrap {
+  overflow-x: auto;
+  margin: 20px 0;
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  background: var(--c-surface);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+th, td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--c-border);
+  vertical-align: top;
+}
+thead th {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--c-text-secondary);
+  background: var(--c-accent-gray-light);
+  border-bottom: 2px solid var(--c-border-strong);
+  white-space: nowrap;
+}
+tbody tr:last-child td { border-bottom: none; }
+.layer-cell {
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.layer-cell.blue { color: var(--c-accent-blue); border-left: 3px solid var(--c-accent-blue); padding-left: 11px; }
+.layer-cell.teal { color: var(--c-accent-teal); border-left: 3px solid var(--c-accent-teal); padding-left: 11px; }
+.layer-cell.purple { color: var(--c-accent-purple); border-left: 3px solid var(--c-accent-purple); padding-left: 11px; }
+
+.tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 500;
+  padding: 1px 7px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.tag-common { background: var(--c-accent-gray-light); color: var(--c-text-secondary); }
+.tag-hazmat { background: var(--c-accent-coral-light); color: var(--c-accent-coral); }
+
+/* --- Toolkit sections --- */
+.toolkit {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 10px;
+  padding: 28px 28px 20px;
+  margin: 28px 0;
+}
+.toolkit h4 {
+  margin-top: 0;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.toolkit ol, .toolkit ul {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+.toolkit li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.toolkit .mine-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-accent-red);
+  margin-right: 4px;
+}
+
+/* --- Summary box --- */
+.summary-box {
+  background: var(--c-accent-purple-light);
+  border: 1px solid #CECBF6;
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin: 28px 0;
+}
+.summary-box h4 {
+  margin-top: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-accent-purple);
+  margin-bottom: 12px;
+}
+.summary-box ol {
+  padding-left: 20px;
+  margin-bottom: 0;
+}
+.summary-box li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.summary-box li:last-child { margin-bottom: 0; }
+
+/* --- Footer --- */
+.site-footer {
+  padding: 32px 0 48px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--c-text-tertiary);
+  border-top: 1px solid var(--c-border);
+  margin-top: 24px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .site-header h1 { font-size: 22px; }
+  h2.section-title { font-size: 19px; }
+  .container { padding: 0 16px; }
+  .toc, .toolkit, .summary-box { padding: 20px; }
+  table { font-size: 12.5px; }
+  th, td { padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================== HEADER ============================== -->
+<header class="site-header">
+  <div class="container">
+    <h1>危険物物流 入門ガイド<br>— 一般物流との比較から学ぶ</h1>
+    <p class="subtitle">
+      対象読者：危険物物流を学び始めたビジネス職（営業／企画／コンサル等）<br>
+      目的：クライアントの業界・業務理解のために、論点を短時間で掴み、会話と提案に使える判断軸を得る
+    </p>
+    <span class="disclaimer">※ 法令情報は2025年時点に基づく。法令は改正があり得るため、最終判断は原文・所轄消防への確認が前提。</span>
+  </div>
+</header>
+
+<main class="container">
+
+<!-- ============================== TOC ============================== -->
+<nav class="toc">
+  <h2>目次</h2>
+  <ol>
+    <li><a href="#part1">一般物流と危険物物流の共通点・相違点（ベン図の構造）</a></li>
+    <li><a href="#part2">OMS / WMS / TMS で見る共通と相違</a></li>
+    <li><a href="#part3">OMS / WMS / TMS の「登場人物」比較</a></li>
+  </ol>
+</nav>
+
+<!-- ================================================================== -->
+<!-- PART 1 -->
+<!-- ================================================================== -->
+<section class="part" id="part1" style="page-break-before: always;">
+<span class="part-label blue">Part 1</span>
+<h2 class="section-title">一般物流と危険物物流の共通点・相違点</h2>
+
+<h3>1. 導入：このテーマがなぜ効くか</h3>
+<p>危険物物流の提案・営業に入る前に、<strong>「普通の物流と何が同じで、何が違うのか」</strong>の地図を持っていないと、会話の土台がズレる。具体的に起きる問題は3つ。</p>
+<div class="callout blue">
+  <p>① 一般物流の感覚で「もっと積めるでしょ？」「なぜこんなに高いの？」と聞いてしまい、現場の信用を失う</p>
+  <p>② 逆に「危険物だから全部特殊」と構えすぎて、共通化できるコスト削減の余地を見落とす</p>
+  <p>③ クライアントの物流課題が「一般物流由来」なのか「危険物特有」なのか切り分けられず、提案の焦点がぼやける</p>
+</div>
+<p>つまりこのテーマは、<strong>コスト・納期・品質・安全のすべての議論の"座標軸"</strong>になる。</p>
+
+<h3>2. 基本定義</h3>
+<p><strong>一般物流</strong>とは、消防法上の危険物に該当しない貨物（食品、機械部品、日用品など）を対象とした保管・輸送・荷役の総称。規制の中心は道路交通法、貨物自動車運送事業法、倉庫業法など。</p>
+<p><strong>危険物物流</strong>とは、消防法で定義される「危険物」（第1類〜第6類の品目で、指定数量という閾値で管理される物質）を対象とした物流。一般物流の法規に加え、消防法・危険物の規制に関する政令・市町村の火災予防条例等が<strong>上乗せ</strong>される。</p>
+<div class="callout amber">
+  <p><strong>構造のポイント：</strong>危険物物流は一般物流を"置き換える"のではなく、一般物流の上にもう一層の規制・実務が載る「上乗せ構造」。</p>
+</div>
+
+<h3 style="page-break-before: always;">3. ベン図の3領域</h3>
+
+<div class="diagram-wrapper">
+<svg width="100%" viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<style>
+:root { --p: #1a1a18; --s: #5c5c58; --t: #8a8a84; }
+@media (prefers-color-scheme: dark) { :root { --p: #e8e6e0; --s: #a8a69e; --t: #6e6c66; } }
+.t { font: 400 14px/1 system-ui, sans-serif; fill: var(--p); }
+.ts { font: 400 12px/1 system-ui, sans-serif; fill: var(--s); }
+.th { font: 500 14px/1 system-ui, sans-serif; fill: var(--p); }
+</style>
+<clipPath id="clip-left"><ellipse cx="250" cy="210" rx="195" ry="170"/></clipPath>
+</defs>
+
+<ellipse cx="250" cy="210" rx="195" ry="170" fill="none" stroke="#185FA5" stroke-width="1.5" opacity="0.6"/>
+<ellipse cx="250" cy="210" rx="195" ry="170" fill="#185FA5" opacity="0.07"/>
+
+<ellipse cx="430" cy="210" rx="195" ry="170" fill="none" stroke="#D85A30" stroke-width="1.5" opacity="0.6"/>
+<ellipse cx="430" cy="210" rx="195" ry="170" fill="#D85A30" opacity="0.07"/>
+
+<ellipse cx="430" cy="210" rx="195" ry="170" clip-path="url(#clip-left)" fill="#7F77DD" opacity="0.12"/>
+
+<text class="th" x="145" y="72" text-anchor="middle" fill="#185FA5">一般物流のみ</text>
+<text class="ts" x="140" y="140" text-anchor="middle">大量輸送の効率最適化</text>
+<text class="ts" x="140" y="162" text-anchor="middle">積載率の自由度が高い</text>
+<text class="ts" x="140" y="184" text-anchor="middle">温度管理（食品等）</text>
+<text class="ts" x="140" y="206" text-anchor="middle">宅配・EC物流の動態管理</text>
+<text class="ts" x="140" y="228" text-anchor="middle">パレット標準化・自動倉庫</text>
+<text class="ts" x="140" y="250" text-anchor="middle">返品・リバース物流</text>
+
+<text class="th" x="340" y="112" text-anchor="middle" fill="#534AB7">共通領域</text>
+<text class="ts" x="340" y="162" text-anchor="middle">配車・ルート計画</text>
+<text class="ts" x="340" y="184" text-anchor="middle">車両管理・点検</text>
+<text class="ts" x="340" y="206" text-anchor="middle">運行管理（拘束時間等）</text>
+<text class="ts" x="340" y="228" text-anchor="middle">荷役・積み付け</text>
+<text class="ts" x="340" y="250" text-anchor="middle">倉庫管理（WMS）</text>
+<text class="ts" x="340" y="272" text-anchor="middle">品質管理・クレーム対応</text>
+<text class="ts" x="340" y="294" text-anchor="middle">コスト管理（車建て/KM）</text>
+
+<text class="th" x="535" y="72" text-anchor="middle" fill="#D85A30">危険物物流のみ</text>
+<text class="ts" x="540" y="140" text-anchor="middle">指定数量・倍数管理</text>
+<text class="ts" x="540" y="162" text-anchor="middle">消防法上の表示・標識</text>
+<text class="ts" x="540" y="184" text-anchor="middle">混載制限（類別禁止）</text>
+<text class="ts" x="540" y="206" text-anchor="middle">危険物取扱者の配置</text>
+<text class="ts" x="540" y="228" text-anchor="middle">前荷・洗浄・コンタミ管理</text>
+<text class="ts" x="540" y="250" text-anchor="middle">移送（タンクローリー）規制</text>
+<text class="ts" x="540" y="272" text-anchor="middle">漏えい・事故時の法定対応</text>
+
+<text class="ts" x="340" y="400" text-anchor="middle" opacity="0.6">※危険物物流 ＝ 一般物流の基盤 ＋ 消防法等の「上乗せ規制」＋ 化学的適合性の判断</text>
+</svg>
+</div>
+
+<h4>A. 共通領域：一般物流でも危険物物流でも変わらない業務基盤</h4>
+<p><strong>配車・ルート計画</strong>：どちらも「どの車を、どの順番で、どの顧客に向かわせるか」を最適化する。使うロジック（距離・時間・積載量）は同じ。ただし危険物の場合、ここに「指定数量の上限」「混載可否」という制約が加わる。</p>
+<p><strong>運行管理（拘束時間・休息）</strong>：改善基準告示は貨物の中身に関係なく適用される。1日の拘束時間13時間原則、休息8時間以上などは共通。2024年問題のインパクトも同じ構造で効く。</p>
+<p><strong>車両管理・点検</strong>：日常点検・定期点検の義務は道路運送車両法に基づき全車両共通。</p>
+<p><strong>荷役・積み付け</strong>：フォークリフトでパレットを積む、固縛する、荷崩れを防ぐ — 基本動作は同じ。</p>
+<p><strong>倉庫管理（WMS）</strong>：入庫・出庫・在庫管理のシステム的な枠組みは共通。</p>
+<p><strong>コスト構造</strong>：車建て、km単価、待機料、荷役料 — コストの構成要素は同じ。ただし単価が違う。</p>
+
+<h4 style="page-break-before: always;">B. 一般物流のみの領域</h4>
+<p><strong>大量輸送の効率最適化</strong>：一般物流では「いかに多く積むか」が最大のKPI。危険物物流では指定数量の上限や混載制限があるため、積載率は目標ではなく"上限管理"になる。</p>
+<p><strong>パレット標準化・自動化</strong>：一般物流はAGV・自動倉庫・ロボットピッキングなど自動化の投資対効果が大きい。危険物倉庫は防爆仕様の設備が必要で、自動化の導入ハードルが構造的に高い。</p>
+<p><strong>EC・宅配の動態管理</strong>：ラストワンマイルの配達完了率、再配達率、置き配は一般物流（特にBtoC）の中心課題。危険物は基本BtoBであり、この論点はほぼ発生しない。</p>
+<p><strong>返品・リバース物流</strong>：EC物流では返品率が10%を超えることもあり、逆物流の設計が重要。危険物の返品（戻り品）は「廃棄物処理法との境界」という全く別の問題になる。</p>
+
+<h4>C. 危険物物流のみの領域</h4>
+<p><strong>指定数量・倍数管理</strong>：品目ごとに定められた指定数量の「何倍を扱っているか」で規制の重さが変わる。一般物流にはこの概念が存在しない。</p>
+<p><strong>混載制限</strong>：類が異なる危険物は原則混載禁止。一般物流の「混載」は効率の話だが、危険物の「混載」は化学的安全の話。同じ言葉だが意味が完全に異なる。</p>
+<p><strong>前荷・洗浄・コンタミ管理</strong>：タンクローリーや容器の「前に何を積んでいたか」が次の積荷の品質を左右する。洗浄のグレードと回数はコストと配車効率に直結する。</p>
+<p><strong>危険物取扱者の配置</strong>：指定数量以上の取扱いには国家資格の免状保持者が必要。「資格者がいないから配車できない」が日常的に起きる。</p>
+<p><strong>表示・標識の法定義務</strong>：「危」標識、品名表示、消防法上のラベルは法令で定められた義務。</p>
+<p><strong>漏えい・事故時の法定対応</strong>：漏えいは消防法上の報告義務がある。応急措置も品目ごとに異なる。</p>
+
+<h3 style="page-break-before: always;">4.「法的にOKでも実務でNG」が起きるポイント</h3>
+<div class="callout coral">
+  <p><strong>① 「混載OK」でも品質NGのケース：</strong>消防法上は同じ第4類同士なら混載可能。しかし荷主の品質基準で「他社品と同じ車に積むな」という契約条件がつくことがある。</p>
+</div>
+<div class="callout coral">
+  <p><strong>② 「指定数量未満だから自由」という誤解：</strong>指定数量未満でも、容器基準・積載基準・表示義務は免除されない。「少量だから大丈夫」は最も危険な思い込み。</p>
+</div>
+<div class="callout coral">
+  <p><strong>③ 「資格者がいるから安全」という短絡：</strong>免状は「取り扱い」の資格であり、化学特性の熟知を保証するものではない。資格＋教育＋現場経験の三点セットが必要。</p>
+</div>
+
+<h3>5. KPIへの影響マッピング</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>KPI</th><th>一般物流での決定要因</th><th>危険物物流で加わる制約</th></tr></thead>
+<tbody>
+<tr><td>コスト</td><td>積載率・回転率・燃料</td><td>洗浄費・回送（空車戻り）・資格者人件費・防爆設備</td></tr>
+<tr><td>リードタイム</td><td>配車柔軟性・幹線頻度</td><td>混載制限による便数増・洗浄待ち・資格者確保</td></tr>
+<tr><td>積載効率</td><td>パレット数・容積重量</td><td>指定数量上限・混載不可による空きスペース</td></tr>
+<tr><td>事故リスク</td><td>荷崩れ・交通事故</td><td>漏えい・火災・化学反応・環境汚染</td></tr>
+</tbody>
+</table>
+</div>
+
+<div style="page-break-before: always;"></div>
+<h3>6. よくある対立構造</h3>
+<p><strong>荷主の品質管理部門 vs 物流現場：</strong>品質部門は「洗浄を3回やれ」「専用車両を使え」と要求する。物流現場は「洗浄1回で十分」「共用車両でコストを下げたい」と主張する。この対立の調停には、化学的根拠（コンタミのリスク評価）と経済合理性（洗浄コスト vs 品質事故コスト）の両方が必要。</p>
+
+
+<div class="summary-box">
+  <h4>Part 1 まとめ：覚えるべき3点</h4>
+  <ol>
+    <li><strong>危険物物流は一般物流の「上位互換」ではなく「上乗せ構造」。</strong>共通基盤（配車・運行・荷役・コスト管理）の上に、消防法の規制レイヤーと化学的適合性の判断レイヤーが載る。</li>
+    <li><strong>共通領域を理解してから差分を学ぶ</strong>のが最短ルート。一般物流の知識がゼロだと危険物の話は宙に浮く。逆に一般物流の知識だけで踏み込むと的外れな提案をしてしまう。</li>
+    <li><strong>「法規OK」「化学的OK」「荷主ルールOK」の3層すべてを通過しないと実務は動かない。</strong>この3層構造がクライアントとの会話の座標軸になる。</li>
+  </ol>
+</div>
+</section>
+
+<!-- ================================================================== -->
+<!-- PART 2 -->
+<!-- ================================================================== -->
+<section class="part" id="part2" style="page-break-before: always;">
+<span class="part-label teal">Part 2</span>
+<h2 class="section-title">OMS / WMS / TMS で見る共通と相違</h2>
+
+<h3>1. なぜ「システム3層」で切るのか</h3>
+<p>物流の業務は、モノの流れに沿って3つの管理系に分解できる。</p>
+<div class="callout teal">
+  <p><strong>OMS（Order Management System / 販売管理）</strong> ＝ 受注〜出荷指示。「何を・いつ・誰に届けるか」を決める層。</p>
+  <p><strong>WMS（Warehouse Management System / 倉庫管理）</strong> ＝ 入庫〜保管〜出庫。「モノを倉庫の中でどう置き、どう動かすか」を管理する層。</p>
+  <p><strong>TMS（Transport Management System / 輸送管理）</strong> ＝ 配車〜輸送〜納品。「どの車で・どのルートで・どう届けるか」を最適化する層。</p>
+</div>
+<p>一般物流ではこの3層が比較的独立に最適化できる。危険物物流では<strong>3層すべてに「危険物固有の制約」が横串で刺さる</strong>ため、層をまたいだ判断が必要になる。</p>
+
+<h3 style="page-break-before: always;">3. WMS層：倉庫の中で何が変わるか</h3>
+
+<div class="diagram-wrapper">
+<svg width="100%" viewBox="0 0 680 520" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<style>
+:root { --p: #1a1a18; --s: #5c5c58; --t: #8a8a84; --bg2: #f5f4f0; --b: #e0ded8; }
+@media (prefers-color-scheme: dark) { :root { --p: #e8e6e0; --s: #a8a69e; --t: #6e6c66; --bg2: #2c2c2a; --b: #3d3d3a; } }
+.t { font: 400 14px/1 system-ui, sans-serif; fill: var(--p); }
+.ts { font: 400 12px/1 system-ui, sans-serif; fill: var(--s); }
+.th { font: 500 14px/1 system-ui, sans-serif; fill: var(--p); }
+.arr { stroke: var(--s); stroke-width: 1.5; }
+
+.c-blue > rect, .c-blue > circle, .c-blue > ellipse { fill: #E6F1FB; stroke: #185FA5; }
+.c-blue .th { fill: #0C447C; } .c-blue .ts { fill: #185FA5; }
+.c-teal > rect, .c-teal > circle, .c-teal > ellipse { fill: #E1F5EE; stroke: #0F6E56; }
+.c-teal .th { fill: #085041; } .c-teal .ts { fill: #0F6E56; }
+.c-purple > rect, .c-purple > circle, .c-purple > ellipse { fill: #EEEDFE; stroke: #534AB7; }
+.c-purple .th { fill: #3C3489; } .c-purple .ts { fill: #534AB7; }
+.c-coral > rect, .c-coral > circle, .c-coral > ellipse { fill: #FAECE7; stroke: #993C1D; }
+.c-coral .th { fill: #712B13; } .c-coral .ts { fill: #993C1D; }
+
+@media (prefers-color-scheme: dark) {
+  .c-blue > rect, .c-blue > circle, .c-blue > ellipse { fill: #0C447C; stroke: #85B7EB; }
+  .c-blue .th { fill: #B5D4F4; } .c-blue .ts { fill: #85B7EB; }
+  .c-teal > rect, .c-teal > circle, .c-teal > ellipse { fill: #085041; stroke: #5DCAA5; }
+  .c-teal .th { fill: #9FE1CB; } .c-teal .ts { fill: #5DCAA5; }
+  .c-purple > rect, .c-purple > circle, .c-purple > ellipse { fill: #3C3489; stroke: #AFA9EC; }
+  .c-purple .th { fill: #CECBF6; } .c-purple .ts { fill: #AFA9EC; }
+  .c-coral > rect, .c-coral > circle, .c-coral > ellipse { fill: #4A1B0C; stroke: #F0997B; }
+  .c-coral .th { fill: #F5C4B3; } .c-coral .ts { fill: #F0997B; }
+}
+</style>
+</defs>
+
+<text class="ts" x="340" y="30" text-anchor="middle">← モノの流れ →</text>
+<line x1="120" y1="36" x2="560" y2="36" stroke="var(--t)" stroke-width="0.5" opacity="0.3"/>
+
+<g class="c-blue">
+<rect x="40" y="50" width="185" height="180" rx="12" stroke-width="0.5"/>
+<text class="th" x="132" y="76" text-anchor="middle">OMS（販売管理）</text>
+<text class="ts" x="132" y="96" text-anchor="middle">受注〜出荷指示</text>
+</g>
+<g class="c-teal">
+<rect x="248" y="50" width="185" height="180" rx="12" stroke-width="0.5"/>
+<text class="th" x="340" y="76" text-anchor="middle">WMS（倉庫管理）</text>
+<text class="ts" x="340" y="96" text-anchor="middle">入庫〜保管〜出庫</text>
+</g>
+<g class="c-purple">
+<rect x="456" y="50" width="185" height="180" rx="12" stroke-width="0.5"/>
+<text class="th" x="548" y="76" text-anchor="middle">TMS（輸送管理）</text>
+<text class="ts" x="548" y="96" text-anchor="middle">配車〜輸送〜納品</text>
+</g>
+
+<line x1="225" y1="140" x2="246" y2="140" class="arr" marker-end="url(#arrow)"/>
+<line x1="433" y1="140" x2="454" y2="140" class="arr" marker-end="url(#arrow)"/>
+
+<text class="ts" x="82" y="124" text-anchor="start">受注登録</text>
+<text class="ts" x="82" y="142" text-anchor="start">納期回答</text>
+<text class="ts" x="82" y="160" text-anchor="start">出荷指示</text>
+<text class="ts" x="82" y="178" text-anchor="start">請求・売上</text>
+
+<text class="ts" x="290" y="124" text-anchor="start">入庫検品</text>
+<text class="ts" x="290" y="142" text-anchor="start">ロケーション管理</text>
+<text class="ts" x="290" y="160" text-anchor="start">ピッキング</text>
+<text class="ts" x="290" y="178" text-anchor="start">出庫検品</text>
+
+<text class="ts" x="498" y="124" text-anchor="start">配車計画</text>
+<text class="ts" x="498" y="142" text-anchor="start">ルート最適化</text>
+<text class="ts" x="498" y="160" text-anchor="start">運行管理</text>
+<text class="ts" x="498" y="178" text-anchor="start">納品確認</text>
+
+<text class="ts" x="340" y="260" text-anchor="middle" opacity="0.5">↑ ここまでは一般物流と共通</text>
+
+<rect x="40" y="280" width="601" height="210" rx="16" fill="none" stroke="#D85A30" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.7"/>
+<text class="th" x="340" y="306" text-anchor="middle" fill="#993C1D">危険物固有の制約（横串）</text>
+
+<g class="c-coral">
+<rect x="60" y="324" width="170" height="56" rx="8" stroke-width="0.5"/>
+<text class="th" x="145" y="344" text-anchor="middle" dominant-baseline="central">OMS上乗せ</text>
+<text class="ts" x="145" y="364" text-anchor="middle" dominant-baseline="central">SDS確認・数量判定</text>
+</g>
+
+<g class="c-coral">
+<rect x="255" y="324" width="170" height="56" rx="8" stroke-width="0.5"/>
+<text class="th" x="340" y="344" text-anchor="middle" dominant-baseline="central">WMS上乗せ</text>
+<text class="ts" x="340" y="364" text-anchor="middle" dominant-baseline="central">類別保管・倍数管理</text>
+</g>
+
+<g class="c-coral">
+<rect x="450" y="324" width="170" height="56" rx="8" stroke-width="0.5"/>
+<text class="th" x="535" y="344" text-anchor="middle" dominant-baseline="central">TMS上乗せ</text>
+<text class="ts" x="535" y="364" text-anchor="middle" dominant-baseline="central">混載制限・資格者配置</text>
+</g>
+
+<text class="ts" x="145" y="410" text-anchor="middle">品名・類別の紐付け</text>
+<text class="ts" x="145" y="428" text-anchor="middle">指定数量の自動判定</text>
+<text class="ts" x="145" y="446" text-anchor="middle">荷主別ルール反映</text>
+
+<text class="ts" x="340" y="410" text-anchor="middle">類別ゾーニング</text>
+<text class="ts" x="340" y="428" text-anchor="middle">保管倍数の監視</text>
+<text class="ts" x="340" y="446" text-anchor="middle">容器・前荷の追跡</text>
+
+<text class="ts" x="535" y="410" text-anchor="middle">混載可否の自動判定</text>
+<text class="ts" x="535" y="428" text-anchor="middle">資格者シフト連動</text>
+<text class="ts" x="535" y="446" text-anchor="middle">洗浄スケジュール</text>
+
+<text class="ts" x="340" y="500" text-anchor="middle" opacity="0.5">※ 3層すべてに「類・品名・数量」の情報が貫通する必要がある</text>
+</svg>
+</div>
+
+<div style="page-break-before: always;"></div>
+<h3>2. OMS層：受注〜出荷指示で何が変わるか</h3>
+<h4>共通する業務</h4>
+<p>受注を受け、在庫を引き当て、出荷指示を倉庫に出す。この流れ自体は一般物流と同じ。納期回答のロジックも同じ枠組み。</p>
+<h4>危険物で加わる判断</h4>
+<p><strong>品名・類別の紐付け</strong>：受注時点で「その商品は消防法上の何類・何品名に該当するか」を確定させる必要がある。一般物流のOMSには「商品マスタに類別フィールドがない」ことが多い。この情報がないと後工程が全部止まる。</p>
+<p><strong>指定数量の自動判定</strong>：受注数量×品目の指定数量を掛け合わせて倍数を計算する。倍数が変わると車両種別や資格要件が変わる。理想はOMSの自動計算だが、実務ではExcelや人の頭で回しているケースが多い。</p>
+<p><strong>荷主別ルールの反映</strong>：「A社向けは専用車両」「B社向けは前荷がトルエンなら不可」——こうした契約条件の多くが「配車担当の記憶」に依存している。</p>
+<div class="callout amber">
+  <p><strong>急所：</strong>OMS層で類別・数量の情報が欠落すると、WMS・TMSで手戻りが発生する。<strong>情報の流れはモノの流れより先に走らなければならない。</strong></p>
+</div>
+
+<div style="page-break-before: always;"></div>
+<h3>3. WMS層：倉庫の中で何が変わるか</h3>
+<h4>共通する業務</h4>
+<p>入庫検品→ロケーションへの格納→在庫管理→ピッキング→出庫検品。この一連のフローは同じ。</p>
+<h4>危険物で加わる判断</h4>
+<p><strong>類別ゾーニング</strong>：異なる類の危険物は同一の保管場所に置けない（原則）。倉庫内を「第4類エリア」「第2類エリア」のようにゾーンで分ける必要がある。</p>
+<p><strong>保管倍数の監視</strong>：倉庫全体の保管危険物の倍数を常時モニタリングする。倍数が閾値を超えると施設基準の変更届や消防検査が必要になる。「在庫を増やす＝法的に保管できなくなる可能性がある」。</p>
+<p><strong>容器・前荷の追跡</strong>：IBCやドラム缶の「前に何が入っていたか」をWMSで追跡する。洗浄グレードの管理なしにはコンタミリスクが判断できない。</p>
+<div class="callout amber">
+  <p><strong>急所：</strong>最大の論点は「法的キャパシティ」と「物理的キャパシティ」のギャップ。スペースは余っているのに倍数上限で入庫できない — 一般物流の感覚では理解しにくい制約。</p>
+</div>
+
+<h3>4. TMS層：輸送計画で何が変わるか</h3>
+<h4>共通する業務</h4>
+<p>配車計画、運行管理（拘束時間・休息・速度管理）、納品確認。枠組みは同じ。</p>
+<h4>危険物で加わる判断</h4>
+<p><strong>混載可否の自動判定</strong>：一般物流のTMSは「重量・容積・配送先」で最適化する。危険物では「類別の組み合わせが法的に許されるか」＋「荷主の品質基準で混載不可か」が加わる。結果、積載効率が30〜40%に落ちることが珍しくない。</p>
+<p><strong>資格者シフト連動</strong>：配車計画と危険物取扱者のシフトの連動が必要だが、多くの現場では「ホワイトボードと配車担当の頭」で回している。</p>
+<p><strong>洗浄スケジュール</strong>：品目切替のたびに洗浄が発生。2〜4時間かかる洗浄がTMSに織り込まれていないと納品遅延が頻発する。</p>
+<p><strong>移送時の2名乗車</strong>：移動タンク貯蔵所による移送では、一定条件下で2名乗車が必要。人件費2倍＋シフト編成の自由度低下。</p>
+<div class="callout amber">
+  <p><strong>急所：</strong>TMS層の最大の論点は「積載効率の構造的低さ」。一般物流では70%以上を目指すが、危険物では50%を切ることが常態化する。<strong>「なぜこんなに単価が高いのか」の答えの大半はTMS層にある。</strong></p>
+</div>
+
+<h3>5. 3層を貫く「情報の横串」</h3>
+<p>最大の構造的違いは、<strong>「類・品名・数量」という情報が3層すべてを貫通する必要がある</strong>点。一般物流では「商品コード→SKU→重量・容積」で十分。危険物物流では商品コードに加えて「類別」「品名」「指定数量」「SDS情報」が紐づいていないと、どの層でも正しい判断ができない。</p>
+<div class="callout purple">
+  <p><strong>マスタデータの設計品質がオペレーション全体の安全性とコスト効率を決める</strong> — これが危険物物流の構造的特徴。</p>
+</div>
+
+<h3 style="page-break-before: always;">6. KPIへの影響</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>KPI</th><th>一般物流での決定要因</th><th>危険物固有の制約</th></tr></thead>
+<tbody>
+<tr><td>積載効率</td><td>容積・重量の最適化</td><td>混載制限・数量上限で構造的に低い</td></tr>
+<tr><td>倉庫回転率</td><td>入出庫頻度・棚効率</td><td>法的キャパシティ（倍数上限）が先に天井</td></tr>
+<tr><td>配車リードタイム</td><td>車両・ドライバーの空き</td><td>資格者充足率・洗浄待ち時間</td></tr>
+<tr><td>輸送単価</td><td>距離・重量・件数</td><td>専用車両・洗浄費・2名乗車・回送</td></tr>
+<tr><td>納品遅延率</td><td>渋滞・積み残し</td><td>洗浄遅延・資格者不足・混載不可による便数不足</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>7. よくある対立構造</h3>
+<p><strong>荷主の購買/営業部門 vs 物流部門：</strong>購買は「混載して便数を減らせ」と要求する。物流は「法的に混載できない。品質基準でも不可」と返す。購買がOMS層しか見ていないと「なぜできないのか」が理解できない。TMS層の混載制限とWMS層の前荷管理を理解して初めて、構造が見える。</p>
+
+<div class="summary-box">
+  <h4>Part 2 まとめ：覚えるべき3点</h4>
+  <ol>
+    <li><strong>OMS / WMS / TMSの基本フローは一般物流と同じ。</strong>共通基盤を理解していれば、危険物の話は「差分の学習」で済む。</li>
+    <li><strong>差分の本質は「類・品名・数量」の情報が3層すべてを貫通する必要があること。</strong>この横串が通っていないと各層で判断ミスが起きる。</li>
+    <li><strong>コスト構造の違いはTMS層に集中する。</strong>混載制限・洗浄・資格者配置・2名乗車が「積載効率の構造的低下」として現れ、輸送単価を1.5〜3倍に押し上げる。</li>
+  </ol>
+</div>
+</section>
+
+<!-- ================================================================== -->
+<!-- PART 3 -->
+<!-- ================================================================== -->
+<section class="part" id="part3" style="page-break-before: always;">
+<span class="part-label purple">Part 3</span>
+<h2 class="section-title">OMS / WMS / TMS の「登場人物」比較</h2>
+
+<h3>1. なぜ「登場人物」を比較するのか</h3>
+<p>システムの話をしていると「誰がその判断をしているのか」が抜け落ちる。しかし実務では、<strong>判断の質はシステムではなく人で決まる</strong>場面が多い。特に危険物物流では、一般物流には登場しない専門職が業務フローに割り込むため、「誰に聞けばいいか」「誰がボトルネックか」を把握しておかないと、提案の相手を間違える。</p>
+
+<h3>2. 登場人物マトリクス</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>層</th><th>役割</th><th>一般物流</th><th>危険物で変わること</th></tr></thead>
+<tbody>
+<tr><td class="layer-cell blue" rowspan="4">OMS</td>
+  <td>受注担当 <span class="tag tag-common">共通</span></td>
+  <td>受注登録、納期回答、在庫引当</td>
+  <td>品名に類別・指定数量を紐づけ。数量変更が倍数を超えないか確認</td></tr>
+<tr><td>営業 <span class="tag tag-common">共通</span></td>
+  <td>価格交渉、納期調整、顧客対応</td>
+  <td>輸送単価の高さ（洗浄費・専用車等）を顧客に説明する場面が増える</td></tr>
+<tr><td>品質管理/法務 <span class="tag tag-hazmat">危険物固有</span></td>
+  <td>受注段階の関与は薄い</td>
+  <td>SDSの確認・荷主別ルールの承認。新規品目の類別判定を担当</td></tr>
+<tr><td>危険物管理者 <span class="tag tag-hazmat">危険物固有</span></td>
+  <td>（存在しない）</td>
+  <td>法令上の保安監督者等。マスタの類別登録の最終承認権限を持つ</td></tr>
+
+<tr><td class="layer-cell teal" rowspan="5">WMS</td>
+  <td>倉庫管理者 <span class="tag tag-common">共通</span></td>
+  <td>入出庫計画、レイアウト、人員配置</td>
+  <td>類別ゾーニング設計、倍数上限の監視。「法的キャパシティ」管理が加わる</td></tr>
+<tr><td>入出庫作業者 <span class="tag tag-common">共通</span></td>
+  <td>検品、格納、ピッキング、梱包</td>
+  <td>容器外観検査、表示確認が追加。取扱資格の有無で担当範囲が制限</td></tr>
+<tr><td>フォークリフトOP <span class="tag tag-common">共通</span></td>
+  <td>荷役、段積み、トラックへの積込</td>
+  <td>防爆仕様の車両使用。静電気対策（アース接続）の徹底</td></tr>
+<tr><td>危険物取扱者 <span class="tag tag-hazmat">危険物固有</span></td>
+  <td>（存在しない）</td>
+  <td>指定数量以上の取扱いに立会い。必置資格。シフトに穴→作業停止</td></tr>
+<tr><td>消防設備管理者 <span class="tag tag-hazmat">危険物固有</span></td>
+  <td>（存在しない/兼務で薄い）</td>
+  <td>消火設備の点検・維持。保有空地管理。消防検査の対応窓口</td></tr>
+
+<tr><td class="layer-cell purple" rowspan="5">TMS</td>
+  <td>配車担当 <span class="tag tag-common">共通</span></td>
+  <td>車両割当、ルート設計、積み合わせ</td>
+  <td>混載可否判定、洗浄スケジュール、資格者マッチングが追加。判断負荷が桁違い</td></tr>
+<tr><td>運行管理者 <span class="tag tag-common">共通</span></td>
+  <td>拘束時間管理、点呼、事故対応</td>
+  <td>移送時の2名乗車管理。漏えい時の消防通報義務・応急措置指示</td></tr>
+<tr><td>ドライバー <span class="tag tag-common">共通</span></td>
+  <td>運転、納品、伝票処理</td>
+  <td>免状携帯。荷卸し時アース接続。漏えい時の初動対応</td></tr>
+<tr><td>洗浄担当 <span class="tag tag-hazmat">危険物固有</span></td>
+  <td>（存在しない）</td>
+  <td>タンク・容器の洗浄、グレード判定、洗浄証明書発行</td></tr>
+<tr><td>荷主側 品質/安全担当 <span class="tag tag-hazmat">危険物固有</span></td>
+  <td>（納品先の受入担当のみ）</td>
+  <td>前荷確認、洗浄証明受領、容器返却時の残液チェック。拒否権を持つ</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 style="page-break-before: always;">3. OMS層：受注時点で専門職が割り込む</h3>
+<p>一般物流では受注担当と営業の2者で回る。危険物では<strong>品質管理/法務担当</strong>と<strong>危険物管理者</strong>が加わる。新規品目の受注時にSDS確認→類別判定→マスタ登録の承認フローが挟まるため、「受注→即出荷指示」のスピードが構造的に下がる。</p>
+
+<h3>4. WMS層：資格者がいないと作業が止まる</h3>
+<p>一般物流では「人を増やせば処理能力が上がる」が成立する。危険物倉庫では<strong>「資格者を増やさない限り処理能力は上がらない」</strong>。パートやアルバイトを投入しても、資格者の立会いなしには作業させられない。この「人員の質的ボトルネック」は一般物流の経験しかない人には見えにくい制約。</p>
+
+<h3>5. TMS層：車1台の裏に4〜5人の判断が絡む</h3>
+<p>一般物流のTMSは配車担当・運行管理者・ドライバーの3者で回る。危険物では<strong>洗浄担当</strong>と<strong>荷主側の品質/安全担当</strong>が加わる。特に後者は「自社のTMSの外側にいる人間が、配車計画の成否を左右する」構造を作る。前荷NGと判断されればトラックはそのまま引き返す。</p>
+
+<h3>6. 横断的な構造差：外部の専門職が拒否権を持つ</h3>
+<p>登場人物の比較で見えてくる最大の構造差は、<strong>「自社の外にいる人間が業務フローを止める権限を持つ」場面の多さ</strong>。OMS層で荷主の品質管理担当がSDS確認を求め、WMS層で消防署が立入検査で是正を指示し、TMS層で納品先の安全担当が前荷を理由に受入拒否する。<strong>外部の専門職による「ゲート」が各層に常設されている。</strong></p>
+
+<h3>7. よくある対立構造</h3>
+<p><strong>配車担当 vs 洗浄担当：</strong>配車担当は「朝8時に出発させたい」。洗浄担当は「前荷の洗浄に3時間かかるから11時にしかならない」。この対立は毎日起きる。解消するには「前日の夕方に洗浄を終わらせる」逆算スケジューリングが必要だが、前日の荷卸し時間が読めないと成立しない。</p>
+
+
+<div class="summary-box">
+  <h4>Part 3 まとめ：覚えるべき3点</h4>
+  <ol>
+    <li><strong>危険物物流では「専門資格者」と「外部のゲートキーパー」が各層に加わる。</strong>これらの人のGO/NO-GO判断がオペレーションのスループットを決める。</li>
+    <li><strong>ボトルネックは「人の量」ではなく「資格者の質と数」。</strong>一般物流のように「人を増やせば処理能力が上がる」は成立しない。</li>
+    <li><strong>提案の相手を間違えると刺さらない。</strong>「この課題は誰が意思決定者か」を層×役割で特定することが、提案の精度を決める。</li>
+  </ol>
+</div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>本教材は危険物物流の概要理解を目的とした学習資料です。<br>法令の最終判断は原文および所轄消防への確認が前提となります。</p>
+  </div>
+</footer>
+
+</body>
+</html>

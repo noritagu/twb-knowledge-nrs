@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>危険物物流の在庫所在と集荷構造｜社内勉強会資料</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f4f0;
+    --surface: #ffffff;
+    --surface-alt: #f0ede8;
+    --ink: #1a1a1a;
+    --ink-light: #5c5c5c;
+    --ink-muted: #8a8a8a;
+    --accent: #c84b31;
+    --accent-light: #fdf0ed;
+    --accent-dark: #a03820;
+    --border: #ddd8d0;
+    --tag-bg: #e8e4dc;
+    --highlight: #fff3cc;
+    --blue: #2d6a9f;
+    --blue-light: #eaf2fa;
+    --green: #3a7d5c;
+    --green-light: #eaf5ef;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+    --shadow-md: 0 4px 16px rgba(0,0,0,.07);
+    --radius: 10px;
+    --font-body: 'Noto Sans JP', sans-serif;
+    --font-heading: 'Noto Serif JP', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.85;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+  .site-header .container { text-align: center; }
+  .site-header h1 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+  .site-header .subtitle {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.7;
+  }
+  .site-header .disclaimer {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--ink-muted);
+    background: var(--surface-alt);
+    padding: 6px 14px;
+    border-radius: 6px;
+  }
+
+  /* ── Main ── */
+  .main { max-width: 780px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* ── Section ── */
+  .section {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    padding: 36px 32px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .section-num {
+    position: absolute;
+    top: -1px; left: 28px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    padding: 4px 16px 5px;
+    border-radius: 0 0 6px 6px;
+  }
+
+  h2 {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    padding-top: 14px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 28px 0 10px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  h3 .badge {
+    font-size: 11px;
+    background: var(--tag-bg);
+    padding: 2px 10px;
+    border-radius: 100px;
+    font-weight: 500;
+    color: var(--ink-light);
+  }
+
+  p { margin-bottom: 14px; color: var(--ink); }
+  p.muted { color: var(--ink-light); font-size: 14px; }
+
+  /* ── Callout ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 16px 20px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .callout.blue {
+    border-left-color: var(--blue);
+    background: var(--blue-light);
+  }
+  .callout.green {
+    border-left-color: var(--green);
+    background: var(--green-light);
+  }
+  .callout strong { font-weight: 700; }
+
+  /* ── List ── */
+  ul, ol { padding-left: 1.4em; margin-bottom: 14px; }
+  li { margin-bottom: 6px; }
+  li::marker { color: var(--accent); }
+
+  /* ── Table ── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  thead { background: var(--surface-alt); }
+  th {
+    text-align: left;
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .04em;
+    color: var(--ink-light);
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.7;
+  }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--surface-alt); }
+
+  /* ── Key Point Card ── */
+  .kp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .kp-card {
+    background: var(--surface-alt);
+    border-radius: 8px;
+    padding: 18px 16px;
+    border: 1px solid var(--border);
+  }
+  .kp-card .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .kp-card p { font-size: 14px; margin-bottom: 0; }
+
+  /* ── Divider ── */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 28px 0;
+  }
+
+  /* ── Tag ── */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    background: var(--tag-bg);
+    padding: 2px 10px;
+    border-radius: 100px;
+    color: var(--ink-light);
+    font-weight: 500;
+    margin-right: 4px;
+  }
+  .tag.red { background: var(--accent-light); color: var(--accent-dark); }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.8;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .section { padding: 28px 20px; }
+    .hero { padding: 40px 20px 36px; }
+    .hero-meta { flex-direction: column; gap: 8px; }
+    .kp-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    body { background: #fff; font-size: 13px; }
+    .hero { background: #1a1a1a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section { box-shadow: none; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== HEADER ====== -->
+<header class="site-header">
+  <div class="container">
+    <h1>危険物物流の<span>在庫所在</span>と<br>集荷構造を理解する</h1>
+    <p class="subtitle">
+      在庫は誰が持ち、誰が取りに行くのか？<br>商流・物流の登場人物と責任分界を整理する
+    </p>
+    <span class="disclaimer">社内勉強会資料 | 対象：ビジネス職（営業/企画/コンサル） | 作成：2026年3月</span>
+  </div>
+</header>
+
+<!-- ====== MAIN ====== -->
+<main class="main">
+
+  <!-- ── Section 1 ── -->
+  <article class="section">
+    <div class="section-num">01</div>
+    <h2>原則：在庫は「発荷主」が持つ</h2>
+
+    <h3>製造メーカーの場合</h3>
+    <ul>
+      <li>自社工場敷地内の<strong>危険物倉庫（許可施設）</strong>に製品在庫を保管</li>
+      <li>出荷指示が出たら、そこから出ていく</li>
+      <li>工場併設の「屋内貯蔵所」「屋外タンク貯蔵所」などが典型</li>
+    </ul>
+
+    <h3>化学品商社・ディストリビューターの場合</h3>
+    <ul>
+      <li>自社で倉庫を持つケースと、<strong>危険物倉庫業者に寄託（預ける）</strong>ケースがある</li>
+      <li>後者が多い——自前で危険物施設を持つのは許認可・設備投資・人員配置のハードルが高いため</li>
+    </ul>
+
+    <div class="callout">
+      <strong>ポイント：</strong>「在庫の所有権は荷主にあるが、保管場所は他社施設」という構造が、一般物流よりも頻繁に発生する。
+    </div>
+  </article>
+
+  <!-- ── Section 2 ── -->
+  <article class="section">
+    <div class="section-num">02</div>
+    <h2>「危険物倉庫業者」という存在</h2>
+
+    <p>ここが一般物流と大きく違うポイントです。</p>
+    <ul>
+      <li>危険物を保管できる倉庫は消防法上の<strong>「許可施設」</strong>でなければならない</li>
+      <li>この許可施設を持ち、荷主から危険物を預かって保管するのが<strong>危険物倉庫業者</strong></li>
+      <li>荷主から見ると「在庫の所有権は自社、保管場所は倉庫業者」という構造</li>
+    </ul>
+
+    <div class="callout blue">
+      <strong>責任の分担：</strong><br>
+      <strong>在庫リスク（金融的）</strong>＝荷主が負う<br>
+      <strong>保管リスク（物理的な安全管理）</strong>＝倉庫業者が負う
+    </div>
+  </article>
+
+  <!-- ── Section 3 ── -->
+  <article class="section">
+    <div class="section-num">03</div>
+    <h2>物流業者（運送会社）は原則、在庫を持たない</h2>
+
+    <p>構造上の重要ポイントです。</p>
+    <ul>
+      <li>運送会社の役割は「A地点からB地点へ運ぶ」こと</li>
+      <li>原則として在庫保管機能は持たない（持つ場合は倉庫業の許可も必要）</li>
+      <li>ただし実態として、運送会社が危険物倉庫も<strong>兼営</strong>しているケースはある<br>
+        <span class="muted">（例：日本通運、センコーなど大手）</span>
+      </li>
+    </ul>
+
+    <div class="callout green">
+      <strong>覚えておくべき構図：</strong>「運ぶ人」と「預かる人」は法的に別の許認可が必要。
+      兼業している＝両方の許可を取得しているということ。
+    </div>
+  </article>
+
+  <!-- ── Section 4 ── -->
+  <article class="section">
+    <div class="section-num">04</div>
+    <h2>集荷の構造：「取りに行く」のか「持ってきてもらう」のか</h2>
+
+    <p>契約形態によって変わります。</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>パターン</th>
+            <th>内容</th>
+            <th>典型的な場面</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>引取り（集荷）</strong></td>
+            <td>運送会社がメーカー工場や倉庫まで車両を回して積み込む</td>
+            <td>大口定期便、タンクローリー輸送</td>
+          </tr>
+          <tr>
+            <td><strong>持込み</strong></td>
+            <td>荷主側が自社車両や手配車で物流拠点まで持ち込む</td>
+            <td>小口混載、港湾・駅への搬入</td>
+          </tr>
+          <tr>
+            <td><strong>倉庫出荷</strong></td>
+            <td>荷主の在庫を預かっている危険物倉庫から、運送会社が出庫・配送</td>
+            <td>商社経由の出荷、多頻度小口</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>実務上もっとも多いのは「引取り（集荷）」。</strong><br>
+      理由：危険物を積んだ車両を荷主が自前で手配するより、専門の運送会社に任せる方が安全管理・資格者配置・車両基準の面で合理的だから。
+    </div>
+  </article>
+
+  <!-- ── Section 5 ── -->
+  <article class="section">
+    <div class="section-num">05</div>
+    <h2>全体構造：3つの主体と責任分界</h2>
+
+    <p>「在庫の所有者」「保管場所の管理者」「輸送の実行者」は<strong>基本的に全部別の主体</strong>という前提で考えると、危険物物流の商流が見えやすくなります。</p>
+
+    <div class="kp-grid">
+      <div class="kp-card">
+        <div class="label">荷主（メーカー/商社）</div>
+        <p>在庫所有・出荷指示<br>
+        <span class="tag">在庫リスク</span><span class="tag">品質責任</span></p>
+      </div>
+      <div class="kp-card">
+        <div class="label">倉庫業者</div>
+        <p>許可施設での保管・入出庫管理<br>
+        <span class="tag">保管安全</span><span class="tag">施設許可</span></p>
+      </div>
+      <div class="kp-card">
+        <div class="label">運送会社</div>
+        <p>集荷・輸送・納品<br>
+        <span class="tag">輸送安全</span><span class="tag">資格者配置</span></p>
+      </div>
+    </div>
+
+    <hr>
+
+    <h3>なぜこの構造が重要か <span class="badge">ビジネス視点</span></h3>
+    <p>この3者間の<strong>責任分界（どこからどこまでが誰の責任か）</strong>が、事故時・品質トラブル時に必ず問題になります。</p>
+    <ul>
+      <li>契約書や覚書でここが曖昧なケースは非常に多い</li>
+      <li>コンサルや営業が入る余地がある領域でもある</li>
+      <li><span class="tag red">地雷</span> 「運送会社が全部やってくれる」という前提で話を進めると、現場で破綻する</li>
+    </ul>
+  </article>
+
+  <!-- ── Disclaimer ── -->
+  <article class="section" style="background: var(--surface-alt); border-left: 4px solid var(--ink-muted);">
+    <p class="muted" style="margin-bottom: 0;">
+      <strong>免責事項：</strong>本資料は社内教育を目的とした概要整理であり、法令の正式な解釈を示すものではありません。消防法その他の関連法令は改正されることがあります。実務上の判断は原文・所轄消防への確認を前提としてください。
+    </p>
+  </article>
+
+</main>
+
+<footer class="footer">
+  危険物物流 基礎シリーズ｜社内勉強会資料<br>
+  &copy; 2026 — 法令は改正の可能性があるため、最終判断は原文・所轄確認が前提です
+</footer>
+
+</body>
+</html>

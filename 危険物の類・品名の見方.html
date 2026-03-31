@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>危険物の「類・品名」って結局なにを見ればいい？——分類の読み方 | NRS 危険物物流ナレッジ</title>
+    <style>
+        :root {
+            --bg: #f6f1e8;
+            --paper: #fffdf9;
+            --ink: #1f2937;
+            --muted: #6b7280;
+            --line: #e5d7c3;
+            --accent: #9a3412;
+            --accent-soft: #fff1e8;
+            --link: #1d4ed8;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top left, rgba(154, 52, 18, 0.1), transparent 24%),
+                linear-gradient(180deg, #faf6ef 0%, #f6f1e8 100%);
+        }
+        a { color: var(--link); }
+        .wrap { width: min(900px, calc(100vw - 28px)); margin: 0 auto; padding: 28px 0 56px; }
+        .chrome {
+            display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px;
+            color: var(--muted); font-size: 0.88rem;
+        }
+        .back {
+            display: inline-flex; align-items: center; padding: 8px 12px; border-radius: 999px;
+            text-decoration: none; color: var(--accent); background: var(--accent-soft); border: 1px solid #f1c9ae;
+            font-weight: 700;
+        }
+        article {
+            background: var(--paper); border: 1px solid var(--line); border-radius: 26px;
+            padding: 30px; box-shadow: 0 18px 45px rgba(62, 39, 17, 0.08);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.35; color: #111827;
+        }
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-family: Georgia, "Hiragino Mincho ProN", serif;
+        }
+        h2 {
+            margin-top: 2.3em;
+            padding-top: 0.5em;
+            border-top: 1px solid var(--line);
+            font-size: 1.5rem;
+        }
+        h3 { margin-top: 1.7em; font-size: 1.14rem; }
+        p, li, blockquote {
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+        ul, ol { padding-left: 1.4em; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.4em 0;
+            font-size: 0.95rem;
+            background: #fffdfa;
+        }
+        th, td {
+            padding: 12px 14px;
+            border: 1px solid var(--line);
+            vertical-align: top;
+            line-height: 1.7;
+        }
+        th {
+            background: #f8efe3;
+            color: #7c2d12;
+            font-weight: 700;
+        }
+        tbody tr:nth-child(even) {
+            background: #fcf8f2;
+        }
+        blockquote {
+            margin: 1.2em 0;
+            padding: 0.1em 1em;
+            border-left: 4px solid #f2b38d;
+            background: #fff7f2;
+            color: #4b5563;
+        }
+        code {
+            font-family: Consolas, "Courier New", monospace;
+            background: #f3f4f6;
+            padding: 0.15em 0.4em;
+            border-radius: 6px;
+            font-size: 0.92em;
+        }
+        pre {
+            overflow-x: auto;
+            padding: 14px;
+            border-radius: 14px;
+            background: #111827;
+            color: #f9fafb;
+        }
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: inherit;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid var(--line);
+            margin: 2em 0;
+        }
+        .meta {
+            margin-bottom: 22px;
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+        @media (max-width: 720px) {
+            article { padding: 20px; border-radius: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="chrome">
+            <a class="back" href="index.html">統合トップへ戻る</a>
+            <span>元ファイル: 危険物の類・品名の見方.md</span>
+            <span>生成日時: 2026-03-31 18:14</span>
+        </div>
+        <article>
+            <div class="meta">Markdown から自動変換した HTML 版</div>
+            <h1>危険物の「類・品名」って結局なにを見ればいい？——分類の読み方</h1>
+<blockquote>
+<p><strong>法令は改正があり得るため、最終判断は原文（消防法・危険物の規制に関する政令等）および所轄消防への確認が前提です。本稿は学習用の整理であり、法的助言ではありません。</strong></p>
+</blockquote>
+<hr>
+<h2>1. 導入：このテーマがクライアント業務のどこに効くか</h2>
+<p>「危険物って何ですか？」——この問いに即答できないまま物流の提案や営業をすると、会話の土台が崩れる。なぜなら、危険物の「類」と「品名」は、保管コスト・配車制約・混載可否・容器選定・必要資格のすべてを決定づける&quot;起点情報&quot;だからだ。</p>
+<p>具体的には、類・品名が変われば以下が連鎖的に変わる。</p>
+<ul>
+<li><strong>コスト</strong>：保管施設のグレード、洗浄費、専用車両の要否</li>
+<li><strong>納期（リードタイム）</strong>：混載不可なら単独配車→車両手配に時間がかかる</li>
+<li><strong>品質</strong>：前荷（前に積んでいた荷物）との化学的相性でコンタミリスクが変わる</li>
+<li><strong>安全・コンプライアンス</strong>：分類を間違えると、そもそも「違法な輸送」になる</li>
+</ul>
+<p>つまり、類・品名の読み方を知らないと「見積もりの根拠」も「現場への指示」も出せない。ビジネス職がまず押さえるべき最優先テーマと言っていい。</p>
+<hr>
+<h2>2. 基本定義：最小限の用語と考え方</h2>
+<h3>そもそも「危険物」とは何か</h3>
+<p>日常用語の「危ないもの」とは範囲が違う。<strong>消防法における危険物とは、消防法別表第一に掲げられた物品</strong>のことを指す。「火災の発生・拡大の危険が大きい」「消火が困難」という性質に着目して、国が品目を限定列挙している。</p>
+<p>ここが最初の急所で、<strong>毒物（毒劇法）、高圧ガス（高圧ガス保安法）、放射性物質（放射線障害防止法）などは消防法の「危険物」ではない</strong>。法律が違えばルールも管轄も違う。「危ないもの＝全部同じ法律」ではない、という前提を最初に入れておくと、後の混乱が減る。</p>
+<h3>「類」とは何か——6つの性質グループ</h3>
+<p>消防法は危険物を<strong>第1類〜第6類</strong>の6グループに分けている。分類軸は「どんな危険性を持つか」という<strong>性質</strong>である。</p>
+<table>
+<thead>
+<tr>
+<th>類</th>
+<th>性質キーワード</th>
+<th>ひと言で言うと</th>
+<th>代表例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>第1類</strong></td>
+<td>酸化性固体</td>
+<td>自分は燃えないが、他のものを激しく燃やす「酸素の供給者」</td>
+<td>過塩素酸カリウム、硝酸アンモニウム</td>
+</tr>
+<tr>
+<td><strong>第2類</strong></td>
+<td>可燃性固体</td>
+<td>火がつきやすく、燃え広がりやすい固体</td>
+<td>赤りん、硫黄、鉄粉</td>
+</tr>
+<tr>
+<td><strong>第3類</strong></td>
+<td>自然発火性物質・禁水性物質</td>
+<td>空気や水に触れるだけで発火・発熱する</td>
+<td>ナトリウム、アルキルアルミニウム</td>
+</tr>
+<tr>
+<td><strong>第4類</strong></td>
+<td>引火性液体</td>
+<td>液体の蒸気に火がつく。<strong>物流で最も取扱量が多い</strong></td>
+<td>ガソリン、灯油、アルコール、塗料</td>
+</tr>
+<tr>
+<td><strong>第5類</strong></td>
+<td>自己反応性物質</td>
+<td>自分の中に酸素を持ち、加熱・衝撃で爆発的に反応する</td>
+<td>ニトログリセリン、有機過酸化物</td>
+</tr>
+<tr>
+<td><strong>第6類</strong></td>
+<td>酸化性液体</td>
+<td>第1類の液体版。他のものを酸化させる</td>
+<td>過塩素酸、硝酸</td>
+</tr>
+</tbody>
+</table>
+<p><strong>覚え方のコツ</strong>：第1類と第6類は「酸化性（＝他を燃やす側）」、第2類・第4類は「可燃性（＝自分が燃える側）」、第3類と第5類は「自分だけで危険を起こせる（空気・水・衝撃がトリガー）」。この3グループで頭を整理すると混載禁止の理由も見えてくる（酸化性＋可燃性を混ぜたら大惨事、という構図）。</p>
+<h3>「品名」とは何か——類の中のサブカテゴリ</h3>
+<p>各類の中がさらに<strong>品名</strong>で細分化されている。品名は消防法別表第一の「品名」欄に列挙されたもので、たとえば第4類なら以下のように引火点（液体の蒸気に火がつく最低温度）で段階的に区分されている。</p>
+<table>
+<thead>
+<tr>
+<th>品名</th>
+<th>引火点の目安</th>
+<th>代表例</th>
+<th>実務上の意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>特殊引火物</td>
+<td>発火点100℃以下 or 引火点−20℃以下</td>
+<td>ジエチルエーテル、二硫化炭素</td>
+<td>最も厳しい管理。取扱量・保管が極端に制限される</td>
+</tr>
+<tr>
+<td>第一石油類</td>
+<td>引火点 21℃未満</td>
+<td>ガソリン、アセトン、トルエン</td>
+<td>常温で蒸気が出る＝火気厳禁が最もシビア</td>
+</tr>
+<tr>
+<td>アルコール類</td>
+<td>— （炭素数1〜3の飽和一価アルコール等）</td>
+<td>メタノール、エタノール</td>
+<td>水溶性で消火方法が変わる点に注意</td>
+</tr>
+<tr>
+<td>第二石油類</td>
+<td>引火点 21℃以上70℃未満</td>
+<td>灯油、軽油</td>
+<td>常温ではすぐには引火しないが、加温や漏えい時は危険</td>
+</tr>
+<tr>
+<td>第三石油類</td>
+<td>引火点 70℃以上200℃未満</td>
+<td>重油、クレオソート油</td>
+<td>温度管理を誤ると引火リスクが上がる</td>
+</tr>
+<tr>
+<td>第四石油類</td>
+<td>引火点 200℃以上250℃未満</td>
+<td>ギヤー油、シリンダー油</td>
+<td>比較的穏やかだが「危険物」であることに変わりはない</td>
+</tr>
+<tr>
+<td>動植物油類</td>
+<td>引火点 250℃未満</td>
+<td>大豆油、アマニ油</td>
+<td>自然発火（酸化発熱）のリスクが特有</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ここで押さえるべき構造</strong>：品名が変わると<strong>指定数量</strong>（＝規制が本格的にかかる基準量）が変わる。たとえばガソリン（第一石油類・非水溶性）は200L、灯油（第二石油類・非水溶性）は1,000L。同じ「第4類」でも品名が違えば、保管できる量も届出の要否もまるで違う。</p>
+<h3>「水溶性」と「非水溶性」——品名の中のさらなる分岐</h3>
+<p>第4類の一部の品名は、さらに<strong>水溶性か非水溶性か</strong>で指定数量が2倍変わる。水溶性のほうが指定数量が大きい（＝同じ量なら規制が緩い）。これは、水溶性の液体は水で希釈・拡散しやすく、火災リスクが相対的に低いためだ。</p>
+<hr>
+<h2>3. 実務の急所：現場で必ず問題になる5点</h2>
+<h3>急所① 「第4類偏重」の現実を知る</h3>
+<p>物流の現場で扱う危険物の大半は<strong>第4類（引火性液体）</strong>だ。化学品、塗料、溶剤、燃料——いずれも第4類。だから「危険物物流＝ほぼ第4類の物流」と言っても業界的には大きく外れない。ただし、これが<strong>第4類以外を軽視する原因</strong>にもなる。第3類（禁水性）や第5類（自己反応性）が少量混じったとき、第4類の感覚で扱うと事故になる。</p>
+<h3>急所② 品名の特定は「SDS（安全データシート）」が起点</h3>
+<p>現場で「この液体は第何類の何？」を判断する一次情報は<strong>SDS</strong>である。SDSとは、化学品の危険性・取扱い方法・応急措置などを記載したシートで、製造者・輸入者が作成し、荷主が物流会社に提供する義務がある。SDSの「第14項：輸送上の注意」や「第2項：危険有害性の要約」に消防法上の分類が書かれている。</p>
+<p><strong>ありがちな問題</strong>：SDSが古い、SDSが英語のまま翻訳されていない、そもそもSDSが物流会社に渡っていない。この状態で配車・倉庫手配が進み、「あとで調べたら混載不可だった」という事態が起きる。</p>
+<h3>急所③ 「類が同じ＝混載OK」ではない</h3>
+<p>同じ第4類でも、品名・水溶性/非水溶性の違いで化学的相性が悪い組み合わせはある。さらに、<strong>法規上は混載可能でも、荷主の品質基準や契約条件で混載NGとなるケース</strong>が実務では非常に多い。「法規OKだから混載できますよ」と安易に言うと、荷主との信頼関係を損なう。</p>
+<h3>急所④ 「消防法の危険物」と「国連番号（UN No.）の危険物」はズレる</h3>
+<p>国内輸送は消防法の分類（第1〜6類）で管理するが、国際輸送ではUN番号とGHS分類（国連の統一分類）を使う。<strong>同じ物質でも、消防法の「類」とUNの「クラス」が一致しない場合がある</strong>。輸出入が絡む案件では、この「翻訳」が必要になる。初心者がここでつまずくと、書類不備で通関が止まる。</p>
+<h3>急所⑤ 「名前が似ているが類が違う」トラップ</h3>
+<p>たとえば「硝酸」は第6類（酸化性液体）だが、「硝酸エステル類」は第5類（自己反応性物質）。名前の雰囲気で類を推測すると間違える。<strong>必ずSDSまたは法令別表で確認する</strong>、という習慣がないと危険だ。</p>
+<hr>
+<h2>4. ひと目整理：分類の読み方フレーム</h2>
+<h3>分類を読むときの「3ステップ」</h3>
+<pre><code>
+Step 1 ：類を見る → 「どんな性質の危険か」がわかる
+Step 2 ：品名を見る → 「指定数量（規制の厳しさ）」が決まる
+Step 3 ：水溶性/非水溶性を見る（第4類の場合）→ 指定数量がさらに分岐する
+</code></pre>
+<h3>「酸化性 vs 可燃性」の対立構造</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>酸化性（酸素を与える側）</th>
+<th>可燃性（燃える側）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>固体</strong></td>
+<td>第1類</td>
+<td>第2類</td>
+</tr>
+<tr>
+<td><strong>液体</strong></td>
+<td>第6類</td>
+<td>第4類</td>
+</tr>
+</tbody>
+</table>
+<p>この対角線上にあるもの同士を混ぜると最も危険（酸化剤＋燃料＝激しい燃焼・爆発）。だから<strong>第1類×第2類、第1類×第4類、第6類×第2類、第6類×第4類は原則混載禁止</strong>という構造になる。理屈がわかれば暗記は不要になる。</p>
+<hr>
+<h2>5. &quot;クライアント理解&quot;への翻訳</h2>
+<h3>現場の制約 → KPIへの影響マップ</h3>
+<table>
+<thead>
+<tr>
+<th>分類に関わる制約</th>
+<th>影響するKPI</th>
+<th>具体的な影響</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>品名が変わると指定数量が変わる</td>
+<td><strong>コスト</strong></td>
+<td>指定数量を超えると許可施設が必要→保管単価が跳ね上がる</td>
+</tr>
+<tr>
+<td>類の組み合わせで混載不可</td>
+<td><strong>積載効率・コスト</strong></td>
+<td>単独配車が増え、車両コスト・CO₂排出が悪化</td>
+</tr>
+<tr>
+<td>SDSの情報不備</td>
+<td><strong>リードタイム</strong></td>
+<td>分類確認で配車が止まる。最悪、積み直しが発生</td>
+</tr>
+<tr>
+<td>国内分類と国際分類のズレ</td>
+<td><strong>納期</strong></td>
+<td>輸出入時に書類差し戻し→通関遅延</td>
+</tr>
+<tr>
+<td>水溶性/非水溶性の区別</td>
+<td><strong>消火・事故対応コスト</strong></td>
+<td>消火方法（泡の種類等）が変わり、設備投資に影響</td>
+</tr>
+</tbody>
+</table>
+<h3>よくある対立：荷主 vs 物流会社の「分類情報」をめぐる摩擦</h3>
+<p>荷主側は「SDSは渡したはず」と言い、物流会社側は「最新版が来ていない」「混合品の分類が不明確」と言う。この情報の非対称が、配車ミスや混載事故の温床になる。ビジネス職としては、<strong>「SDSの最新版が物流会社にタイムリーに共有される仕組み」があるかどうか</strong>を確認することが、提案の突破口になりやすい。</p>
+<hr>
+<h2>6. すぐ使える</h2>
+<h3>ヒアリング質問（5問）</h3>
+<ol>
+<li><strong>「主に扱っている危険物は第何類ですか？品名でいうとどのあたりが多いですか？」</strong></li>
+<p>→相手の業務領域が一発でわかる。第4類中心か、複数類を扱うかで提案の方向が変わる。</p>
+</ol>
+<ol>
+<li><strong>「SDSの管理・共有フローはどうなっていますか？物流会社への提供タイミングは？」</strong></li>
+<p>→情報基盤の成熟度がわかる。ここが弱いと分類起因のトラブルが頻発しているはず。</p>
+</ol>
+<ol>
+<li><strong>「混載の可否判断は、法規ベースですか？それとも荷主独自の基準がありますか？」</strong></li>
+<p>→法規と実務のギャップの深さがわかる。独自基準がある場合、配車の自由度が大きく制限される。</p>
+</ol>
+<ol>
+<li><strong>「国際輸送（輸出入）は発生しますか？その場合、国内分類とUNの変換は誰がやっていますか？」</strong></li>
+<p>→国際物流が絡む場合の業務負荷とリスクポイントが見える。</p>
+</ol>
+<ol>
+<li><strong>「指定数量の管理（倍数計算）は、どの部署が、どの頻度でやっていますか？」</strong></li>
+<p>→法令遵守の実態がわかる。属人的にやっている場合、システム化の提案余地がある。</p>
+</ol>
+<h3>地雷（言ってはいけない/勘違いしやすいこと）3つ</h3>
+<ol>
+<li><strong>「危険物って要するに毒物のことですよね？」</strong></li>
+<p>→消防法の危険物と毒劇法の毒物は別の法体系。これを混同すると、相手の信頼を一瞬で失う。</p>
+</ol>
+<ol>
+<li><strong>「第4類は全部同じように扱えばいいんですよね？」</strong></li>
+<p>→品名（特殊引火物〜動植物油類）で指定数量が50L〜10,000Lまで幅がある。同じ第4類でもリスクレベルは全く違う。</p>
+</ol>
+<ol>
+<li><strong>「法律上OKなら混載できますよ」</strong></li>
+<p>→法規上の混載可否と、荷主の品質基準・契約条件は別レイヤー。法規だけで判断すると現場で止まる。</p>
+</ol>
+<h3>まとめ：覚えるべき3点</h3>
+<ol>
+<li><strong>危険物の分類は「類→品名→水溶性/非水溶性」の3段階</strong>で読む。この3段階が指定数量・混載可否・保管要件のすべてを決める起点情報である。</li>
+<li><strong>分類の一次情報はSDS</strong>。SDSが正しく・タイムリーに共有されているかどうかが、物流品質の基盤になる。</li>
+<li><strong>「法規の分類」と「実務の判断」は別レイヤー</strong>。法規OKでも荷主基準・化学的相性・国際規格との整合でNGになる場面がある。提案では常にこの&quot;二重基準&quot;を意識する。</li>
+</ol>
+        </article>
+    </div>
+</body>
+</html>

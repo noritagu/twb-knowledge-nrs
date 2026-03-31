@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消防法上の危険物 解説パネル</title>
+    <style>
+        :root {
+            --bg-gray: #f8fafc;
+            --border-gray: #e2e8f0;
+            --text-main: #334155;
+            --cat1-bg: #fff5f5; --cat1-border: #feb2b2; --cat1-icon: #e53e3e;
+            --cat2-bg: #fffaf0; --cat2-border: #fbd38d; --cat2-icon: #dd6b20;
+            --cat3-bg: #fffff0; --cat3-border: #faf089; --cat3-icon: #d69e2e;
+            --cat4-bg: #f7fafc; --cat4-border: #bee3f8; --cat4-icon: #3182ce;
+            --cat5-bg: #faf5ff; --cat5-border: #e9d8fd; --cat5-icon: #805ad5;
+            --cat6-bg: #f0fff4; --cat6-border: #9ae6b4; --cat6-icon: #38a169;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: var(--bg-gray);
+            color: var(--text-main);
+            line-height: 1.45;
+            padding: 12px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        /* Grid Layout */
+        .grid-6 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            border: 1px solid var(--border-gray);
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.08);
+        }
+
+        .cat-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .cat-tag {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid;
+            opacity: 0.6;
+        }
+
+        .cat-title { font-weight: bold; font-size: 1rem; }
+        .cat-items { font-size: 0.8rem; margin-bottom: 10px; min-height: 2.2rem;}
+
+        /* 指定数量 Table-like UI */
+        .spec-title { font-size: 0.75rem; color: #64748b; margin-bottom: 5px; }
+        .spec-grid {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .spec-box {
+            background: rgba(255,255,255,0.5);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 6px;
+            padding: 3px 6px;
+            text-align: center;
+            min-width: 54px;
+        }
+        .spec-label { display: block; font-size: 0.65rem; color: #94a3b8; }
+        .spec-value { display: block; font-size: 0.8rem; font-weight: bold; }
+
+        /* Color Variations */
+        .cat-1 { background-color: var(--cat1-bg); border-color: var(--cat1-border); color: var(--cat1-icon); }
+        .cat-2 { background-color: var(--cat2-bg); border-color: var(--cat2-border); color: var(--cat2-icon); }
+        .cat-3 { background-color: var(--cat3-bg); border-color: var(--cat3-border); color: var(--cat3-icon); }
+        .cat-4 { background-color: var(--cat4-bg); border-color: var(--cat4-border); color: var(--cat4-icon); }
+        .cat-5 { background-color: var(--cat5-bg); border-color: var(--cat5-border); color: var(--cat5-icon); }
+        .cat-6 { background-color: var(--cat6-bg); border-color: var(--cat6-border); color: var(--cat6-icon); }
+
+        /* Bottom Section */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 10px;
+        }
+
+        .info-panel {
+            background: white;
+            border-radius: 10px;
+            padding: 14px;
+            border: 1px solid var(--border-gray);
+        }
+
+        .panel-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .definition-box {
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
+        }
+
+        .def-name { font-weight: bold; color: #2563eb; margin-bottom: 5px; display: block; }
+        .def-text { font-size: 0.76rem; color: #475569; line-height: 1.45; }
+
+        .calc-box {
+            background: #fffdf2;
+            border: 1px solid #fef3c7;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .formula {
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: #92400e;
+            margin: 10px 0;
+        }
+
+        .calc-note { font-size: 0.72rem; text-align: left; color: #92400e; background: #fffbeb; padding: 8px; border-radius: 6px; line-height: 1.45; }
+        .calc-list { font-size: 0.7rem; text-align: left; color: #64748b; margin-top: 10px; margin-bottom: 0; padding-left: 18px; line-height: 1.4; }
+
+        @page {
+            size: A4 portrait;
+            margin: 10mm;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                font-size: 11px;
+            }
+
+            .container {
+                width: 190mm;
+                max-width: 190mm;
+            }
+
+            .card,
+            .info-panel {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-6,
+            .bottom-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-title">📖 消防法上の危険物（第1類〜第6類）</div>
+
+    <div class="grid-6">
+        <div class="card cat-1">
+            <div class="cat-header">
+                <span class="cat-title">🔥 第1類</span>
+                <span class="cat-tag">酸化性固体</span>
+            </div>
+            <div class="cat-items">塩素酸カリウム、硝酸アンモニウム</div>
+            <div class="spec-title">指定数量(例)</div>
+            <div class="spec-grid">
+                <div class="spec-box"><span class="spec-label">第1種</span><span class="spec-value">50kg</span></div>
+                <div class="spec-box"><span class="spec-label">第2種</span><span class="spec-value">300kg</span></div>
+                <div class="spec-box"><span class="spec-label">第3種</span><span class="spec-value">1000kg</span></div>
+            </div>
+        </div>
+
+        <div class="card cat-2">
+            <div class="cat-header">
+                <span class="cat-title">⚡ 第2類</span>
+                <span class="cat-tag">可燃性固体</span>
+            </div>
+            <div class="cat-items">硫黄、赤リン、鉄粉</div>
+            <div class="spec-title">指定数量(例)</div>
+            <div class="spec-grid">
+                <div class="spec-box"><span class="spec-label">第1種</span><span class="spec-value">100kg</span></div>
+                <div class="spec-box"><span class="spec-label">第2種</span><span class="spec-value">500kg</span></div>
+                <div class="spec-box"><span class="spec-label">引火性固体</span><span class="spec-value">1000kg</span></div>
+            </div>
+        </div>
+
+        <div class="card cat-3">
+            <div class="cat-header">
+                <span class="cat-title">🧪 第3類</span>
+                <span class="cat-tag">自然発火性・禁水性</span>
+            </div>
+            <div class="cat-items">カリウム、ナトリウム、黄リン</div>
+            <div class="spec-title">指定数量(例)</div>
+            <div class="spec-grid">
+                <div class="spec-box"><span class="spec-label">第1種</span><span class="spec-value">10kg</span></div>
+                <div class="spec-box"><span class="spec-label">第2種</span><span class="spec-value">20kg</span></div>
+                <div class="spec-box"><span class="spec-label">第3種</span><span class="spec-value">300kg</span></div>
+            </div>
+        </div>
+
+        <div class="card cat-4">
+            <div class="cat-header">
+                <span class="cat-title">💧 第4類</span>
+                <span class="cat-tag">引火性液体</span>
+            </div>
+            <div class="cat-items">ガソリン、軽油、アルコール類</div>
+            <div class="spec-title">指定数量(例)</div>
+            <div class="spec-grid">
+                <div class="spec-box"><span class="spec-label">特引</span><span class="spec-value">50L</span></div>
+                <div class="spec-box"><span class="spec-label">第1石</span><span class="spec-value">200L</span></div>
+                <div class="spec-box"><span class="spec-label">アルコール</span><span class="spec-value">400L</span></div>
+                <div class="spec-box"><span class="spec-label">第2石</span><span class="spec-value">1000L</span></div>
+                <div class="spec-box"><span class="spec-label">第3石</span><span class="spec-value">2000L</span></div>
+                <div class="spec-box"><span class="spec-label">第4石</span><span class="spec-value">6000L</span></div>
+            </div>
+        </div>
+
+        <div class="card cat-5">
+            <div class="cat-header">
+                <span class="cat-title">⚠️ 第5類</span>
+                <span class="cat-tag">自己反応性物質</span>
+            </div>
+            <div class="cat-items">ニトロ化合物、有機過酸化物</div>
+            <div class="spec-title">指定数量(例)</div>
+            <div class="spec-grid">
+                <div class="spec-box"><span class="spec-label">第1種</span><span class="spec-value">10kg</span></div>
+                <div class="spec-box"><span class="spec-label">第2種</span><span class="spec-value">100kg</span></div>
+            </div>
+        </div>
+
+        <div class="card cat-6">
+            <div class="cat-header">
+                <span class="cat-title">🧪 第6類</span>
+                <span class="cat-tag">酸化性液体</span>
+            </div>
+            <div class="cat-items">過塩素酸、過酸化水素、硝酸</div>
+            <div class="spec-title">指定数量(例)</div>
+            <div class="spec-grid">
+                <div class="spec-box"><span class="spec-label">一律</span><span class="spec-value">300L</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-grid">
+        <div class="info-panel">
+            <div class="panel-title" style="color: #2563eb;">ⓘ 輸送・移送の定義（システム分岐点）</div>
+            <div class="definition-box">
+                <span class="def-name">移送（移動タンク貯蔵所）</span>
+                <div class="def-text">タンクローリー等の固定タンク。<b>危険物取扱者の乗車が必須。</b>コンパートメント（室）ごとの前回積載物管理が必要。</div>
+            </div>
+            <div class="definition-box">
+                <span class="def-name">運搬（容器入り輸送）</span>
+                <div class="def-text">ドラム缶、IBC、コンテナ等。指定数量以上でも資格者の乗車義務はないが、積載方法や車両基準（消火器等）の厳格な規制がある。</div>
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <div class="panel-title" style="color: #d97706;">📋 指定数量の倍数合算（計算エンジン要件）</div>
+            <div class="calc-box">
+                <div class="formula">Σ (品目の数量 / 指定数量) ≧ 1</div>
+                <div class="calc-note">
+                    異なる品目を積む場合、それぞれの数量をその指定数量で割った値の合計が「1」以上になると、消防法上の本格的な規制対象（危標識、消火器等）となります。
+                </div>
+            </div>
+            <ul class="calc-list">
+                <li>比重（密度）による「kg ↔ L」換算ロジックが必須</li>
+                <li>第4類における「水溶性・非水溶性」の属性判別</li>
+                <li>1台の車に複数拠点の荷物を積む際、動的な再計算が必要</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>法規制ロジック・マスター</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap');
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+    </style>
+</head>
+<body class="bg-white text-slate-900 pb-20">
+
+<div class="max-w-4xl mx-auto p-6 md:p-12">
+    <!-- Header -->
+    <header class="mb-12 border-b-2 border-slate-100 pb-8">
+        <div class="flex items-center gap-4 mb-4">
+            <div class="p-3 bg-red-600 rounded-xl text-white shadow-lg shadow-red-100">
+                <i data-lucide="shield-check" size="32"></i>
+            </div>
+            <div>
+                <h1 class="text-3xl font-bold text-slate-900 tracking-tight">NRS面談攻略：法規制ロジック・マスター</h1>
+                <p class="text-slate-500 mt-1 text-lg font-medium">消防法・高圧ガス保安法における輸送制約リファレンス</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section: 消防法 -->
+    <section class="mb-16">
+        <div class="flex items-center gap-2 mb-8 bg-red-50 w-fit px-4 py-2 rounded-full border border-red-100">
+            <i data-lucide="flame" class="text-red-600" size="20"></i>
+            <h2 class="text-lg font-bold text-red-800">消防法：危険物輸送のコアロジック</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                <div class="flex items-center gap-2 mb-4 text-slate-800">
+                    <i data-lucide="calculator" size="20"></i>
+                    <h3 class="font-bold">指定数量の倍数計算</h3>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm mb-4">
+                    <div class="text-center font-mono text-2xl font-bold text-slate-800 tracking-widest">
+                        Σ ( Q / L ) ≥ 1
+                    </div>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    異なる危険物を混載する場合、それぞれの数量(Q)を指定数量(L)で割った合計値が「1」以上になると、標識掲示や消火器の備付、有資格者の乗車（移送時）が必要となります。
+                </p>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                <div class="flex items-center gap-2 mb-4 text-slate-800">
+                    <i data-lucide="package-check" size="20"></i>
+                    <h3 class="font-bold">「1/10例外規定」の活用</h3>
+                </div>
+                <div class="p-4 bg-amber-100/50 border border-amber-200 rounded-xl mb-4">
+                    <p class="text-xs font-bold text-amber-800 leading-relaxed">
+                        各品目の数量が指定数量の10分の1以下であれば、類が異なる危険物であっても混載禁止の制限を受けません。
+                    </p>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    小口配送における配車効率最大化のキーとなるロジックです。
+                </p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border-2 border-slate-100 overflow-hidden">
+            <div class="bg-slate-50 px-6 py-3 border-b border-slate-100">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">混載可否マトリクス（指定数量以上）</span>
+            </div>
+            <div class="p-6">
+                <p class="text-sm text-slate-700 font-bold mb-4">許可される組み合わせ：</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="flex items-center gap-3 p-3 bg-red-50 rounded-lg border border-red-100">
+                        <span class="text-xs font-bold text-red-700">1類 + 6類</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border border-orange-100">
+                        <span class="text-xs font-bold text-orange-700">2類 + 4類/5類</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
+                        <span class="text-xs font-bold text-blue-700">3類 + 4類</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: 高圧ガス -->
+    <section>
+        <div class="flex items-center gap-2 mb-8 bg-indigo-50 w-fit px-4 py-2 rounded-full border border-indigo-100">
+            <i data-lucide="wind" class="text-indigo-600" size="20"></i>
+            <h2 class="text-lg font-bold text-indigo-800">高圧ガス保安法：気体輸送のコアロジック</h2>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm mb-8">
+            <h3 class="font-bold text-slate-800 mb-6 flex items-center gap-2">
+                <i data-lucide="user-check" size="20" class="text-indigo-500"></i>
+                移動監視者の同乗義務
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <p class="text-[10px] text-slate-400 font-bold mb-1">可燃性ガス</p>
+                    <p class="text-xl font-bold text-slate-900">3,000L <span class="text-xs text-slate-500 font-normal">以上</span></p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <p class="text-[10px] text-slate-400 font-bold mb-1">酸素</p>
+                    <p class="text-xl font-bold text-slate-900">3,000L <span class="text-xs text-slate-500 font-normal">以上</span></p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <p class="text-[10px] text-slate-400 font-bold mb-1">毒性ガス</p>
+                    <p class="text-xl font-bold text-slate-900">1,000L <span class="text-xs text-slate-500 font-normal">以上</span></p>
+                </div>
+            </div>
+            <div class="mt-6 p-4 bg-indigo-50 rounded-xl border border-indigo-100">
+                <p class="text-xs text-indigo-800 leading-relaxed font-medium">
+                    移動監視者の有資格者マスタと配車エンジンの連動は、高圧ガス輸送におけるコンプライアンスの最重要チェックポイントです。
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-6 rounded-2xl border border-slate-200 bg-white">
+                <h4 class="font-bold text-sm mb-3 text-slate-800">火気との距離保持</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    可燃性ガス・酸素の移動時は、火気から<span class="font-bold text-slate-900 underline">8メートル以上</span>の距離を保つ必要があります。駐車拠点の施設情報管理が要件に含まれます。
+                </p>
+            </div>
+            <div class="p-6 rounded-2xl border border-slate-200 bg-white">
+                <h4 class="font-bold text-sm mb-3 text-slate-800">イエローカード携行義務</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    緊急連絡先や応急措置を記した「イエローカード」の携行が必須です。システム上でのデジタル携行確認や、紛失防止のチェックプロセスが求められます。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-20 pt-8 border-t border-slate-100 text-center">
+        <p class="text-slate-400 text-xs">© 2026 TWB - Logic Reference for NRS Transport System</p>
+    </footer>
+</div>
+
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>
