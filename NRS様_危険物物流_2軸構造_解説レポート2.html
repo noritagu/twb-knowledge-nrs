@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>危険物物流の2軸構造 ─ バルク/容器配送 × 移送/運搬</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* 背景を明るく、ビジネスライクな配色に変更 */
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface2: #f1f5f9;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text-dim: #64748b;
+  
+  /* アクセントカラーを白背景で見やすい彩度に調整 */
+  --accent-bulk: #2563eb;
+  --accent-bulk-dim: #dbeafe;
+  --accent-container: #d97706;
+  --accent-container-dim: #fef3c7;
+  --accent-transfer: #dc2626;
+  --accent-transfer-dim: #fee2e2;
+  --accent-transport: #059669;
+  --accent-transport-dim: #dcfce7;
+  --accent-overlap: #7c3aed;
+  --accent-overlap-dim: #f3e8ff;
+  --white: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Header ── */
+header {
+  padding: 80px 0 60px;
+  border-bottom: 2px solid var(--border);
+}
+
+header .label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+header h1 {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  color: #0f172a;
+}
+
+header h1 .highlight-bulk { color: var(--accent-bulk); }
+header h1 .highlight-container { color: var(--accent-container); }
+header h1 .highlight-transfer { color: var(--accent-transfer); }
+header h1 .highlight-transport { color: var(--accent-transport); }
+
+header .subtitle {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+header .meta {
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--text-dim);
+  font-family: 'Source Code Pro', monospace;
+}
+
+/* ── Section ── */
+section {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+section:last-of-type { border-bottom: none; }
+
+.section-number {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 12px;
+  color: var(--accent-bulk); /* 視認性向上のため色付け */
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  line-height: 1.5;
+  color: #0f172a;
+}
+
+h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 32px 0 12px;
+  padding-left: 12px;
+  border-left: 4px solid var(--accent-bulk);
+}
+
+h3.axis-container { border-left-color: var(--accent-container); }
+h3.axis-transfer { border-left-color: var(--accent-transfer); }
+h3.axis-transport { border-left-color: var(--accent-transport); }
+h3.axis-overlap { border-left-color: var(--accent-overlap); }
+
+p {
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+p.note {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding: 12px 16px;
+  background: var(--surface2);
+  border-radius: 6px;
+  border-left: 3px solid var(--border);
+}
+
+/* ── Keyword ── */
+.kw {
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+.kw-bulk { background: var(--accent-bulk-dim); color: var(--accent-bulk); }
+.kw-container { background: var(--accent-container-dim); color: var(--accent-container); }
+.kw-transfer { background: var(--accent-transfer-dim); color: var(--accent-transfer); }
+.kw-transport { background: var(--accent-transport-dim); color: var(--accent-transport); }
+.kw-overlap { background: var(--accent-overlap-dim); color: var(--accent-overlap); }
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 14px;
+  background: var(--surface);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+th, td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  background: var(--surface2);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+td { color: var(--text); }
+
+tr:hover td { background: #f8fafc; }
+
+/* ── Axis Diagram ── */
+.axis-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 0;
+  margin: 32px 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.axis-grid .corner {
+  background: var(--surface2);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.axis-grid .col-header {
+  padding: 16px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+
+.axis-grid .col-header:not(:last-child) {
+  border-right: 1px solid var(--border);
+}
+
+.axis-grid .row-header {
+  padding: 16px;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+}
+
+.axis-grid .cell {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.axis-grid .cell:not(:last-child) {
+  border-right: 1px solid var(--border);
+}
+
+.axis-grid .row-header:nth-last-child(-n+3),
+.axis-grid .cell:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+
+.cell-bulk-transfer {
+  background: linear-gradient(135deg, #eff6ff, #fef2f2);
+}
+
+.cell-bulk-transport {
+  background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+}
+
+.cell-container-transport {
+  background: linear-gradient(135deg, #fffbeb, #f0fdf4);
+}
+
+.cell-empty {
+  background: #f8fafc;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* ── Callout ── */
+.callout {
+  padding: 20px 24px;
+  border-radius: 8px;
+  margin: 24px 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.callout-blue {
+  background: var(--accent-bulk-dim);
+  border: 1px solid var(--accent-bulk);
+  color: #1e40af;
+}
+
+.callout-red {
+  background: var(--accent-transfer-dim);
+  border: 1px solid var(--accent-transfer);
+  color: #991b1b;
+}
+
+.callout-purple {
+  background: var(--accent-overlap-dim);
+  border: 1px solid var(--accent-overlap);
+  color: #5b21b6;
+}
+
+/* ── Vehicle Cards ── */
+.vehicle-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.vehicle-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.vehicle-card .card-title {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.vehicle-card .card-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.vehicle-card .card-row:last-child { border-bottom: none; }
+
+.vehicle-card .card-label { color: var(--text-dim); }
+
+/* ── Comparison Block ── */
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 24px 0;
+}
+
+.comparison-col {
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 24px;
+  border-top: 4px solid var(--border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.comparison-col.col-bulk { border-top-color: var(--accent-bulk); }
+.comparison-col.col-container { border-top-color: var(--accent-container); }
+.comparison-col.col-transfer { border-top-color: var(--accent-transfer); }
+.comparison-col.col-transport { border-top-color: var(--accent-transport); }
+
+.comparison-col h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #0f172a;
+}
+
+.comparison-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.comparison-col li {
+  font-size: 13px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f1f5f9;
+  color: var(--text);
+}
+
+.comparison-col li:last-child { border-bottom: none; }
+
+/* ── Footer ── */
+footer {
+  padding: 40px 0;
+  font-size: 12px;
+  color: var(--text-dim);
+  border-top: 1px solid var(--border);
+  background: var(--surface2);
+}
+
+@media (max-width: 700px) {
+  .vehicle-cards { grid-template-columns: 1fr; }
+  .comparison { grid-template-columns: 1fr; }
+  .axis-grid { font-size: 12px; }
+  .axis-grid .col-header, .axis-grid .row-header, .axis-grid .cell { padding: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+  <div class="label">NRS様 業務理解シリーズ</div>
+  <h1>危険物物流の<span class="highlight-bulk">2軸</span>構造<br>
+  <span class="highlight-bulk">バルク</span>/<span class="highlight-container">容器配送</span> × <span class="highlight-transfer">移送</span>/<span class="highlight-transport">運搬</span></h1>
+  <div class="subtitle">
+    危険物物流の配車・業務設計で「何が難しいのか」を理解するには、<br>
+    業務運用上の区分と消防法上の区分の2軸を分離して把握する必要がある。<br>
+    本資料は、この2軸の定義・区別基準・複雑性要因を構造的に整理する。
+  </div>
+  <div class="meta">対象読者：危険物物流の業務に不慣れなエンジニア ／ 作成日：2026-04-01 ／ 情報源：消防法、NRS様公開情報、業界一般情報</div>
+</header>
+
+<section>
+  <div class="section-number">SECTION 01</div>
+  <h2>前提：なぜ2軸が必要なのか</h2>
+
+  <p>危険物物流の配車や業務設計に携わると、「前荷」「洗浄」「混載可否」「受入設備」「移動タンク貯蔵所」など多数の制約条件に直面する。これらを一括で理解しようとすると混乱する。</p>
+
+  <p>原因は、<strong>性質の異なる2種類の制約が同時にかかっている</strong>ことにある。</p>
+
+  <div class="comparison">
+    <div class="comparison-col col-bulk">
+      <h4>軸1：バルク輸送 ／ 容器配送</h4>
+      <ul>
+        <li>区分の出所：業務運用</li>
+        <li>何を分けるか：現場オペレーションの難所がどこに出るか</li>
+        <li>発生する制約：業務運用上の縛り</li>
+      </ul>
+    </div>
+    <div class="comparison-col col-transfer">
+      <h4>軸2：移送 ／ 運搬</h4>
+      <ul>
+        <li>区分の出所：消防法</li>
+        <li>何を分けるか：どの法規制体系が適用されるか</li>
+        <li>発生する制約：法令起因の縛り</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>この2軸は独立しており、1件の輸送案件に対して両方の制約が同時にかかる。どちらか一方の軸だけで整理すると、必ず漏れが出る。</p>
+</section>
+
+<section>
+  <div class="section-number">SECTION 02</div>
+  <h2>軸1：<span class="kw kw-bulk">バルク輸送</span> と <span class="kw kw-container">容器配送</span> の区別</h2>
+
+  <h3>区別の基準</h3>
+  <p>液体を<strong>包装せずにタンクに直接充填した状態で輸送する</strong>のがバルク輸送。液体を<strong>ドラム缶・IBC等の容器に入れた状態で、容器ごと輸送する</strong>のが容器配送。</p>
+
+  <p>NRS様の事業構造では、バルク輸送は「国内バルク輸送事業」、容器配送は「倉庫事業（化学品の小口ネットワーク配送）」として別の事業セグメントで扱われている。</p>
+
+  <table>
+    <tr>
+      <th></th>
+      <th>バルク輸送</th>
+      <th>容器配送</th>
+    </tr>
+    <tr>
+      <td><strong>液体の入れ物</strong></td>
+      <td>タンクローリーの固定タンク（10,000〜16,000L）<br>ISOタンクコンテナ（約24,000L）</td>
+      <td>ドラム缶（200L）<br>IBC（1,000L）<br>小缶・ポリ容器</td>
+    </tr>
+    <tr>
+      <td><strong>荷卸し方法</strong></td>
+      <td>ホース・配管接続で受入先タンクに充填</td>
+      <td>フォークリフト等の荷役で容器ごと渡す</td>
+    </tr>
+    <tr>
+      <td><strong>受入先に必要な設備</strong></td>
+      <td>受入タンク、接続口、ポンプ、荷卸しスペース</td>
+      <td>フォークリフト、荷受スペース</td>
+    </tr>
+    <tr>
+      <td><strong>1運行の典型</strong></td>
+      <td>1案件・1品目・1納品先</td>
+      <td>複数案件・複数品目・複数納品先</td>
+    </tr>
+  </table>
+
+  <h3>バルク輸送の複雑性要因（業務運用上の縛り）</h3>
+
+  <table>
+    <tr><th>要因</th><th>内容</th><th>なぜ現場で困るか</th></tr>
+    <tr>
+      <td><strong>前荷・洗浄</strong></td>
+      <td>タンクに前回充填されていた品目との化学的相性に応じて、洗浄グレードの判定が必要</td>
+      <td>空いている車両・コンテナがあっても、前荷が合わなければ使えない</td>
+    </tr>
+    <tr>
+      <td><strong>車型適合</strong></td>
+      <td>タンクローリーかタンクコンテナか、何KL帯か、加温が必要か</td>
+      <td>品目・荷量・受入先設備によって使える車両が絞られる</td>
+    </tr>
+    <tr>
+      <td><strong>受入設備適合</strong></td>
+      <td>受入先タンクの有無、接続口形状、ホース長、ポンプ/圧送条件、受入容量の空き</td>
+      <td>住所が合っていても、荷卸しが物理的に成立しないことがある</td>
+    </tr>
+    <tr>
+      <td><strong>荷卸し成立性</strong></td>
+      <td>配送完了ではなく、荷卸し完了までが業務。受入タンクに中身を移し終えて初めて案件が閉じる</td>
+      <td>「届ければ終わり」ではない。下ろせなければ車両が拘束され続ける</td>
+    </tr>
+    <tr>
+      <td><strong>構内制約</strong></td>
+      <td>受入先工場の全長制限・旋回半径・天井高・路盤強度</td>
+      <td>法的に走行可能でも、受入先の敷地に入れない車型がある</td>
+    </tr>
+  </table>
+
+  <div class="callout callout-blue">
+    バルク輸送の難しさの本質：<strong>「1件の輸送を成立させること自体が難しい」</strong>。案件数は少なくても、1件ごとの成立条件が重い。
+  </div>
+
+  <h3 class="axis-container">容器配送の複雑性要因（業務運用上の縛り）</h3>
+
+  <table>
+    <tr><th>要因</th><th>内容</th><th>なぜ現場で困るか</th></tr>
+    <tr>
+      <td><strong>少量多品種</strong></td>
+      <td>SKU数が多く、ロットが小さく、発注単位が細かい</td>
+      <td>案件数・明細数・伝票数が増える</td>
+    </tr>
+    <tr>
+      <td><strong>混載設計</strong></td>
+      <td>同一便に複数品目を載せる場合、危険物区分の相性・漏えい時影響を判定する必要がある</td>
+      <td>物理的スペースがあっても、一緒に載せてはいけない組み合わせがある</td>
+    </tr>
+    <tr>
+      <td><strong>荷主混在</strong></td>
+      <td>1台に複数荷主の案件を積む場合、荷主別伝票・納品条件・責任分界の管理が必要</td>
+      <td>誤積載・誤納品・荷主別条件違反が起きやすい</td>
+    </tr>
+    <tr>
+      <td><strong>多納品先ルート</strong></td>
+      <td>1台で複数納品先を回す場合、時間指定・積付け順・荷降ろし順の整合が必要</td>
+      <td>配車だけでなく、積載順とルート順を同時に成立させる必要がある</td>
+    </tr>
+    <tr>
+      <td><strong>積付け・荷崩れ</strong></td>
+      <td>容器の姿勢・転倒防止・漏えい防止の物理的な積載設計</td>
+      <td>配車が成立しても、積載が成立しないことがある</td>
+    </tr>
+    <tr>
+      <td><strong>在庫管理粒度</strong></td>
+      <td>本数・基数・パレット・ロット・ラベル単位の管理</td>
+      <td>WMS側の複雑性が高くなる（バルクでは L/kg/t 単位で粗い）</td>
+    </tr>
+  </table>
+
+  <div class="callout callout-blue">
+    容器配送の難しさの本質：<strong>「多数の案件を崩さずに束ねること自体が難しい」</strong>。1件の成立条件は軽いが、件数と組み合わせで詰まる。
+  </div>
+</section>
+
+<section>
+  <div class="section-number">SECTION 03</div>
+  <h2>軸2：<span class="kw kw-transfer">移送</span> と <span class="kw kw-transport">運搬</span> の区別</h2>
+
+  <h3 class="axis-transfer">区別の基準</h3>
+  <p>消防法が定義する法律用語. 区別の基準は<strong>タンクが車両に固定されているかどうか</strong>の1点のみ。</p>
+
+  <table>
+    <tr>
+      <th></th>
+      <th>移送（消防法第16条の2）</th>
+      <th>運搬（消防法第16条）</th>
+    </tr>
+    <tr>
+      <td><strong>定義</strong></td>
+      <td>移動タンク貯蔵所（タンクローリー）で危険物を運ぶ行為</td>
+      <td>危険物を容器に収納し、車両に積載して運ぶ行為</td>
+    </tr>
+    <tr>
+      <td><strong>タンクと車両の関係</strong></td>
+      <td>固定（切り離せない）</td>
+      <td>分離可能（切り離せる）</td>
+    </tr>
+    <tr>
+      <td><strong>該当する車両・容器</strong></td>
+      <td>タンクローリー</td>
+      <td>ISOタンクコンテナ、ドラム缶、IBC等</td>
+    </tr>
+  </table>
+
+  <h3 class="axis-transfer">移送と運搬で変わる法規制</h3>
+  <table>
+    <tr><th>項目</th><th>移送（タンクローリー）</th><th>運搬（タンクコンテナ・ドラム等）</th></tr>
+    <tr>
+      <td><strong>車両の法的位置付け</strong></td>
+      <td>移動タンク貯蔵所。市町村長の設置許可が必要</td>
+      <td>車両自体への許可は不要。容器側に技術基準がかかる</td>
+    </tr>
+    <tr>
+      <td><strong>タンク・容器の検査</strong></td>
+      <td>車両に固定されたタンクの定期点検・構造検査義務</td>
+      <td>容器ごとの技術基準適合（UN容器基準、ISOタンクコンテナの定期検査等）</td>
+    </tr>
+    <tr>
+      <td><strong>混載</strong></td>
+      <td>タンク1基に1品目が原則</td>
+      <td>複数容器を1台に積む場合、類別の混載可否マトリクス判定が発生</td>
+    </tr>
+    <tr>
+      <td><strong>洗浄時の影響</strong></td>
+      <td>タンクが車両固定のため、洗浄時は車両ごと拘束される</td>
+      <td>タンクコンテナは容器だけ洗浄に回せる。ドラム・IBCは前荷問題が発生しにくい</td>
+    </tr>
+    <tr>
+      <td><strong>走行ルート</strong></td>
+      <td>移送経路の計画書作成義務あり（政令で定める場合）</td>
+      <td>運搬に関するルート制限は限定的</td>
+    </tr>
+    <tr>
+      <td><strong>事故時影響</strong></td>
+      <td>大量の液体が一度に漏洩するリスク</td>
+      <td>容器単位で被害が分散する</td>
+    </tr>
+    <tr>
+      <td><strong>複雑性の中心</strong></td>
+      <td>車両＝貯蔵所なので、車両管理＝危険物施設管理と同じ重さ</td>
+      <td>容器の種類×品目×数量×混載可否の組み合わせ管理</td>
+    </tr>
+  </table>
+
+  <div class="callout callout-red">
+    移送の法的な重さ：<strong>車両そのものが「移動する危険物貯蔵施設」として扱われる</strong>ため、許可・点検・経路計画まで施設管理と同等の法的義務がかかる。<br><br>
+    運搬の法的な重さ：<strong>容器側に規制の重心がある</strong>ため、容器の基準適合・混載マトリクス・表示義務の管理が中心になる。
+  </div>
+</section>
+
+<section>
+  <div class="section-number">SECTION 04</div>
+  <h2>2軸の交差：NRS様の3台の車両で見る</h2>
+
+  <p>NRS様の国内バルク輸送事業で使用される3種類の車両を、2軸のマトリクスに配置する。</p>
+
+  <div class="axis-grid">
+    <div class="corner" style="font-size:12px; color:var(--text-dim);">軸2 → <br>↓ 軸1</div>
+    <div class="col-header" style="background:var(--accent-transfer-dim); color:var(--accent-transfer);">移送<br><span style="font-size:11px; font-weight:400;">タンク固定</span></div>
+    <div class="col-header" style="background:var(--accent-transport-dim); color:var(--accent-transport);">運搬<br><span style="font-size:11px; font-weight:400;">タンク切り離し可</span></div>
+
+    <div class="row-header" style="color:var(--accent-bulk);">バルク輸送</div>
+    <div class="cell cell-bulk-transfer">
+      <strong>タンクローリー</strong><br>
+      業務上の縛り：前荷・洗浄・受入設備適合・車型適合<br>
+      法令上の縛り：移動タンク貯蔵所の許可・点検・経路計画
+    </div>
+    <div class="cell cell-bulk-transport">
+      <strong style="color:var(--accent-overlap);">ISOタンクコンテナ ← 両軸が重なる</strong><br>
+      業務上の縛り：前荷・洗浄・受入設備適合（バルクと同じ）<br>
+      法令上の縛り：容器基準・混載マトリクス（運搬側の体系）
+    </div>
+
+    <div class="row-header" style="color:var(--accent-container);">容器配送</div>
+    <div class="cell cell-empty">
+      該当なし<br>
+      <span style="font-size:12px;">（容器配送でタンク固定の車両は通常使わない）</span>
+    </div>
+    <div class="cell cell-container-transport">
+      <strong>ドラム缶・IBC</strong><br>
+      業務上の縛り：混載・荷主混在・多納品先・積付け<br>
+      法令上の縛り：容器基準・混載マトリクス・表示義務
+    </div>
+  </div>
+
+  <div class="callout callout-purple">
+    <strong>ISOタンクコンテナが厄介な理由：</strong><br>
+    業務運用上はバルク輸送の複雑性（前荷・洗浄・受入設備適合）がフルにかかる。<br>
+    同時に、消防法上は運搬の法規制体系（容器基準・混載マトリクス）が適用される。<br>
+    2軸の難易度要因が両方同時に乗る位置にいる。
+  </div>
+
+  <h3 class="axis-overlap">3台の整理</h3>
+
+  <div class="vehicle-cards">
+    <div class="vehicle-card">
+      <div class="card-title" style="color:var(--accent-overlap);">左・中央：トレーラー＋ISOタンクコンテナ</div>
+      <div class="card-row"><span class="card-label">軸1（業務運用）</span><span class="kw kw-bulk">バルク輸送</span></div>
+      <div class="card-row"><span class="card-label">軸2（消防法）</span><span class="kw kw-transport">運搬</span></div>
+      <div class="card-row"><span class="card-label">容量</span>約24,000L</div>
+      <div class="card-row"><span class="card-label">業務上の難所</span>前荷・洗浄・受入設備</div>
+      <div class="card-row"><span class="card-label">法令上の難所</span>容器基準・混載可否</div>
+    </div>
+    <div class="vehicle-card">
+      <div class="card-title" style="color:var(--accent-transfer);">右：タンクローリー</div>
+      <div class="card-row"><span class="card-label">軸1（業務運用）</span><span class="kw kw-bulk">バルク輸送</span></div>
+      <div class="card-row"><span class="card-label">軸2（消防法）</span><span class="kw kw-transfer">移送</span></div>
+      <div class="card-row"><span class="card-label">容量</span>約10,000〜16,000L</div>
+      <div class="card-row"><span class="card-label">業務上の難所</span>前荷・洗浄・受入設備</div>
+      <div class="card-row"><span class="card-label">法令上の難所</span>移動タンク貯蔵所の許可・点検</div>
+    </div>
+    <div class="vehicle-card">
+      <div class="card-title" style="color:var(--accent-container);">（参考）ドラム缶・IBC配送車</div>
+      <div class="card-row"><span class="card-label">軸1（業務運用）</span><span class="kw kw-container">容器配送</span></div>
+      <div class="card-row"><span class="card-label">軸2（消防法）</span><span class="kw kw-transport">運搬</span></div>
+      <div class="card-row"><span class="card-label">容量</span>200L〜1,000L/個</div>
+      <div class="card-row"><span class="card-label">業務上の難所</span>混載・多納品先・積付け</div>
+      <div class="card-row"><span class="card-label">法令上の難所</span>混載マトリクス・容器適合</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-number">SECTION 05</div>
+  <h2>用語定義の整理</h2>
+
+  <table>
+    <tr><th>用語</th><th>定義</th><th>出所</th></tr>
+    <tr>
+      <td><strong>バルク輸送</strong></td>
+      <td>液体・粉粒体等を個別包装せず、タンクに直接充填した状態で輸送する方式。タンクローリー、ISOタンクコンテナ等を使用する</td>
+      <td>物流業界の実務用語（法律用語ではない）</td>
+    </tr>
+    <tr>
+      <td><strong>容器配送</strong></td>
+      <td>液体をドラム缶・IBC等の容器に入れた状態で、容器ごと車両に積載して配送する方式</td>
+      <td>物流業界の実務用語</td>
+    </tr>
+    <tr>
+      <td><strong>移送</strong></td>
+      <td>移動タンク貯蔵所（タンクローリー）によって危険物を運ぶ行為。タンクが車両に固定されている</td>
+      <td>消防法第16条の2</td>
+    </tr>
+    <tr>
+      <td><strong>運搬</strong></td>
+      <td>危険物を容器に収納し、車両に積載して運ぶ行為. 容器は車両から切り離せる</td>
+      <td>消防法第16条</td>
+    </tr>
+    <tr>
+      <td><strong>移動タンク貯蔵所</strong></td>
+      <td>タンクローリーの消防法上の正式名称。走行中も「貯蔵所」として扱われ、設置許可・点検義務が発生する</td>
+      <td>消防法第10条〜</td>
+    </tr>
+    <tr>
+      <td><strong>前荷</strong></td>
+      <td>タンクに直前に充填されていた品目。次に充填する品目との化学的相性に応じた洗浄が必要</td>
+      <td>業界実務用語</td>
+    </tr>
+    <tr>
+      <td><strong>混載可否マトリクス</strong></td>
+      <td>消防法に基づき、危険物の類・品名ごとに同一車両への混載が認められるかを定めた判定表</td>
+      <td>消防法に基づく規則</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <div class="section-number">SECTION 06</div>
+  <h2>システム設計への示唆</h2>
+
+  <p>NRS様の輸送システムを設計する際、この2軸から導かれる設計上の論点は以下の通り。</p>
+
+  <h3>配車ロジックの分離検討</h3>
+  <p>バルク輸送と容器配送では、配車の難所が根本的に異なる。バルク側は「1件の成立判定」が重く、容器側は「多数案件の組み合わせ最適化」が重い。同一の配車ロジックで両方を処理すると、一方に不要な複雑性を持ち込むか、他方に必要なロジックが欠落するリスクがある。</p>
+
+  <h3>法規制チェックの設計</h3>
+  <p>移送と運搬では適用条文が異なるため、法規制チェックのロジックを共通化できない。タンクローリー案件には移動タンク貯蔵所の許可・点検・経路計画のチェックが必要であり、タンクコンテナ・ドラム・IBC案件には容器基準・混載マトリクスのチェックが必要。</p>
+
+  <h3>ISOタンクコンテナの扱い</h3>
+  <p>ISOタンクコンテナは2軸の難易度要因が重なる位置にいるため、システム上は「バルク輸送の業務チェック」と「運搬の法規制チェック」の両方を通す設計が必要。どちらか一方の体系にだけ寄せると、チェック漏れが発生する。</p>
+
+  <h3>マスタ設計で最低限分けるべき項目</h3>
+  <table>
+    <tr><th>項目</th><th>持つべき値</th><th>使う場面</th></tr>
+    <tr><td>荷姿</td><td>バルク（ローリー）/ バルク（タンクコンテナ）/ ドラム / IBC</td><td>配車ロジックの分岐</td></tr>
+    <tr><td>法規区分</td><td>移送 / 運搬</td><td>法規制チェックの分岐</td></tr>
+    <tr><td>受入方式</td><td>タンク受入（ホース接続）/ 容器受入（荷役）</td><td>荷卸し成立判定</td></tr>
+    <tr><td>混載可否</td><td>専用 / 条件付き混載可 / 混載可</td><td>積載設計</td></tr>
+    <tr><td>前荷管理要否</td><td>要 / 不要</td><td>コンテナ・車両割当ロジック</td></tr>
+  </table>
+
+  <p class="note">上記は公開情報に基づく仮説であり、NRS様の実際の業務運用・社内用語・システム構成はヒアリングで確認が必要。</p>
+</section>
+
+<footer>
+  <div class="container">
+    作成日：2026年4月1日 ／ 情報源：消防法、NRS様コーポレートサイト、業界一般情報 ／ 本資料は公開情報に基づく仮説構造であり、NRS様の内部業務との照合はヒアリングで実施する必要がある
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
