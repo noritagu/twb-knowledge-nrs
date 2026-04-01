@@ -6,16 +6,16 @@
     <title>NRS様 危険物物流ナレッジサイト</title>
     <style>
         :root {
-            --bg: #eef4fb;
-            --paper: #fcfdff;
-            --panel: rgba(252, 253, 255, 0.9);
-            --line: #cdd9e8;
-            --ink: #1f2937;
+            --bg: #f7f4ee;
+            --paper: #fffdfa;
+            --panel: rgba(255, 253, 250, 0.96);
+            --line: #e6ddd1;
+            --ink: #243142;
             --muted: #6b7280;
-            --accent: #9a3412;
-            --accent-deep: #7c2d12;
-            --navy: #1f3a5f;
-            --shadow: 0 18px 45px rgba(31, 58, 95, 0.12);
+            --accent: #4f6b8a;
+            --accent-deep: #2a4462;
+            --navy: #223754;
+            --shadow: 0 10px 30px rgba(36, 49, 66, 0.05);
         }
         * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -23,52 +23,64 @@
             margin: 0;
             font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
             color: var(--ink);
-            background:
-                radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 28%),
-                radial-gradient(circle at top right, rgba(148, 163, 184, 0.12), transparent 22%),
-                linear-gradient(180deg, #f7fbff 0%, #eef4fb 40%, #e6eef8 100%);
+            background: linear-gradient(180deg, #faf8f3 0%, #f7f4ee 100%);
         }
         a { color: inherit; text-decoration: none; }
         .shell { width: min(1180px, calc(100vw - 32px)); margin: 0 auto; padding: 28px 0 56px; }
         .hero, .toolbar, .section-panel {
-            border: 1px solid rgba(124, 45, 18, 0.12);
+            border: 1px solid rgba(36, 49, 66, 0.1);
             border-radius: 24px;
             background: var(--panel);
             box-shadow: var(--shadow);
         }
         .hero { padding: 34px; }
+        .hero-top {
+            display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 24px; align-items: start;
+        }
         .eyebrow {
             display: inline-flex; padding: 7px 12px; border-radius: 999px; font-size: .8rem; font-weight: 700;
-            border: 1px solid rgba(154, 52, 18, 0.16); background: rgba(255, 247, 237, 0.88); color: var(--accent-deep);
+            border: 1px solid rgba(79, 107, 138, 0.18); background: rgba(247, 250, 253, 0.95); color: var(--accent-deep);
         }
         h1 {
             margin: 14px 0 0; font-family: Georgia, "Hiragino Mincho ProN", serif;
-            font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1.06;
+            font-size: clamp(1.85rem, 3.5vw, 2.95rem); line-height: 1.08;
         }
-        .lead { max-width: 780px; margin: 18px 0 0; color: #374151; line-height: 1.75; }
-        .hero-grid { display: grid; grid-template-columns: 1.3fr .9fr; gap: 18px; margin-top: 28px; }
-        .quick-nav { padding: 18px; border-radius: 22px; background: rgba(255,255,255,.45); border: 1px solid rgba(124,45,18,.08); }
+        .hero-note {
+            padding: 18px 20px; border-radius: 18px; background: rgba(255,255,255,.78);
+            border: 1px solid rgba(36, 49, 66, 0.12); color: #5a6472; line-height: 1.8; font-size: .8rem;
+        }
+        .hero-note strong { color: inherit; font-weight: 400; }
+        .hero-note .note-mark { color: #dc2626; font-weight: 700; }
+        .lead { max-width: 860px; margin: 18px 0 0; color: #556273; line-height: 1.9; }
+        .hero-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 28px; }
+        .quick-nav { padding: 18px; border-radius: 22px; background: rgba(255,255,255,.58); border: 1px solid rgba(36,49,66,.1); }
         .quick-nav h2, .section-panel h2 { margin: 0 0 12px; font-size: 1rem; text-transform: uppercase; color: var(--accent-deep); }
-        .quick-links { display: grid; gap: 10px; }
+        .quick-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+        .quick-links .featured-link { grid-column: 1 / -1; }
         .quick-links a, .doc-card {
             display: block; padding: 14px; border-radius: 16px; background: rgba(255,255,255,.82);
-            border: 1px solid rgba(217,201,175,.9); transition: transform .2s ease, border-color .2s ease, background .2s ease;
+            border: 1px solid rgba(36,49,66,.12); transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
         }
-        .quick-links a:hover, .doc-card:hover { transform: translateY(-2px); border-color: rgba(154,52,18,.35); background: rgba(255,250,242,.95); }
+        .quick-links a:hover, .doc-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(79,107,138,.22);
+            background: rgba(255,255,255,.99);
+            box-shadow: 0 10px 24px rgba(36, 49, 66, 0.06);
+        }
         .quick-links strong { display: block; margin-bottom: 4px; font-size: .95rem; }
-        .quick-links span, .section-copy, .doc-card p, .footer { color: #4b5563; line-height: 1.65; }
+        .quick-links span, .section-copy, .doc-card p, .footer { color: #5b6878; line-height: 1.65; }
         .toolbar {
             display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
             margin: 28px 0 18px; padding: 16px 18px;
         }
         .search {
-            width: 100%; padding: 14px 16px; border-radius: 14px; border: 1px solid rgba(154,52,18,.18);
+            width: 100%; padding: 14px 16px; border-radius: 14px; border: 1px solid rgba(36,49,66,.14);
             background: rgba(255,255,255,.94); font-size: .95rem; color: var(--ink);
         }
         .legend { display: flex; flex-wrap: wrap; gap: 8px; }
         .pill {
-            padding: 7px 10px; border-radius: 999px; background: rgba(255,247,237,.9);
-            border: 1px solid rgba(154,52,18,.14); color: var(--accent-deep); font-size: .78rem; font-weight: 700;
+            padding: 7px 10px; border-radius: 999px; background: rgba(246,248,251,.92);
+            border: 1px solid rgba(79,107,138,.1); color: var(--accent-deep); font-size: .78rem; font-weight: 700;
         }
         .section-stack { display: grid; gap: 18px; }
         .section-panel { padding: 22px; }
@@ -76,8 +88,8 @@
         .section-title { margin: 0; font-family: Georgia, "Hiragino Mincho ProN", serif; font-size: 1.7rem; color: var(--navy); }
         .section-copy { margin: 10px 0 0; font-size: .94rem; }
         .section-note {
-            padding: 14px 16px; border-radius: 18px; border: 1px solid rgba(154,52,18,.13);
-            background: linear-gradient(135deg, rgba(255,247,237,.92), rgba(253,242,220,.82)); color: var(--accent-deep); font-size: .88rem;
+            padding: 14px 16px; border-radius: 18px; border: 1px solid rgba(36,49,66,.11);
+            background: rgba(249, 250, 252, 0.92); color: var(--accent-deep); font-size: .88rem;
         }
         .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
         .doc-card { display: flex; flex-direction: column; gap: 12px; min-height: 100%; }
@@ -89,7 +101,7 @@
         .footer { margin-top: 22px; padding: 18px 4px 0; font-size: .84rem; }
         .hidden { display: none !important; }
         @media (max-width: 960px) {
-            .hero-grid, .section-top, .toolbar, .cards { grid-template-columns: 1fr; }
+            .hero-top, .section-top, .toolbar, .cards, .quick-links { grid-template-columns: 1fr; }
         }
         @media (max-width: 720px) {
             .shell { width: min(100vw - 20px, 1180px); padding-top: 18px; }
@@ -101,18 +113,26 @@
 <body>
     <div class="shell">
         <header class="hero">
-            <div class="eyebrow">NRS様 Knowledge Hub</div>
-            <h1>危険物物流の資料群を<br>1つの入口に束ねた統合サイト</h1>
-            <p class="lead">
-                ルートフォルダ配下の HTML / Markdown 資料を、基礎理解から法規制、配車、在庫、
-                商流、ラストワンマイルまで横断できる形で整理しました。既存資料はそのまま活かし、
-                このページを起点に全体像と個別論点の両方へ辿れる構成にしています。
-            </p>
+            <div class="hero-top">
+                <div>
+                    <div class="eyebrow">NRS様 Knowledge Hub</div>
+                    <h1>危険物物流の資料群を<br>1つの入口に束ねた統合サイト</h1>
+                    <p class="lead">
+                        ルートフォルダ配下の HTML / Markdown 資料を、基礎理解から法規制、配車、在庫、
+                        商流、ラストワンマイルまで横断できる形で整理しました。既存資料はそのまま活かし、
+                        このページを起点に全体像と個別論点の両方へ辿れる構成にしています。
+                    </p>
+                </div>
+                <aside class="hero-note">
+                    <strong><span class="note-mark">※</span>当サイトは、TWBスタッフの業界理解向上およびサービス品質向上を目的として、一般公開されている情報をもとに独自に整理・編集した学習コンテンツです。</strong>
+                    掲載内容の正確性や完全性を保証するものではありませんが、日々の知識習得や情報共有の一環として活用しています。
+                </aside>
+            </div>
             <div class="hero-grid">
                 <nav class="quick-nav">
                     <h2>最短導線</h2>
                     <div class="quick-links">
-                        <a href="NRS様_危険物物流_2軸構造_解説レポート2.html"><strong>注目レポートを見る</strong><span>危険物物流を 2 軸で整理した解説レポートへ直接アクセス。</span></a>
+                        <a class="featured-link" href="NRS様_危険物物流_2軸構造_解説レポート2.html"><strong>危険物物流の2軸構造 バルク/容器配送 × 移送/運搬</strong><span>危険物物流を 2 軸で整理した解説レポートへ直接アクセス。</span></a>
                         <a href="#foundation"><strong>基礎から把握する</strong><span>危険物とは何か、類・品名、用語、入門ガイドをまとめて確認。</span></a>
                         <a href="#actors"><strong>荷主・荷受け・商流を理解する</strong><span>誰が発荷主で、誰が在庫を持ち、誰が受け取るのかを整理。</span></a>
                         <a href="#operations"><strong>輸送・配車・車両・容器を押さえる</strong><span>危険物物流の実務論点を運用目線で確認。</span></a>
@@ -153,56 +173,56 @@
                     </div>
                 </div>
                 <div class="cards">
-                    <a class="doc-card" href="危険物物流の基礎知識.html" data-search="危険物物流とは何か 基礎知識 危険物 定義 入門">
+                    <a id="doc-kiso" class="doc-card" href="危険物物流の基礎知識.html" data-search="危険物物流とは何か 基礎知識 危険物 定義 入門">
                         <div class="meta"><span>MD</span><span>基礎</span></div>
                         <h3>危険物物流とは何か</h3>
                         <p>危険物物流の全体像を最初に押さえるための基礎導入資料です。</p>
                         <ul class="headings"><li>導入</li><li>基本定義</li><li>危険物とは</li></ul>
                         <div class="path">危険物物流の基礎知識.md</div>
                     </a>
-                    <a class="doc-card" href="危険物とはなにか.html" data-search="消防法上の危険物とは何か 危険物 定義 第1類 第6類">
+                    <a id="doc-kikenbutsu" class="doc-card" href="危険物とはなにか.html" data-search="消防法上の危険物とは何か 危険物 定義 第1類 第6類">
                         <div class="meta"><span>MD</span><span>消防法</span></div>
                         <h3>消防法上の「危険物」とは何か</h3>
                         <p>危険物の定義と 6 類分類の構造を理解するための中心資料です。</p>
                         <ul class="headings"><li>危険物の定義</li><li>第1類〜第6類の構造</li><li>業務への直結点</li></ul>
                         <div class="path">危険物とはなにか.md</div>
                     </a>
-                    <a class="doc-card" href="危険物の定義と解説.html" data-search="危険物の定義と解説 危険物とはなにか 重複 比較">
+                    <a id="doc-teigi" class="doc-card" href="危険物の定義と解説.html" data-search="危険物の定義と解説 危険物とはなにか 重複 比較">
                         <div class="meta"><span>MD</span><span>重複確認</span></div>
                         <h3>危険物の定義と解説</h3>
                         <p>上記資料の別名・近似版として扱えるため、内容差分確認にも使えます。</p>
                         <ul class="headings"><li>危険物の定義</li><li>第1類〜第6類</li><li>クライアント業務との接点</li></ul>
                         <div class="path">危険物の定義と解説.md</div>
                     </a>
-                    <a class="doc-card" href="危険物の類・品名の見方.html" data-search="危険物 類 品名 読み方 分類">
+                    <a id="doc-rui" class="doc-card" href="危険物の類・品名の見方.html" data-search="危険物 類 品名 読み方 分類">
                         <div class="meta"><span>MD</span><span>分類</span></div>
                         <h3>危険物の「類・品名」の読み方</h3>
                         <p>現場や会話で頻出する分類表現の読み解き方を整理した資料です。</p>
                         <ul class="headings"><li>類・品名とは何か</li><li>分類の読み方</li><li>業務上の使いどころ</li></ul>
                         <div class="path">危険物の類・品名の見方.md</div>
                     </a>
-                    <a class="doc-card" href="危険物とは.html" data-search="消防法上の危険物 解説パネル A4 類 指定数量">
+                    <a id="doc-panel" class="doc-card" href="危険物とは.html" data-search="消防法上の危険物 解説パネル A4 類 指定数量">
                         <div class="meta"><span>HTML</span><span>図解</span></div>
                         <h3>消防法上の危険物 解説パネル</h3>
                         <p>6 類や指定数量を 1 枚で俯瞰できる図解系のパネル資料です。</p>
                         <ul class="headings"><li>危険物の類別整理</li><li>指定数量</li><li>計算の考え方</li></ul>
                         <div class="path">危険物とは.html</div>
                     </a>
-                    <a class="doc-card" href="危険物物流 入門ガイド.html" data-search="危険物物流 入門ガイド 一般物流 比較 学ぶ">
+                    <a id="doc-guide" class="doc-card" href="危険物物流 入門ガイド.html" data-search="危険物物流 入門ガイド 一般物流 比較 学ぶ">
                         <div class="meta"><span>HTML</span><span>入門</span></div>
                         <h3>危険物物流 入門ガイド</h3>
                         <p>一般物流との比較から危険物物流の特徴を把握するための入門書です。</p>
                         <ul class="headings"><li>共通点・相違点</li><li>このテーマがなぜ効くか</li><li>基本理解の整理</li></ul>
                         <div class="path">危険物物流 入門ガイド.html</div>
                     </a>
-                    <a class="doc-card" href="危険物物流_用語解説書.html" data-search="危険物物流 用語解説書 用語 基礎 辞書">
+                    <a id="doc-yougo-html" class="doc-card" href="危険物物流_用語解説書.html" data-search="危険物物流 用語解説書 用語 基礎 辞書">
                         <div class="meta"><span>HTML</span><span>辞書</span></div>
                         <h3>危険物物流 用語解説書</h3>
                         <p>個別用語の意味を都度引ける辞書的な資料です。参照性が高いのが強みです。</p>
                         <ul class="headings"><li>危険物の基礎</li><li>用語の定義</li><li>カテゴリ別整理</li></ul>
                         <div class="path">危険物物流_用語解説書.html</div>
                     </a>
-                    <a class="doc-card" href="危険物物流_用語解説書.htm" data-search="危険物物流 用語解説書 htm 旧版">
+                    <a id="doc-yougo-htm" class="doc-card" href="危険物物流_用語解説書.htm" data-search="危険物物流 用語解説書 htm 旧版">
                         <div class="meta"><span>HTM</span><span>参考版</span></div>
                         <h3>危険物物流 用語解説書（HTM版）</h3>
                         <p>同系統の別形式ファイルです。HTML 版と見比べると更新差分の確認に使えます。</p>
@@ -229,28 +249,28 @@
                     </div>
                 </div>
                 <div class="cards">
-                    <a class="doc-card" href="危険物物流における荷主とは.html" data-search="危険物物流 荷主 とは誰か 発荷主">
+                    <a id="doc-ninushi" class="doc-card" href="危険物物流における荷主とは.html" data-search="危険物物流 荷主 とは誰か 発荷主">
                         <div class="meta"><span>MD</span><span>荷主</span></div>
                         <h3>危険物物流の「荷主」とは誰か</h3>
                         <p>荷主の定義と業種別の位置づけを確認するための基本資料です。</p>
                         <ul class="headings"><li>荷主の定義</li><li>主な業種</li><li>危険物を動かす理由</li></ul>
                         <div class="path">危険物物流における荷主とは.md</div>
                     </a>
-                    <a class="doc-card" href="荷主と荷受けの商流関係.html" data-search="荷主 荷受け 商流 物流 構造">
+                    <a id="doc-shoryu" class="doc-card" href="荷主と荷受けの商流関係.html" data-search="荷主 荷受け 商流 物流 構造">
                         <div class="meta"><span>MD</span><span>商流</span></div>
                         <h3>荷主と荷受けの関係</h3>
                         <p>荷主と荷受けの役割を、商流と物流の構造に分けて整理した資料です。</p>
                         <ul class="headings"><li>荷主とは誰か</li><li>荷受けとは誰か</li><li>関係性の分解</li></ul>
                         <div class="path">荷主と荷受けの商流関係.md</div>
                     </a>
-                    <a class="doc-card" href="危険物の生産源と製造メーカー.html" data-search="危険物 生産源 製造メーカー 入荷 出荷 NRS様 立ち位置">
+                    <a id="doc-supply" class="doc-card" href="危険物の生産源と製造メーカー.html" data-search="危険物 生産源 製造メーカー 入荷 出荷 NRS様 立ち位置">
                         <div class="meta"><span>HTML</span><span>供給構造</span></div>
                         <h3>危険物物流の構造と NRS様 社の立ち位置</h3>
                         <p>化学品サプライチェーンの中で、入荷と出荷が誰視点かを整理した図解資料です。</p>
                         <ul class="headings"><li>入荷と出荷の視点</li><li>サプライチェーンの物流フロー</li><li>発荷主・着荷主の整理</li></ul>
                         <div class="path">危険物の生産源と製造メーカー.html</div>
                     </a>
-                    <a class="doc-card" href="危険物物流の在庫所在と集荷構造.html" data-search="在庫所在 集荷構造 発荷主 商社 ディストリビューター">
+                    <a id="doc-stock-source" class="doc-card" href="危険物物流の在庫所在と集荷構造.html" data-search="在庫所在 集荷構造 発荷主 商社 ディストリビューター">
                         <div class="meta"><span>HTML</span><span>在庫所在</span></div>
                         <h3>危険物物流の在庫所在と集荷構造</h3>
                         <p>誰が在庫を持つか、どこから集荷するかをプレイヤー別に見られる資料です。</p>
@@ -277,84 +297,84 @@
                     </div>
                 </div>
                 <div class="cards">
-                    <a class="doc-card" href="移送と運搬の違い.html" data-search="移送 運搬 違い 法規制 コスト 配車">
+                    <a id="doc-isou" class="doc-card" href="移送と運搬の違い.html" data-search="移送 運搬 違い 法規制 コスト 配車">
                         <div class="meta"><span>MD</span><span>用語差</span></div>
                         <h3>「移送」と「運搬」の違い</h3>
                         <p>同じ「運ぶ」でも法規制、コスト、配車の前提が変わることを整理しています。</p>
                         <ul class="headings"><li>移送とは何か</li><li>運搬とは何か</li><li>実務への影響</li></ul>
                         <div class="path">移送と運搬の違い.md</div>
                     </a>
-                    <a class="doc-card" href="危険物物流における輸送と配送の区別.html" data-search="輸送 配送 小口 概念 危険物物流">
+                    <a id="doc-yusou" class="doc-card" href="危険物物流における輸送と配送の区別.html" data-search="輸送 配送 小口 概念 危険物物流">
                         <div class="meta"><span>MD</span><span>輸配送</span></div>
                         <h3>「輸送」と「配送（小口）」の概念</h3>
                         <p>危険物物流で輸送と配送をどう分けて捉えるかを整理した資料です。</p>
                         <ul class="headings"><li>結論から</li><li>移送と運搬</li><li>一般物流とのズレ</li></ul>
                         <div class="path">危険物物流における輸送と配送の区別.md</div>
                     </a>
-                    <a class="doc-card" href="混載と運搬の違い.html" data-search="混載 運搬 違い 危険物物流">
+                    <a id="doc-konsai" class="doc-card" href="混載と運搬の違い.html" data-search="混載 運搬 違い 危険物物流">
                         <div class="meta"><span>MD</span><span>混載</span></div>
                         <h3>混載と運搬の違い</h3>
                         <p>危険物物流で「混載」という言葉がどの制約と結びつくかを把握できます。</p>
                         <ul class="headings"><li>混載とは何か</li><li>言葉を揃える</li><li>一般物流との違い</li></ul>
                         <div class="path">混載と運搬の違い.md</div>
                     </a>
-                    <a class="doc-card" href="危険物物流の車輛について.html" data-search="危険物物流 車両 タンクローリー 車両区分">
+                    <a id="doc-sharyo" class="doc-card" href="危険物物流の車輛について.html" data-search="危険物物流 車両 タンクローリー 車両区分">
                         <div class="meta"><span>MD</span><span>車両</span></div>
                         <h3>危険物物流の「車両」とは？</h3>
                         <p>タンクローリーを含む車両区分と、現場での意味合いを整理した資料です。</p>
                         <ul class="headings"><li>2つの車両区分</li><li>移動タンク貯蔵所</li><li>運用上の急所</li></ul>
                         <div class="path">危険物物流の車輛について.md</div>
                     </a>
-                    <a class="doc-card" href="危険物物流の配車とオペレーション.html" data-search="配車 オペレーション 危険物物流">
+                    <a id="doc-haisha" class="doc-card" href="危険物物流の配車とオペレーション.html" data-search="配車 オペレーション 危険物物流">
                         <div class="meta"><span>MD</span><span>配車</span></div>
                         <h3>危険物物流における配車・オペレーション</h3>
                         <p>配車判断で見るべき論点を実務目線で整理した資料です。</p>
                         <ul class="headings"><li>配車判断の主要概念</li><li>運行条件の整理</li><li>実務への効きどころ</li></ul>
                         <div class="path">危険物物流の配車とオペレーション.md</div>
                     </a>
-                    <a class="doc-card" href="危険物物流の運送ルート選定.html" data-search="運送ルート 選定 ルート 危険物">
+                    <a id="doc-route" class="doc-card" href="危険物物流の運送ルート選定.html" data-search="運送ルート 選定 ルート 危険物">
                         <div class="meta"><span>MD</span><span>ルート</span></div>
                         <h3>危険物物流における運送ルート選定</h3>
                         <p>どのルートを選ぶかが法規・安全・運用のどこに影響するかを整理しています。</p>
                         <ul class="headings"><li>ルート選定の用語整理</li><li>輸送モードの前提</li><li>実務の判断軸</li></ul>
                         <div class="path">危険物物流の運送ルート選定.md</div>
                     </a>
-                    <a class="doc-card" href="危険物物流の直送について.html" data-search="直送 危険物物流">
+                    <a id="doc-chokuso" class="doc-card" href="危険物物流の直送について.html" data-search="直送 危険物物流">
                         <div class="meta"><span>MD</span><span>直送</span></div>
                         <h3>危険物物流における「直送」</h3>
                         <p>直送がなぜ NRS様 の業務に関係するかを押さえるための資料です。</p>
                         <ul class="headings"><li>直送の最小定義</li><li>業務との関係</li><li>判断ポイント</li></ul>
                         <div class="path">危険物物流の直送について.md</div>
                     </a>
-                    <a class="doc-card" href="容器基準の違い：ドラム・一斗缶・IBC.html" data-search="容器基準 ドラム 一斗缶 IBC">
+                    <a id="doc-container" class="doc-card" href="容器基準の違い：ドラム・一斗缶・IBC.html" data-search="容器基準 ドラム 一斗缶 IBC">
                         <div class="meta"><span>MD</span><span>容器</span></div>
                         <h3>容器基準の違い</h3>
                         <p>ドラム、一斗缶、IBC の違いを、容器という観点から整理しています。</p>
                         <ul class="headings"><li>容器とは何か</li><li>各容器の違い</li><li>基準の見方</li></ul>
                         <div class="path">容器基準の違い：ドラム・一斗缶・IBC.md</div>
                     </a>
-                    <a class="doc-card" href="前荷とコンタミの関係性.html" data-search="前荷 コンタミ 洗浄グレード コスト">
+                    <a id="doc-contami" class="doc-card" href="前荷とコンタミの関係性.html" data-search="前荷 コンタミ 洗浄グレード コスト">
                         <div class="meta"><span>MD</span><span>品質</span></div>
                         <h3>前荷とコンタミの関係性</h3>
                         <p>前荷と洗浄グレードがコスト・品質に与える影響を理解できます。</p>
                         <ul class="headings"><li>前荷とは</li><li>コンタミとは</li><li>コストが生まれる構造</li></ul>
                         <div class="path">前荷とコンタミの関係性.md</div>
                     </a>
-                    <a class="doc-card" href="ISOタンクの実務的活用と最適化.html" data-search="ISOタンク 実務 最適化 少量多品種">
+                    <a id="doc-isotank" class="doc-card" href="ISOタンクの実務的活用と最適化.html" data-search="ISOタンク 実務 最適化 少量多品種">
                         <div class="meta"><span>MD</span><span>タンク</span></div>
                         <h3>ISOタンクの実務的活用と最適化</h3>
                         <p>少量多品種時代における ISO タンクの適用条件と制約を整理しています。</p>
                         <ul class="headings"><li>ISOタンクとは何か</li><li>最適解になる条件</li><li>制約と注意点</li></ul>
                         <div class="path">ISOタンクの実務的活用と最適化.md</div>
                     </a>
-                    <a class="doc-card" href="モーダルシフトと複合一貫輸送の基礎.html" data-search="モーダルシフト 複合一貫輸送 構造転換">
+                    <a id="doc-modal" class="doc-card" href="モーダルシフトと複合一貫輸送の基礎.html" data-search="モーダルシフト 複合一貫輸送 構造転換">
                         <div class="meta"><span>MD</span><span>モード</span></div>
                         <h3>モーダルシフトと複合一貫輸送の基礎</h3>
                         <p>輸送モードの転換や複合輸送を、危険物物流の文脈で整理した資料です。</p>
                         <ul class="headings"><li>モーダルシフトとは</li><li>複合一貫輸送とは</li><li>構造的転換の論点</li></ul>
                         <div class="path">モーダルシフトと複合一貫輸送の基礎.md</div>
                     </a>
-                    <a class="doc-card" href="危険物物流の全業務フロー.html" data-search="全業務フロー 危険物物流 運送業者視点">
+                    <a id="doc-flow" class="doc-card" href="危険物物流の全業務フロー.html" data-search="全業務フロー 危険物物流 運送業者視点">
                         <div class="meta"><span>HTML</span><span>業務フロー</span></div>
                         <h3>危険物物流の全業務フロー</h3>
                         <p>危険物運送業者視点で、発荷主から受荷主までのフローを一気に俯瞰できます。</p>
@@ -381,14 +401,14 @@
                     </div>
                 </div>
                 <div class="cards">
-                    <a class="doc-card" href="NRS様様法規制ロジック・マスター.html" data-search="法規制ロジック マスター 消防法 指定数量 1/10例外">
+                    <a id="doc-logic" class="doc-card" href="NRS様様法規制ロジック・マスター.html" data-search="法規制ロジック マスター 消防法 指定数量 1/10例外">
                         <div class="meta"><span>HTML</span><span>法規制</span></div>
                         <h3>法規制ロジック・マスター</h3>
                         <p>消防法の輸送ロジックや指定数量計算を会話向けに整理した資料です。</p>
                         <ul class="headings"><li>消防法のコアロジック</li><li>指定数量の倍数計算</li><li>1/10例外規定</li></ul>
                         <div class="path">NRS様様法規制ロジック・マスター.html</div>
                     </a>
-                    <a class="doc-card" href="NRS様様消防法 × 高圧ガス保安法 × システム実装要件の統合ガイド.html" data-search="消防法 高圧ガス保安法 システム 実装要件 統合ガイド">
+                    <a id="doc-system" class="doc-card" href="NRS様様消防法 × 高圧ガス保安法 × システム実装要件の統合ガイド.html" data-search="消防法 高圧ガス保安法 システム 実装要件 統合ガイド">
                         <div class="meta"><span>HTML</span><span>システム</span></div>
                         <h3>消防法 × 高圧ガス保安法 × システム実装要件の統合ガイド</h3>
                         <p>法体系の差異を、システム実装の観点まで落として見られる資料です。</p>
@@ -414,21 +434,21 @@
                     </div>
                 </div>
                 <div class="cards">
-                    <a class="doc-card" href="NRS様_商談準備レポート.html" data-search="NRS様 商談準備 レポート 業界 事業 業務理解">
+                    <a id="doc-sales" class="doc-card" href="NRS様_商談準備レポート.html" data-search="NRS様 商談準備 レポート 業界 事業 業務理解">
                         <div class="meta"><span>HTML</span><span>商談</span></div>
                         <h3>NRS様株式会社様様 商談準備レポート</h3>
                         <p>業界、事業、業務理解を商談文脈で整理した総合レポートです。</p>
                         <ul class="headings"><li>企業分析</li><li>基本プロフィール</li><li>目次ベースで全体把握</li></ul>
                         <div class="path">NRS様_商談準備レポート.html</div>
                     </a>
-                    <a class="doc-card" href="危険物物流の在庫管理とトレーサビリティ.html" data-search="在庫管理 在庫引当 ロット管理 トレーサビリティ 棚卸">
+                    <a id="doc-trace" class="doc-card" href="危険物物流の在庫管理とトレーサビリティ.html" data-search="在庫管理 在庫引当 ロット管理 トレーサビリティ 棚卸">
                         <div class="meta"><span>MD</span><span>在庫</span></div>
                         <h3>危険物物流における在庫管理とトレーサビリティ</h3>
                         <p>在庫管理、引当、ロット管理、棚卸まで含めて整理した実務資料です。</p>
                         <ul class="headings"><li>在庫管理</li><li>ロット管理</li><li>トレーサビリティ</li></ul>
                         <div class="path">危険物物流の在庫管理とトレーサビリティ.md</div>
                     </a>
-                    <a class="doc-card" href="ラストワンマイルの荷受け側課題.html" data-search="ラストワンマイル 荷受け側 設備 導線 火気">
+                    <a id="doc-lastmile" class="doc-card" href="ラストワンマイルの荷受け側課題.html" data-search="ラストワンマイル 荷受け側 設備 導線 火気">
                         <div class="meta"><span>MD</span><span>現場</span></div>
                         <h3>ラストワンマイルの荷受け側課題</h3>
                         <p>納品現場で見落とされがちな設備、導線、火気などの制約を扱う資料です。</p>
