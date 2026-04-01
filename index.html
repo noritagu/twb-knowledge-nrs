@@ -6,16 +6,16 @@
     <title>NRS様 危険物物流ナレッジサイト</title>
     <style>
         :root {
-            --bg: #f4efe6;
-            --paper: #fffdf8;
-            --panel: rgba(255, 253, 248, 0.88);
-            --line: #d9c9af;
+            --bg: #eef4fb;
+            --paper: #fcfdff;
+            --panel: rgba(252, 253, 255, 0.9);
+            --line: #cdd9e8;
             --ink: #1f2937;
             --muted: #6b7280;
             --accent: #9a3412;
             --accent-deep: #7c2d12;
             --navy: #1f3a5f;
-            --shadow: 0 18px 45px rgba(62, 39, 17, 0.12);
+            --shadow: 0 18px 45px rgba(31, 58, 95, 0.12);
         }
         * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -24,9 +24,9 @@
             font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
             color: var(--ink);
             background:
-                radial-gradient(circle at top left, rgba(154, 52, 18, 0.12), transparent 28%),
-                radial-gradient(circle at top right, rgba(85, 107, 47, 0.12), transparent 22%),
-                linear-gradient(180deg, #f8f2e9 0%, #f4efe6 38%, #efe6d7 100%);
+                radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 28%),
+                radial-gradient(circle at top right, rgba(148, 163, 184, 0.12), transparent 22%),
+                linear-gradient(180deg, #f7fbff 0%, #eef4fb 40%, #e6eef8 100%);
         }
         a { color: inherit; text-decoration: none; }
         .shell { width: min(1180px, calc(100vw - 32px)); margin: 0 auto; padding: 28px 0 56px; }
@@ -48,36 +48,7 @@
         .lead { max-width: 780px; margin: 18px 0 0; color: #374151; line-height: 1.75; }
         .hero-grid { display: grid; grid-template-columns: 1.3fr .9fr; gap: 18px; margin-top: 28px; }
         .quick-nav { padding: 18px; border-radius: 22px; background: rgba(255,255,255,.45); border: 1px solid rgba(124,45,18,.08); }
-        .hero-feature {
-            display: flex; flex-direction: column; justify-content: space-between; gap: 16px;
-            padding: 22px; border-radius: 22px; color: #fff7ed;
-            background:
-                radial-gradient(circle at top right, rgba(255,255,255,.16), transparent 30%),
-                linear-gradient(135deg, #7c2d12 0%, #9a3412 45%, #c2410c 100%);
-            border: 1px solid rgba(124,45,18,.22);
-            box-shadow: 0 20px 40px rgba(124, 45, 18, 0.22);
-        }
         .quick-nav h2, .section-panel h2 { margin: 0 0 12px; font-size: 1rem; text-transform: uppercase; color: var(--accent-deep); }
-        .hero-feature h2 {
-            margin: 0; font-size: .82rem; text-transform: uppercase; letter-spacing: .08em;
-            color: rgba(255,247,237,.82);
-        }
-        .hero-feature h3 {
-            margin: 0; font-family: Georgia, "Hiragino Mincho ProN", serif;
-            font-size: clamp(1.35rem, 2.6vw, 2rem); line-height: 1.3;
-        }
-        .hero-feature p {
-            margin: 0; color: rgba(255,247,237,.9); line-height: 1.75; font-size: .95rem;
-        }
-        .feature-points {
-            margin: 0; padding-left: 18px; color: rgba(255,247,237,.88); line-height: 1.65; font-size: .84rem;
-        }
-        .feature-link {
-            display: inline-flex; align-items: center; justify-content: center; align-self: flex-start;
-            padding: 12px 18px; border-radius: 999px; font-weight: 700; color: var(--accent-deep);
-            background: #fff7ed; border: 1px solid rgba(255,255,255,.24);
-        }
-        .feature-link:hover { background: #ffffff; }
         .quick-links { display: grid; gap: 10px; }
         .quick-links a, .doc-card {
             display: block; padding: 14px; border-radius: 16px; background: rgba(255,255,255,.82);
@@ -149,22 +120,6 @@
                         <a href="#business"><strong>商談・現場課題に寄せて読む</strong><span>NRS様 商談準備、在庫、ラストワンマイルなどを実務文脈で確認。</span></a>
                     </div>
                 </nav>
-                <aside class="hero-feature">
-                    <div>
-                        <h2>Featured Report</h2>
-                        <h3>NRS様 危険物物流 2軸構造 解説レポート</h3>
-                        <p>
-                            全体像を短時間でつかみたい場合の起点として、商流・物流の見方を 2 軸で整理した
-                            解説レポートをトップで強調しています。
-                        </p>
-                    </div>
-                    <ul class="feature-points">
-                        <li>構造理解の入口として使いやすい</li>
-                        <li>商談前の論点整理にも直結する</li>
-                        <li>既存資料群の読み順を決める基準になる</li>
-                    </ul>
-                    <a class="feature-link" href="NRS様_危険物物流_2軸構造_解説レポート2.html">レポートを開く</a>
-                </aside>
             </div>
         </header>
 
