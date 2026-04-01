@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NRS 危険物物流ナレッジサイト</title>
+    <title>NRS様 危険物物流ナレッジサイト</title>
     <style>
         :root {
             --bg: #f4efe6;
@@ -48,7 +48,36 @@
         .lead { max-width: 780px; margin: 18px 0 0; color: #374151; line-height: 1.75; }
         .hero-grid { display: grid; grid-template-columns: 1.3fr .9fr; gap: 18px; margin-top: 28px; }
         .quick-nav { padding: 18px; border-radius: 22px; background: rgba(255,255,255,.45); border: 1px solid rgba(124,45,18,.08); }
+        .hero-feature {
+            display: flex; flex-direction: column; justify-content: space-between; gap: 16px;
+            padding: 22px; border-radius: 22px; color: #fff7ed;
+            background:
+                radial-gradient(circle at top right, rgba(255,255,255,.16), transparent 30%),
+                linear-gradient(135deg, #7c2d12 0%, #9a3412 45%, #c2410c 100%);
+            border: 1px solid rgba(124,45,18,.22);
+            box-shadow: 0 20px 40px rgba(124, 45, 18, 0.22);
+        }
         .quick-nav h2, .section-panel h2 { margin: 0 0 12px; font-size: 1rem; text-transform: uppercase; color: var(--accent-deep); }
+        .hero-feature h2 {
+            margin: 0; font-size: .82rem; text-transform: uppercase; letter-spacing: .08em;
+            color: rgba(255,247,237,.82);
+        }
+        .hero-feature h3 {
+            margin: 0; font-family: Georgia, "Hiragino Mincho ProN", serif;
+            font-size: clamp(1.35rem, 2.6vw, 2rem); line-height: 1.3;
+        }
+        .hero-feature p {
+            margin: 0; color: rgba(255,247,237,.9); line-height: 1.75; font-size: .95rem;
+        }
+        .feature-points {
+            margin: 0; padding-left: 18px; color: rgba(255,247,237,.88); line-height: 1.65; font-size: .84rem;
+        }
+        .feature-link {
+            display: inline-flex; align-items: center; justify-content: center; align-self: flex-start;
+            padding: 12px 18px; border-radius: 999px; font-weight: 700; color: var(--accent-deep);
+            background: #fff7ed; border: 1px solid rgba(255,255,255,.24);
+        }
+        .feature-link:hover { background: #ffffff; }
         .quick-links { display: grid; gap: 10px; }
         .quick-links a, .doc-card {
             display: block; padding: 14px; border-radius: 16px; background: rgba(255,255,255,.82);
@@ -101,7 +130,7 @@
 <body>
     <div class="shell">
         <header class="hero">
-            <div class="eyebrow">NRS Knowledge Hub</div>
+            <div class="eyebrow">NRS様 Knowledge Hub</div>
             <h1>危険物物流の資料群を<br>1つの入口に束ねた統合サイト</h1>
             <p class="lead">
                 ルートフォルダ配下の HTML / Markdown 資料を、基礎理解から法規制、配車、在庫、
@@ -112,13 +141,30 @@
                 <nav class="quick-nav">
                     <h2>最短導線</h2>
                     <div class="quick-links">
+                        <a href="NRS様_危険物物流_2軸構造_解説レポート2.html"><strong>注目レポートを見る</strong><span>危険物物流を 2 軸で整理した解説レポートへ直接アクセス。</span></a>
                         <a href="#foundation"><strong>基礎から把握する</strong><span>危険物とは何か、類・品名、用語、入門ガイドをまとめて確認。</span></a>
                         <a href="#actors"><strong>荷主・荷受け・商流を理解する</strong><span>誰が発荷主で、誰が在庫を持ち、誰が受け取るのかを整理。</span></a>
                         <a href="#operations"><strong>輸送・配車・車両・容器を押さえる</strong><span>危険物物流の実務論点を運用目線で確認。</span></a>
                         <a href="#compliance"><strong>法規制とシステム要件を見る</strong><span>消防法、高圧ガス保安法、実装ロジックを入口から辿る。</span></a>
-                        <a href="#business"><strong>商談・現場課題に寄せて読む</strong><span>NRS 商談準備、在庫、ラストワンマイルなどを実務文脈で確認。</span></a>
+                        <a href="#business"><strong>商談・現場課題に寄せて読む</strong><span>NRS様 商談準備、在庫、ラストワンマイルなどを実務文脈で確認。</span></a>
                     </div>
                 </nav>
+                <aside class="hero-feature">
+                    <div>
+                        <h2>Featured Report</h2>
+                        <h3>NRS様 危険物物流 2軸構造 解説レポート</h3>
+                        <p>
+                            全体像を短時間でつかみたい場合の起点として、商流・物流の見方を 2 軸で整理した
+                            解説レポートをトップで強調しています。
+                        </p>
+                    </div>
+                    <ul class="feature-points">
+                        <li>構造理解の入口として使いやすい</li>
+                        <li>商談前の論点整理にも直結する</li>
+                        <li>既存資料群の読み順を決める基準になる</li>
+                    </ul>
+                    <a class="feature-link" href="NRS様_危険物物流_2軸構造_解説レポート2.html">レポートを開く</a>
+                </aside>
             </div>
         </header>
 
@@ -223,7 +269,7 @@
                         </p>
                     </div>
                     <div class="section-note">
-                        NRS との対話では、製造メーカー、商社、ディストリビューター、倉庫、受荷主の
+                        NRS様 との対話では、製造メーカー、商社、ディストリビューター、倉庫、受荷主の
                         立場差を会話の前提に置けるかどうかで理解の深さが変わります。
                     </div>
                 </div>
@@ -242,9 +288,9 @@
                         <ul class="headings"><li>荷主とは誰か</li><li>荷受けとは誰か</li><li>関係性の分解</li></ul>
                         <div class="path">荷主と荷受けの商流関係.md</div>
                     </a>
-                    <a class="doc-card" href="危険物の生産源と製造メーカー.html" data-search="危険物 生産源 製造メーカー 入荷 出荷 NRS 立ち位置">
+                    <a class="doc-card" href="危険物の生産源と製造メーカー.html" data-search="危険物 生産源 製造メーカー 入荷 出荷 NRS様 立ち位置">
                         <div class="meta"><span>HTML</span><span>供給構造</span></div>
-                        <h3>危険物物流の構造と NRS 社の立ち位置</h3>
+                        <h3>危険物物流の構造と NRS様 社の立ち位置</h3>
                         <p>化学品サプライチェーンの中で、入荷と出荷が誰視点かを整理した図解資料です。</p>
                         <ul class="headings"><li>入荷と出荷の視点</li><li>サプライチェーンの物流フロー</li><li>発荷主・着荷主の整理</li></ul>
                         <div class="path">危険物の生産源と製造メーカー.html</div>
@@ -321,7 +367,7 @@
                     <a class="doc-card" href="危険物物流の直送について.html" data-search="直送 危険物物流">
                         <div class="meta"><span>MD</span><span>直送</span></div>
                         <h3>危険物物流における「直送」</h3>
-                        <p>直送がなぜ NRS の業務に関係するかを押さえるための資料です。</p>
+                        <p>直送がなぜ NRS様 の業務に関係するかを押さえるための資料です。</p>
                         <ul class="headings"><li>直送の最小定義</li><li>業務との関係</li><li>判断ポイント</li></ul>
                         <div class="path">危険物物流の直送について.md</div>
                     </a>
@@ -380,19 +426,19 @@
                     </div>
                 </div>
                 <div class="cards">
-                    <a class="doc-card" href="NRS様法規制ロジック・マスター.html" data-search="法規制ロジック マスター 消防法 指定数量 1/10例外">
+                    <a class="doc-card" href="NRS様様法規制ロジック・マスター.html" data-search="法規制ロジック マスター 消防法 指定数量 1/10例外">
                         <div class="meta"><span>HTML</span><span>法規制</span></div>
                         <h3>法規制ロジック・マスター</h3>
                         <p>消防法の輸送ロジックや指定数量計算を会話向けに整理した資料です。</p>
                         <ul class="headings"><li>消防法のコアロジック</li><li>指定数量の倍数計算</li><li>1/10例外規定</li></ul>
-                        <div class="path">NRS様法規制ロジック・マスター.html</div>
+                        <div class="path">NRS様様法規制ロジック・マスター.html</div>
                     </a>
-                    <a class="doc-card" href="NRS様消防法 × 高圧ガス保安法 × システム実装要件の統合ガイド.html" data-search="消防法 高圧ガス保安法 システム 実装要件 統合ガイド">
+                    <a class="doc-card" href="NRS様様消防法 × 高圧ガス保安法 × システム実装要件の統合ガイド.html" data-search="消防法 高圧ガス保安法 システム 実装要件 統合ガイド">
                         <div class="meta"><span>HTML</span><span>システム</span></div>
                         <h3>消防法 × 高圧ガス保安法 × システム実装要件の統合ガイド</h3>
                         <p>法体系の差異を、システム実装の観点まで落として見られる資料です。</p>
                         <ul class="headings"><li>法規制の構造的差異</li><li>システム設計の方針</li><li>重要キーワード</li></ul>
-                        <div class="path">NRS様消防法 × 高圧ガス保安法 × システム実装要件の統合ガイド.html</div>
+                        <div class="path">NRS様様消防法 × 高圧ガス保安法 × システム実装要件の統合ガイド.html</div>
                     </a>
                 </div>
             </section>
@@ -403,7 +449,7 @@
                         <h2>05 Business Context</h2>
                         <h3 class="section-title">商談準備・在庫・現場課題へ接続する</h3>
                         <p class="section-copy">
-                            最後に、個別論点を商談や現場の課題感に接続する資料群です。NRS 商談準備レポートを
+                            最後に、個別論点を商談や現場の課題感に接続する資料群です。NRS様 商談準備レポートを
                             中心に、在庫管理、トレーサビリティ、ラストワンマイルの制約までを束ねています。
                         </p>
                     </div>
@@ -413,12 +459,12 @@
                     </div>
                 </div>
                 <div class="cards">
-                    <a class="doc-card" href="NRS_商談準備レポート.html" data-search="NRS 商談準備 レポート 業界 事業 業務理解">
+                    <a class="doc-card" href="NRS様_商談準備レポート.html" data-search="NRS様 商談準備 レポート 業界 事業 業務理解">
                         <div class="meta"><span>HTML</span><span>商談</span></div>
-                        <h3>NRS株式会社 商談準備レポート</h3>
+                        <h3>NRS様株式会社様様 商談準備レポート</h3>
                         <p>業界、事業、業務理解を商談文脈で整理した総合レポートです。</p>
                         <ul class="headings"><li>企業分析</li><li>基本プロフィール</li><li>目次ベースで全体把握</li></ul>
-                        <div class="path">NRS_商談準備レポート.html</div>
+                        <div class="path">NRS様_商談準備レポート.html</div>
                     </a>
                     <a class="doc-card" href="危険物物流の在庫管理とトレーサビリティ.html" data-search="在庫管理 在庫引当 ロット管理 トレーサビリティ 棚卸">
                         <div class="meta"><span>MD</span><span>在庫</span></div>
