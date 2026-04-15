@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "Restricted Area"
+
+# Replace with the absolute path to .htpasswd on the server.
+AuthUserFile /absolute/path/to/twb-knowledge-nrs/.htpasswd
+
+Require valid-user
